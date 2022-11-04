@@ -3,6 +3,7 @@ const Conversation = require("../models/conversation");
 const AppError = require("../utils/appError");
 const AWS = require("aws-sdk");
 const User = require("../models/user");
+const { v4: uuidv4 } = require('uuid');
 
 //Oke
 exports.getTenLastMessageInConversationID = async (req, res, next) => {
@@ -78,9 +79,10 @@ exports.createMessageManyFile = async (req, res, next) => {
         const _imageLinksClient = req.files.imageLinks;
         for (let i = 0; i < _imageLinksClient.length; i++) {
           const _fileContent = Buffer.from(_imageLinksClient[i].data, "binary");
+          console.log(_imageLinksClient[i].name);
           const _param = {
             Bucket: "mechat",
-            Key: _imageLinksClient[i].name,
+            Key: uuidv4() + _imageLinksClient[i].name,
             Body: _fileContent,
           }
           const _paramLocation = await s3
@@ -90,7 +92,7 @@ exports.createMessageManyFile = async (req, res, next) => {
               }
             })
             .promise();
-          _imageLinks.push(_paramLocation.Location);
+          _imageLinks.push( _paramLocation.Location);
         };
       }
       if (req.files.fileLink) {
