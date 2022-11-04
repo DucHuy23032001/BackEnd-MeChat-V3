@@ -102,6 +102,8 @@ exports.signup = async (req, res, next) => {
     const _user = await User.create({
       fullName: fullName,
       gender: gender,
+      avatarLink: "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
+      backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
       birthday: Date.now(),
       accountID: _account.id,
     });
