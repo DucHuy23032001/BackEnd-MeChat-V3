@@ -528,21 +528,25 @@
             "content":"Add message",
             "conversationID":"634016808a1090a62877a2b0",
             "senderID":"6340145304260a64fc12b009",
-            "imageLink":file,
+            "imageLink":[file],
             "fileLink":file,
         }
 
     - Dữ liệu trả về
         {
-            "content": "abc",
-            "imageLink": null,
-            "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/C%C3%A1c%20b%C3%AAn%20qu%E1%BA%A3n%20l%C3%BD%20ch%E1%BA%A5t%20l%C6%B0%E1%BB%A3ng.docx",
-            "conversationID": "634016808a1090a62877a2b0",
-            "senderID": "6340145304260a64fc12b009",
+            "content": "1",
+            "imageLink": [
+                "https://mechat.s3.ap-southeast-1.amazonaws.com/huy.jpg",
+                "https://mechat.s3.ap-southeast-1.amazonaws.com/huyhung.jpg"
+            ],
+            "fileLink": "",
+            "conversationID": "63642c1da9e50f4b9dbab20c",
+            "senderID": "63642bd4fb35ed20a056ea6e",
             "action": null,
-            "_id": "635689bd3f8e6fa331299fbb",
-            "createdAt": "2022-10-24T12:49:01.440Z",
-            "updatedAt": "2022-10-24T12:49:01.440Z",
+            "deleteBy": [],
+            "_id": "63649b42822facc87e8da201",
+            "createdAt": "2022-11-04T04:55:30.519Z",
+            "updatedAt": "2022-11-04T04:55:30.519Z",
             "__v": 0
         }
 ```         

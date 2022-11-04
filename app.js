@@ -49,12 +49,12 @@ app.use(xss());
 app.use(hpp());
 
 // Routes
-app.use('/api/v2/users', userRouter);
-app.use('/api/v2/conversations', conversationRouter);
-app.use('/api/v2/messages', messageRouter);
-app.use('/api/v2/accounts', accountRouter);
-app.use('/api/v2/friendRequests', friendRequestRouter);
-app.use('/api/v2/auths', authRouter);
+app.use('/api/v3/users', userRouter);
+app.use('/api/v3/conversations', conversationRouter);
+app.use('/api/v3/messages', messageRouter);
+app.use('/api/v3/accounts', accountRouter);
+app.use('/api/v3/friendRequests', friendRequestRouter);
+app.use('/api/v3/auths', authRouter);
 
 
 
