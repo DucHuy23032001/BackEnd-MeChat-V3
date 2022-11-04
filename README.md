@@ -397,96 +397,6 @@
                 "action": null,
                 "deleteBy": null
             },
-            {
-                "_id": "635f4997ead5a8774275371c",
-                "content": null,
-                "imageLink": null,
-                "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/5.-chapter-5-st-1.pdf",
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:05:43.756Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f49a5ead5a8774275371f",
-                "content": null,
-                "imageLink": null,
-                "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/i%20th%20ca%20kimbap%20%28%20tmt%29.docx",
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:05:57.855Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f49cbead5a87742753722",
-                "content": null,
-                "imageLink": null,
-                "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/im%20danh%20sinh%20vin%2008-10.xlsx",
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:06:35.180Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f49f7ead5a87742753725",
-                "content": null,
-                "imageLink": null,
-                "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/127-137.pdf",
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:07:19.264Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f4a07ead5a87742753728",
-                "content": null,
-                "imageLink": null,
-                "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/chng-1.pptx",
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:07:35.633Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f4a2eead5a8774275372b",
-                "content": null,
-                "imageLink": null,
-                "fileLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/1645kby_EnRgo0N2IbT4qJkOaEhzdczWh.txt",
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:08:14.297Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f4a37ead5a8774275372e",
-                "content": "Oke chưa",
-                "imageLink": null,
-                "fileLink": null,
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:08:23.255Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f4e16a0594bf7651021f2",
-                "content": "Tin nhắn này đã được thu hồi",
-                "imageLink": null,
-                "fileLink": null,
-                "senderID": "635f12961ac24d08dc61a611",
-                "createdAt": "2022-10-31T04:24:54.884Z",
-                "action": null,
-                "deleteBy": null
-            },
-            {
-                "_id": "635f58746442fcd36728a4e7",
-                "content": "Tin nhắn này đã được thu hồi",
-                "imageLink": null,
-                "fileLink": null,
-                "senderID": "635f12961ac24d08dc61a611",
-                "createdAt": "2022-10-31T05:09:08.031Z",
-                "action": null,
-                "deleteBy": null
-            }
         ]
 ```
 ### getAllMessageInConversationID
@@ -528,7 +438,7 @@
             "content":"Add message",
             "conversationID":"634016808a1090a62877a2b0",
             "senderID":"6340145304260a64fc12b009",
-            "imageLink":[file],
+            "imageLinks":[file],
             "fileLink":file,
         }
 
