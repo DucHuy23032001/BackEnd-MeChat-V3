@@ -32,8 +32,6 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       const _lastMessage = await Message.findOne({ conversationID: i })
         .sort({ createdAt: -1 })
         .limit(1);
-      // console.log(_lastMessage);
-      // console.log( "123" , _lastMessage.imageLink.length);
       if (i.isGroup == false) {
         _names = i.name.pull(_user.fullName);
         _name += _names[0].trim();
@@ -43,7 +41,6 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         _name = i.name[0];
         _imageLink = i.imageLink[0];
       }
-      // console.log( "123" , _lastMessage.imageLink.length);
      if(_lastMessage.imageLink){
       if (_lastMessage.imageLink[_lastMessage.imageLink.length - 1] != null) {
         var _confirmEnd = _lastMessage.imageLink[_lastMessage.imageLink.length - 1].split(".");
@@ -51,36 +48,31 @@ exports.getAllConversationByUserID = async (req, res, next) => {
           _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
           _confirmEnd[_confirmEnd.length - 1] == "jpeg"
         ) {
-          _lastMessage.content = "Hình ảnh";
+          _lastMessage.content = "[Hình ảnh]";
         } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
-          _lastMessage.content = "Video";
+          _lastMessage.content = "[Video]";
         }
         _imageLinkLastMessage = _lastMessage.imageLink[_lastMessage.imageLink.length - 1];
       }
      }
      if(_lastMessage.fileLink){
-        _lastMessage.content = "file";
+        _lastMessage.content = "[File]";
      }
      else{
       _imageLinkLastMessage = null;
      }
-      // console.log(_lastMessage);
       _data = {
         id: i.id,
         name: _name,
         members: i.members,
         imageLinkOfConver: _imageLink,
         content: _lastMessage.content,
-        // imageLinkOfLastMessage: _imageLinkLastMessage,
-        // fileLinkOfLastMessage: _lastMessage.fileLink,
         lastMessage: _lastMessage.action,
         time: _lastMessage.createdAt,
         isGroup: i.isGroup,
         isCalling: i.isCalling,
       };
-      // console.log(_lastMessage.imageLink.length);
       _datas.push(_data);
-      // console.log("last " , _datas);
     }
     console.log("last " , _datas);
     res.status(200).json({
@@ -100,7 +92,7 @@ exports.createConversation = async (req, res, next) => {
     let _imageLink = [];
     const _userCreate = await User.findById(createdBy);
     _imageLink.push(
-      "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png"
+      "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
     );
     const _newConversation = await Conversation.create({
       name: _name,
