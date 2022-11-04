@@ -73,8 +73,7 @@ exports.createMessageManyFile = async (req, res, next) => {
       console.log("null");
     }
     else {
-      const _imageLinksClient = req.files.imageLinks;
-      if (req.files.imageLinks) {
+      if (req.files.imageLinks.length) {
         const _imageLinksClient = req.files.imageLinks;
         for (let i = 0; i < _imageLinksClient.length; i++) {
           const _fileContent = Buffer.from(_imageLinksClient[i].data, "binary");
@@ -93,6 +92,23 @@ exports.createMessageManyFile = async (req, res, next) => {
             .promise();
           _imageLinks.push( _paramLocation.Location);
         };
+      }else{
+        let _fileContentImage = Buffer.from(req.files.imageLinks.data, "binary");
+        let _paramImage = {
+          Bucket: "mechat-v2",
+          Key: req.files.imageLinks.name,
+          ContentType: 'image/png',
+          Body: _fileContentImage,
+        };
+        let _paramLocation = await s3
+          .upload(_paramImage, (err, data) => {
+            if (err) {
+              throw err;
+            }
+          })
+          .promise();
+
+          _imageLinks.push( _paramLocation.Location);
       }
       if (req.files.fileLink) {
         const _fileLinkClient = req.files.fileLink;
