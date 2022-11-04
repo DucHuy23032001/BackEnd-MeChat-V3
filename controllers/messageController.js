@@ -80,7 +80,7 @@ exports.createMessageManyFile = async (req, res, next) => {
           const _fileContent = Buffer.from(_imageLinksClient[i].data, "binary");
           console.log(_imageLinksClient[i].name);
           const _param = {
-            Bucket: "mechat",
+            Bucket: "mechat-v2",
             Key: uuidv4() + _imageLinksClient[i].name,
             Body: _fileContent,
           }
@@ -98,7 +98,7 @@ exports.createMessageManyFile = async (req, res, next) => {
         const _fileLinkClient = req.files.fileLink;
         const _fileContent = Buffer.from(_fileLinkClient.data, "binary");
         const _param = {
-          Bucket: "mechat",
+          Bucket: "mechat-v2",
           Key: _fileLinkClient.name,
           Body: _fileContent,
         }
@@ -152,7 +152,7 @@ exports.createMessage = async (req, res, next) => {
         const _fileContentImage = Buffer.from(req.files.imageLink.data, "binary");
 
         const _paramImage = {
-          Bucket: "mechat",
+          Bucket: "mechat-v2",
           Key: req.files.imageLink.name,
           ContentType: 'image/png',
           Body: _fileContentImage,
@@ -172,7 +172,7 @@ exports.createMessage = async (req, res, next) => {
         const _fileContent = Buffer.from(req.files.fileLink.data, "binary");
 
         const _paramFile = {
-          Bucket: "mechat",
+          Bucket: "mechat-v2",
           Key: req.files.fileLink.name,
           ContentType: 'application/pdf',
           Body: _fileContent,
