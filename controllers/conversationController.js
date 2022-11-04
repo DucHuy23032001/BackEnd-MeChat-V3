@@ -19,6 +19,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       );
     }
     for (let i of _conversation) {
+      // console.log(i);
       let _names;
       let _name = "";
       let _imageLinks = i.imageLink;
@@ -27,14 +28,10 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       let _data;
       const _user = await User.findById(req.params.userId);
 
-      // _members = i.members.pull(req.params.userId);
-      // console.log(i.members.pull(req.params.userId));
-      // console.log(i.members);
-
-
       const _lastMessage = await Message.findOne({ conversationID: i })
         .sort({ createdAt: -1 })
         .limit(1);
+        // console.log(_lastMessage);
       if (i.isGroup == false) {
         _names = i.name.pull(_user.fullName);
         _name += _names[0].trim();
@@ -44,9 +41,10 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         _name = i.name[0];
         _imageLink = i.imageLink[0];
       }
-
-      if (_lastMessage.imageLink != null) {
-        var _confirmEnd = _lastMessage.imageLink.split(".");
+      // console.log( "123" , _lastMessage.imageLink.length);
+     if(_lastMessage.imageLink){
+      if (_lastMessage.imageLink[_lastMessage.imageLink.length - 1] != null) {
+        var _confirmEnd = _lastMessage.imageLink[_lastMessage.imageLink.length - 1].split(".");
         if (
           _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
           _confirmEnd[_confirmEnd.length - 1] == "jpeg"
@@ -56,21 +54,26 @@ exports.getAllConversationByUserID = async (req, res, next) => {
           _lastMessage.content = "Video";
         }
       }
+     }
+      console.log(_lastMessage);
       _data = {
         id: i.id,
         name: _name,
         members: i.members,
         imageLinkOfConver: _imageLink,
         content: _lastMessage.content,
-        imageLinkOfLastMessage: _lastMessage.imageLink,
+        imageLinkOfLastMessage: _lastMessage.imageLink[_lastMessage.imageLink.length - 1],
         fileLinkOfLastMessage: _lastMessage.fileLink,
         lastMessage: _lastMessage.action,
         time: _lastMessage.createdAt,
         isGroup: i.isGroup,
         isCalling: i.isCalling,
       };
+      // console.log(_lastMessage.imageLink.length);
       _datas.push(_data);
+      // console.log("last " , _datas);
     }
+    console.log("last " , _datas);
     res.status(200).json({
       status: "success",
       data: _datas,

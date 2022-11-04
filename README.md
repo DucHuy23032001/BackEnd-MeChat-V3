@@ -1011,7 +1011,7 @@
 ```json
  - Method : DELETE : /delete-for-you/:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v2/conversations/delete-for-you/635fe79743ebe4d945d4b1e2
+ http://localhost:3000/api/v3/conversations/delete-for-you/635fe79743ebe4d945d4b1e2
         {
             "userId":"635fe7612a6ba8c0eea9c6c0"
         }
