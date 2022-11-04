@@ -24,6 +24,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       let _name = "";
       let _imageLinks = i.imageLink;
       let _imageLink = "";
+      let _imageLinkLastMessage = "";
       let _members = [];
       let _data;
       const _user = await User.findById(req.params.userId);
@@ -31,7 +32,8 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       const _lastMessage = await Message.findOne({ conversationID: i })
         .sort({ createdAt: -1 })
         .limit(1);
-        // console.log(_lastMessage);
+      // console.log(_lastMessage);
+      // console.log( "123" , _lastMessage.imageLink.length);
       if (i.isGroup == false) {
         _names = i.name.pull(_user.fullName);
         _name += _names[0].trim();
@@ -53,16 +55,20 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
           _lastMessage.content = "Video";
         }
+        _imageLinkLastMessage = _lastMessage.imageLink[_lastMessage.imageLink.length - 1];
       }
      }
-      console.log(_lastMessage);
+     else{
+      _imageLinkLastMessage = null;
+     }
+      // console.log(_lastMessage);
       _data = {
         id: i.id,
         name: _name,
         members: i.members,
         imageLinkOfConver: _imageLink,
         content: _lastMessage.content,
-        imageLinkOfLastMessage: _lastMessage.imageLink[_lastMessage.imageLink.length - 1],
+        imageLinkOfLastMessage: _imageLinkLastMessage,
         fileLinkOfLastMessage: _lastMessage.fileLink,
         lastMessage: _lastMessage.action,
         time: _lastMessage.createdAt,

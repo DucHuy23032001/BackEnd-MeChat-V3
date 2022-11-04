@@ -33,15 +33,10 @@ exports.addFriendRequestController = async (req, res) => {
       senderId: senderID,
       phoneNumber:_account.phoneNumber,
       fullName: _senderUser.fullName,
+      receiverId:receiverID,
       content: _newFriendRequest.content,
       imageLink: _senderUser.avatarLink,
     };
-    // idFriendRequest: i.id,
-    // senderId: _userSender.id,
-    // phoneNumber:_userSender.phoneNumber,
-    // fullName: _userSender.fullName,
-    // content: i.content,
-    // imageLink: _userSender.avatarLink,
     res.status(200).json({
       data: _data,
     });
@@ -50,7 +45,7 @@ exports.addFriendRequestController = async (req, res) => {
   }
 };
 //Oke
-// Minhf guiwr cho nguoi ta
+// Minh gui cho nguoi ta
 exports.getFriendRequestOfMe = async (req, res) => {
   try {
     let _datas = [];
@@ -104,6 +99,7 @@ exports.getListUserSendRequestAddFriendOfMe = async (req, res) => {
         senderId: _userSender.id,
         phoneNumber:_account.phoneNumber,
         fullName: _userSender.fullName,
+        receiverId:_userID,
         content: i.content,
         imageLink: _userSender.avatarLink,
       };
@@ -232,7 +228,7 @@ exports.friendRequest = async (req, res) => {
   }
 };
 
-//Chưa test
+//Oke
 exports.deleteFriendRequest = async (req, res) => {
   const _status = req.body.status;
   const _friendRequestID = req.params.friendRequestID;
