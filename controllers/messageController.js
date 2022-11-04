@@ -65,7 +65,6 @@ exports.createMessageManyFile = async (req, res, next) => {
       accessKeyId: process.env.ID,
       secretAccessKey: process.env.SECRET,
       region: process.env.region,
-      correctClockSkew: true,  
     });
     const s3 = new AWS.S3();
     if (!req.files) {

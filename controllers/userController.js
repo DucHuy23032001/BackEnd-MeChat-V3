@@ -126,8 +126,7 @@ exports.updateAvar = async (req, res, next) => {
     AWS.config.update({
       accessKeyId: process.env.ID,
       secretAccessKey: process.env.SECRET,
-      region: process.env.region,
-      correctClockSkew: true,  
+      region: process.env.region, 
     });
     const s3 = new AWS.S3();
     if (req.files != null) {
