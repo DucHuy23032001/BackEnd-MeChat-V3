@@ -73,42 +73,44 @@ exports.createMessageManyFile = async (req, res, next) => {
       console.log("null");
     }
     else {
-      if (req.files.imageLinks.length) {
-        const _imageLinksClient = req.files.imageLinks;
-        for (let i = 0; i < _imageLinksClient.length; i++) {
-          const _fileContent = Buffer.from(_imageLinksClient[i].data, "binary");
-          console.log(_imageLinksClient[i].name);
-          const _param = {
+      if(req.files.imageLinks){
+        if (req.files.imageLinks.length) {
+          const _imageLinksClient = req.files.imageLinks;
+          for (let i = 0; i < _imageLinksClient.length; i++) {
+            const _fileContent = Buffer.from(_imageLinksClient[i].data, "binary");
+            console.log(_imageLinksClient[i].name);
+            const _param = {
+              Bucket: "mechat-v2",
+              Key: uuidv4() + _imageLinksClient[i].name,
+              Body: _fileContent,
+            }
+            const _paramLocation = await s3
+              .upload(_param, (err, data) => {
+                if (err) {
+                  throw err;
+                }
+              })
+              .promise();
+            _imageLinks.push( _paramLocation.Location);
+          };
+        }else{
+          let _fileContentImage = Buffer.from(req.files.imageLinks.data, "binary");
+          let _paramImage = {
             Bucket: "mechat-v2",
-            Key: uuidv4() + _imageLinksClient[i].name,
-            Body: _fileContent,
-          }
-          const _paramLocation = await s3
-            .upload(_param, (err, data) => {
+            Key: req.files.imageLinks.name,
+            ContentType: 'image/png',
+            Body: _fileContentImage,
+          };
+          let _paramLocation = await s3
+            .upload(_paramImage, (err, data) => {
               if (err) {
                 throw err;
               }
             })
             .promise();
-          _imageLinks.push( _paramLocation.Location);
-        };
-      }else{
-        let _fileContentImage = Buffer.from(req.files.imageLinks.data, "binary");
-        let _paramImage = {
-          Bucket: "mechat-v2",
-          Key: req.files.imageLinks.name,
-          ContentType: 'image/png',
-          Body: _fileContentImage,
-        };
-        let _paramLocation = await s3
-          .upload(_paramImage, (err, data) => {
-            if (err) {
-              throw err;
-            }
-          })
-          .promise();
-
-          _imageLinks.push( _paramLocation.Location);
+  
+            _imageLinks.push( _paramLocation.Location);
+        }
       }
       if (req.files.fileLink) {
         const _fileLinkClient = req.files.fileLink;
@@ -118,6 +120,7 @@ exports.createMessageManyFile = async (req, res, next) => {
           Key: _fileLinkClient.name,
           Body: _fileContent,
         }
+        // console.log(_param);
         const _paramFileLocation = await s3
           .upload(_param, (err, data) => {
             if (err) {
@@ -125,7 +128,7 @@ exports.createMessageManyFile = async (req, res, next) => {
             }
           })
           .promise();
-        _fileLink = _paramFileLocation;
+        _fileLink = _paramFileLocation.Location;
       }
     }
     const { content, conversationID, senderID } = req.body;
