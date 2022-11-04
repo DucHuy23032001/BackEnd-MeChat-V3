@@ -58,6 +58,9 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         _imageLinkLastMessage = _lastMessage.imageLink[_lastMessage.imageLink.length - 1];
       }
      }
+     if(_lastMessage.fileLink){
+        _lastMessage.content = "file";
+     }
      else{
       _imageLinkLastMessage = null;
      }
@@ -68,8 +71,8 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         members: i.members,
         imageLinkOfConver: _imageLink,
         content: _lastMessage.content,
-        imageLinkOfLastMessage: _imageLinkLastMessage,
-        fileLinkOfLastMessage: _lastMessage.fileLink,
+        // imageLinkOfLastMessage: _imageLinkLastMessage,
+        // fileLinkOfLastMessage: _lastMessage.fileLink,
         lastMessage: _lastMessage.action,
         time: _lastMessage.createdAt,
         isGroup: i.isGroup,
