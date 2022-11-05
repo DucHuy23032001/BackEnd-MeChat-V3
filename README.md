@@ -762,7 +762,7 @@
     - Method: POST:   /create-conversation
     - Dữ liệu gửi đi
         {
-            "members":["6364c4a1704a90ce691c6853","6364c4ba704a90ce691c685f","6364d27c7b56f1d96e7d2dcc"], 
+            "members":["6364c4ba704a90ce691c685f","6364d27c7b56f1d96e7d2dcc"], 
             "createdBy":"6364c4a1704a90ce691c6853",
             "name":"Tuan group"
         }     

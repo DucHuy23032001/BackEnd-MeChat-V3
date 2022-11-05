@@ -95,10 +95,13 @@ exports.createConversation = async (req, res, next) => {
     _imageLink.push(
       "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
     );
+    let _members = [] ;
+    _members = members;
+    _members.push(createdBy);
     const _newConversation = await Conversation.create({
       name: _name,
       imageLink: _imageLink,
-      members: members,
+      members: _members,
       createdBy: createdBy,
       isGroup: true,
     });
