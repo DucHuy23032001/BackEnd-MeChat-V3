@@ -42,20 +42,14 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         _name = i.name[0];
         _imageLink = i.imageLink[0];
       }
-      // console.log(_lastMessage);
-      // console.log(_lastMessage.imageLink);
      if(_lastMessage.imageLink){
-      // console.log("1");
       if (_lastMessage.imageLink[_lastMessage.imageLink.length - 1] != null) {
-        // console.log("2");
         var _confirmEnd = _lastMessage.imageLink[_lastMessage.imageLink.length - 1].split(".");
-        // console.log(_confirmEnd);
         if (
           _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
           _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
           _confirmEnd[_confirmEnd.length - 1] == "png"
         ) {
-          // console.log("abc");
           _lastMessage.content = "[Hình ảnh]";
         } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
           _lastMessage.content = "[Video]";
@@ -69,7 +63,6 @@ exports.getAllConversationByUserID = async (req, res, next) => {
      else{
       _imageLinkLastMessage = null;
      }
-    //  console.log(_lastMessage.content);
       _data = {
         id: i.id,
         name: _name,
@@ -82,8 +75,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         isCalling: i.isCalling,
       };
       _datas.push(_data);
-    }
-    // console.log("last " , _datas);
+    } 
     res.status(200).json({
       status: "success",
       data: _datas,
@@ -238,7 +230,7 @@ exports.deleteMemberConversation = async (req, res) => {
     return res.status(500).json({ errorMessage: error });
   }
 };
-//Oke (chua tao tin nhan)
+//Oke 
 exports.outConversation = async (req, res) => {
   try {
     const _conversationId = req.params.conversationId;
@@ -269,7 +261,7 @@ exports.outConversation = async (req, res) => {
     return res.status(500).json({ errorMessage: error });
   }
 };
-//Oke (chua tao tin nhan)
+//Oke 
 exports.changeName = async (req, res) => {
   try {
     const _userId = req.body.userId;
@@ -310,7 +302,7 @@ exports.deleteConversation = async (req, res) => {
     }
     if (_confirm == false) {
       await Conversation.findByIdAndDelete({ _id: _conversationId });
-      res.status(200).json({ msg: "Delete group chat successfully" });
+      res.status(200).json({ msg: "Delete group chat successfully" , _id:_conversationId});
     } else {
       res.status(500).json({ msg: "Only admin can delete group" });
     }
