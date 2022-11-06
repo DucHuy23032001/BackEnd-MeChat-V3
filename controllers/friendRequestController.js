@@ -117,6 +117,7 @@ exports.friendRequest = async (req, res) => {
   const _friendRequestID = req.params.friendRequestID;
   const _senderID = req.body.senderID;
   const _receiverID = req.body.receiverID;
+  let _conversationData ;
   const _friendRequest = await FriendRequest.findById(_friendRequestID);
   if (_friendRequest) {
     try {
@@ -154,15 +155,17 @@ exports.friendRequest = async (req, res) => {
             },
             { new: true }
           );
+          _conversationData = null;
         } 
         else {
-          var _conversation = await Conversation.create({
+          let _conversation = await Conversation.create({
             name: [_senderUser.fullName, _receiverUser.fullName],
             imageLink: [_senderUser.avatarLink, _receiverUser.avatarLink],
             members: [_senderUser, _receiverUser],
             createdBy: _receiverUser,
             deleteBy: null,
           });
+          _conversationData = _conversation;
           const _message = await Message.create({
             content: null,
             imageLink: null,
@@ -208,7 +211,7 @@ exports.friendRequest = async (req, res) => {
           listFriendsSender: _friendsSenDerUpdate.friends,
           idSender:_senderID,
           idReceiver:_receiverID,
-          conversation:_conversation
+          conversation:_conversationData
           // _id:_updateConversation.id,
           // name:_updateConversation.name,
           // imageLink:_updateConversation.imageLink,

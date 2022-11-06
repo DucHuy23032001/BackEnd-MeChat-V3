@@ -610,24 +610,29 @@
 ```json
     - Method: POST : /add-member-conversation/:conversationId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/add-member-conversation/6366109ee1a74a27c4a947e7
+        http://localhost:3000/api/v3/conversations/add-member-conversation/63679b1620503a5c60b004be
         {
-            "newMemberID":"6364c4ba704a90ce691c685f",
-            "memberAddID":"6364d27c7b56f1d96e7d2dcc"
+            "newMemberID":["6367985e8b88a0af24508268","6367985e8b88a0af2450826c"],
+            "memberAddID":"6367985d8b88a0af2450825c"
         }
     - Dữ liệu trả về 
         {
-            "content": null,
-            "imageLink": null,
-            "fileLink": null,
-            "conversationID": "6366109ee1a74a27c4a947e7",
-            "senderID": "6364d27c7b56f1d96e7d2dcc",
-            "action": "Nhớ đã thêm Minh Phương vào nhóm.",
+            "_id": "63679b1620503a5c60b004be",
+            "name": "Group Huy tao",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "lastMessage": "63679cefbc0092d25eaf09c7",
+            "members": [
+                "6367985d8b88a0af24508260",
+                "6367985e8b88a0af24508264",
+                "6367985d8b88a0af2450825c",
+                "6367985e8b88a0af24508268",
+                "6367985e8b88a0af2450826c"
+            ],
+            "createdBy": "6367985d8b88a0af2450825c",
             "deleteBy": [],
-            "_id": "636611b3e1a74a27c4a947f6",
-            "createdAt": "2022-11-05T07:33:07.345Z",
-            "updatedAt": "2022-11-05T07:33:07.345Z",
-            "__v": 0
+            "isGroup": true,
+            "isCalling": false,
+            "action": "Nguyen Duc Huy đã thêm 2 thành viên vào nhóm!"
         }
 ```
 ### Delete member
@@ -824,20 +829,17 @@
     - Dữ liệu trả về
         {
             "message": "Accept friend request",
-            "friendRequestID": "6367793924fa716f66770d10",
+            "friendRequestID": "63679f78361535669b894f77",
             "listFriendsReceiver": [
-                "6364c4a1704a90ce691c6853",
-                "6364d27c7b56f1d96e7d2dcc",
-                "63663020db57b42fef1ce814",
-                "6364c4a1704a90ce691c6853",
-                "636776cd6bf24197fff96198"
+                "6367985d8b88a0af2450825c"
             ],
             "listFriendsSender": [
-                "6364c4a1704a90ce691c6853",
-                "6364c4ba704a90ce691c685f"
+                "6367985e8b88a0af24508264",
+                "6367985d8b88a0af24508260"
             ],
-            "idSender": "636776cd6bf24197fff96198",
-            "idReceiver": "6364c4ba704a90ce691c685f"
+            "idSender": "6367985d8b88a0af2450825c",
+            "idReceiver": "6367985d8b88a0af24508260",
+            "conversation": null
         }
 ```
     * Từ chối kết bạn

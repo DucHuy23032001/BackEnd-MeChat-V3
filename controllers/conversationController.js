@@ -153,17 +153,34 @@ exports.addMemberConversation = async (req, res) => {
   const _memberAdd = req.body.memberAddID;
   try {
     const _memberAddUser = await User.findById(_memberAdd);
-    // for()
-    const _memberNewUser = await User.findById(_newMember);
     const _conversationNow = await Conversation.findById(conversationId);
-    const _members = _conversationNow.members;
+    let _members = _conversationNow.members;
+
+    // const _members = _conversationNow.members;
     let _confirm = true;
-    for (let i of _members) {
-      if (i == _newMember) {
-        _confirm = false;
+    for (let i of _conversationNow.members) {
+      console.log(i);
+      console.log("-------------------------");
+      for(let j of _newMember)
+      {
+        console.log(j);
+        if (i == j) {
+          _confirm = false;
+        }
       }
     }
 
+    for(let i = 0 ; i < _newMember.length ; i++){
+      _members.push(_newMember[i]);
+    }
+    let _dem = "";
+    if(_newMember.length == 1){
+      let _demUser = await User.findById(_newMember[0]);
+      _dem = _demUser.fullName + " vào nhóm!"; 
+    }
+    if(_newMember.length > 1){
+      _dem = _newMember.length + " thành viên vào nhóm!"; 
+    }
     if (_confirm) {
       const _message = await Message.create({
         content: null,
@@ -172,9 +189,7 @@ exports.addMemberConversation = async (req, res) => {
         senderID: _memberAdd,
         action:
           _memberAddUser.fullName +
-          " đã thêm " +
-          _memberNewUser.fullName +
-          " vào nhóm.",
+          " đã thêm " + _dem
       });
       const _updateConversation = await Conversation.findByIdAndUpdate(
         { _id: conversationId },
@@ -193,7 +208,8 @@ exports.addMemberConversation = async (req, res) => {
         createdBy:_updateConversation.createdBy,
         deleteBy : _updateConversation.deleteBy,
         isGroup:_updateConversation.isGroup,
-        isCalling:_updateConversation.isCalling
+        isCalling:_updateConversation.isCalling,
+        action:_message.action
       }
       res.status(200).json(_data);
     } else {
