@@ -19,8 +19,8 @@ exports.getTenLastMessageInConversationID = async (req, res, next) => {
     }).sort({ createdAt: -1 });
     let _messages = null;
     if (_count < _allMessages.length) {
-      let _data = {lastMessage:_conversation.lastMessage, messages:_allMessages.slice(_count, _count + 10)}
-      res.status(200).json(_data);
+      // let _data = {lastMessage:_conversation.lastMessage, messages:_allMessages.slice(_count, _count + 10)}
+      res.status(200).json(_allMessages.slice(_count, _count + 10));
     } else if (_count == _allMessages.length) {
       res.status(200).json(null);
     }
