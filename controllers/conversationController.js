@@ -19,13 +19,10 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       );
     }
     for (let i of _conversation) {
-      // console.log(i);
       let _names;
       let _name = "";
       let _imageLinks = i.imageLink;
       let _imageLink = "";
-      let _imageLinkLastMessage = "";
-      // let _members = [];
       let _data;
       const _user = await User.findById(req.params.userId);
 
@@ -37,7 +34,6 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         _name += _names[0].trim();
         _imageLinks.pull(_user.avatarLink.trim());
         _imageLink = _imageLinks[0];
-        // console.log(_imageLink);
       } else if (i.isGroup) {
         _name = i.name[0];
         _imageLink = i.imageLink[0];
@@ -54,15 +50,11 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
           _lastMessage.content = "[Video]";
         }
-        // _imageLinkLastMessage = _lastMessage.imageLink[_lastMessage.imageLink.length - 1];
       }
      }
      if(_lastMessage.fileLink){
         _lastMessage.content = "[File]";
      }
-    //  else{
-    //   _imageLinkLastMessage = null;
-    //  }
      if(!i.isGroup){
       i.createdBy = null;
      }
@@ -161,6 +153,7 @@ exports.addMemberConversation = async (req, res) => {
   const _memberAdd = req.body.memberAddID;
   try {
     const _memberAddUser = await User.findById(_memberAdd);
+    // for()
     const _memberNewUser = await User.findById(_newMember);
     const _conversationNow = await Conversation.findById(conversationId);
     const _members = _conversationNow.members;

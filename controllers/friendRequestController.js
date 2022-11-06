@@ -27,7 +27,6 @@ exports.addFriendRequestController = async (req, res) => {
       content:"Hello! I'm " + _senderUser.fullName + "!" + " Nice to meet you!"
     });
     const _account = await Account.findById(_senderUser.accountID);
-    console.log(_account);
     const _data = {
       idFriendRequest: _newFriendRequest.id,
       senderId: senderID,
@@ -124,7 +123,6 @@ exports.friendRequest = async (req, res) => {
       if (_status) {
         const _senderUser = await User.findById(_senderID);
         const _receiverUser = await User.findById(_receiverID);
-        console.log(_receiverUser);
         let _confirm = true;
         var _idConversation = "";
 
@@ -158,8 +156,7 @@ exports.friendRequest = async (req, res) => {
           );
         } 
         else {
-          console.log(_receiverUser.fullName);
-          const _conversation = await Conversation.create({
+          var _conversation = await Conversation.create({
             name: [_senderUser.fullName, _receiverUser.fullName],
             imageLink: [_senderUser.avatarLink, _receiverUser.avatarLink],
             members: [_senderUser, _receiverUser],
@@ -173,7 +170,7 @@ exports.friendRequest = async (req, res) => {
             senderID: _receiverUser,
             action:"Hai bạn đã là bạn bè"
           });
-          let _updateConversation = await Conversation.findByIdAndUpdate(
+          var _updateConversation = await Conversation.findByIdAndUpdate(
             { _id: _conversation.id },
             {
               lastMessage: _message.id,
@@ -210,7 +207,16 @@ exports.friendRequest = async (req, res) => {
           listFriendsReceiver: _friendsReceiverUpdate.friends,
           listFriendsSender: _friendsSenDerUpdate.friends,
           idSender:_senderID,
-          idReceiver:_receiverID
+          idReceiver:_receiverID,
+          conversation:_conversation
+          // _id:_updateConversation.id,
+          // name:_updateConversation.name,
+          // imageLink:_updateConversation.imageLink,
+          // members:_updateConversation.members,
+          // isGroup:_updateConversation.isGroup,
+          // isCalling:_updateConversation.isCalling,
+          // createBy:_updateConversation.createdBy
+          
         });
       } else {
         await FriendRequest.findByIdAndRemove(_friendRequestID);

@@ -144,10 +144,19 @@ exports.createMessageManyFile = async (req, res, next) => {
         if (
           _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
           _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
-          _confirmEnd[_confirmEnd.length - 1] == "png"
+          _confirmEnd[_confirmEnd.length - 1] == "png" ||
+          _confirmEnd[_confirmEnd.length - 1] == "gif" ||
+          _confirmEnd[_confirmEnd.length - 1] == "pdf"
         ) {
           _content = "[Hình ảnh]";
-        } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
+        } else if (
+          _confirmEnd[_confirmEnd.length - 1] == "mp4" ||
+          _confirmEnd[_confirmEnd.length - 1] == "mp3" ||
+          _confirmEnd[_confirmEnd.length - 1] == "vma" ||
+          _confirmEnd[_confirmEnd.length - 1] == "avi" ||
+          _confirmEnd[_confirmEnd.length - 1] == "mkv" ||
+          _confirmEnd[_confirmEnd.length - 1] == "wmv"
+          ) {
           _content = "[Video]";
         }
       }

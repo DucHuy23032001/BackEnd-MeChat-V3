@@ -130,7 +130,6 @@ exports.updateAvar = async (req, res, next) => {
     });
     const s3 = new AWS.S3();
     if (req.files != null) {
-      console.log(req.files.avatarLink.length);
       const _fileContentAvar = Buffer.from(req.files.avatarLink.data, "binary");
       const _paramAvar = {
         Bucket: "mechat",
