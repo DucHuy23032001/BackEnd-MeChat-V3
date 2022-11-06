@@ -9,6 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 exports.getTenLastMessageInConversationID = async (req, res, next) => {
   try {
     let _conversationId = req.params.conversationId;
+    let _conversation = await Conversation.findById(_conversationId);
     let _count = req.body.count;
     if (!_count) {
       _count = 0;
@@ -16,10 +17,10 @@ exports.getTenLastMessageInConversationID = async (req, res, next) => {
     let _allMessages = await Message.find({
       conversationID: _conversationId,
     }).sort({ createdAt: -1 });
-    console.log(_allMessages);
     let _messages = null;
     if (_count < _allMessages.length) {
-      res.status(200).json(_allMessages.slice(_count, _count + 10));
+      let _data = {lastMessage:_conversation.lastMessage, messages:_allMessages.slice(_count, _count + 10)}
+      res.status(200).json(_data);
     } else if (_count == _allMessages.length) {
       res.status(200).json(null);
     }

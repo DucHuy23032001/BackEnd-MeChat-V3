@@ -386,18 +386,145 @@
             "count":0
         }
     - Dữ liệu trả về
-        [
-            {
-                "_id": "635f498aead5a87742753719",
-                "content": "Để gửi cho mấy file tài liệu",
-                "imageLink": null,
-                "fileLink": null,
-                "senderID": "635f12961ac24d08dc61a609",
-                "createdAt": "2022-10-31T04:05:30.222Z",
-                "action": null,
-                "deleteBy": null
-            },
-        ]
+        {
+            "lastMessage": "63673297c8e037c3ec334981",
+            "messages": [
+                {
+                    "_id": "63673297c8e037c3ec334981",
+                    "content": null,
+                    "imageLink": [
+                        "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/0824e030-5902-41f7-bfb8-c940fabea09220083a33d54c3b12625d.jpg"
+                    ],
+                    "fileLink": "",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T04:05:43.839Z",
+                    "updatedAt": "2022-11-06T04:05:43.839Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "63673287c8e037c3ec33497e",
+                    "content": null,
+                    "imageLink": [
+                        "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/de5afca2-3341-4270-a194-f08b3f4dea74f30010a8-f930-4231-a921-65b1e1a2cc08txtIcon.png"
+                    ],
+                    "fileLink": "",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T04:05:27.029Z",
+                    "updatedAt": "2022-11-06T04:05:27.029Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "63673188c8e037c3ec33497b",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T04:01:12.543Z",
+                    "updatedAt": "2022-11-06T04:01:12.543Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "63673179cd40ed6eac57db37",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T04:00:57.484Z",
+                    "updatedAt": "2022-11-06T04:00:57.484Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "6367316ecd40ed6eac57db34",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T04:00:46.402Z",
+                    "updatedAt": "2022-11-06T04:00:46.402Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "6367315bcd40ed6eac57db30",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T04:00:27.570Z",
+                    "updatedAt": "2022-11-06T04:00:27.570Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "636730ee65015ca80e8d3a44",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T03:58:38.341Z",
+                    "updatedAt": "2022-11-06T03:58:38.341Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "636730a265015ca80e8d3a41",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4a1704a90ce691c6853",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-06T03:57:22.177Z",
+                    "updatedAt": "2022-11-06T03:57:22.177Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "63666b0cdce022227516dd2e",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/CV_LUMANHCUONG.docx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4ba704a90ce691c685f",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-05T13:54:20.878Z",
+                    "updatedAt": "2022-11-05T13:54:20.878Z",
+                    "__v": 0
+                },
+                {
+                    "_id": "636668ab0960597ca8c62d99",
+                    "content": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Customer%20Persona%20Template.xlsx",
+                    "conversationID": "6364c5422942d6d374b065ba",
+                    "senderID": "6364c4ba704a90ce691c685f",
+                    "action": null,
+                    "deleteBy": [],
+                    "createdAt": "2022-11-05T13:44:11.693Z",
+                    "updatedAt": "2022-11-05T13:44:11.693Z",
+                    "__v": 0
+                }
+            ]
+        }
 ```
 ### getAllMessageInConversationID
 ``` json
