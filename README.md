@@ -569,22 +569,17 @@
         }
 
     - Dữ liệu trả về
-        {
-            "content": "[File]",
-            "newMessage": {
-                "content": null,
-                "imageLink": [],
-                "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
-                "conversationID": "6364c5422942d6d374b065ba",
-                "senderID": "6364c4a1704a90ce691c6853",
-                "action": null,
-                "deleteBy": [],
-                "_id": "636760053ea0c2513c380c69",
-                "createdAt": "2022-11-06T07:19:33.730Z",
-                "updatedAt": "2022-11-06T07:19:33.730Z",
-                "__v": 0
-            }
-        }
+{
+    "contentMessage": "[File]",
+    "_id": "636760d67f369a646e778cd9",
+    "content": null,
+    "imageLink": [],
+    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+    "conversationID": "6364c5422942d6d374b065ba",
+    "senderID": "6364c4a1704a90ce691c6853",
+    "action": null,
+    "deleteBy": []
+}
 ```         
 
 ### Xóa message 

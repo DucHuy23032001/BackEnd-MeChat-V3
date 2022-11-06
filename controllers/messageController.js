@@ -167,8 +167,16 @@ exports.createMessageManyFile = async (req, res, next) => {
       { new: true }
     );
     let _data = {
-      content:_content,
-      newMessage: _newMessage
+      contentMessage:_content,
+      _id:_newMessage.id,
+      content:_newMessage.content,
+      imageLink : _newMessage.imageLink,
+      fileLink:_newMessage.fileLink,
+      conversationID:_newMessage.conversationID,
+      senderID:_newMessage.senderID,
+      action:_newMessage.action,
+      deleteBy:_newMessage.deleteBy,
+      createAt:_newMessage.createAt,
     }
     res.status(200).json(_data);
   } catch (err) {
