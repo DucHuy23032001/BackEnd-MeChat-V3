@@ -124,6 +124,7 @@ exports.friendRequest = async (req, res) => {
       if (_status) {
         const _senderUser = await User.findById(_senderID);
         const _receiverUser = await User.findById(_receiverID);
+        console.log(_receiverUser);
         let _confirm = true;
         var _idConversation = "";
 
@@ -157,6 +158,7 @@ exports.friendRequest = async (req, res) => {
           );
         } 
         else {
+          console.log(_receiverUser.fullName);
           const _conversation = await Conversation.create({
             name: [_senderUser.fullName, _receiverUser.fullName],
             imageLink: [_senderUser.avatarLink, _receiverUser.avatarLink],
@@ -207,7 +209,8 @@ exports.friendRequest = async (req, res) => {
           friendRequestID:_friendRequestID,
           listFriendsReceiver: _friendsReceiverUpdate.friends,
           listFriendsSender: _friendsSenDerUpdate.friends,
-          idSender:_senderID
+          idSender:_senderID,
+          idReceiver:_receiverID
         });
       } else {
         await FriendRequest.findByIdAndRemove(_friendRequestID);

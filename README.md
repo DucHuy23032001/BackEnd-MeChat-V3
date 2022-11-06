@@ -665,8 +665,18 @@
         } 
     - Dữ liệu nhận về
         {
-            "msg": "Delete group chat successfully",
-            "_id": "6367372e1f3cf92b3e3bbc8d"
+            "_id": "6367372e1f3cf92b3e3bbc8d",
+            "name": "Tuan group",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "lastMessage": "636737611f3cf92b3e3bbc95",
+            "members": [
+                "6364d27c7b56f1d96e7d2dcc",
+                "6364c4a1704a90ce691c6853"
+            ],
+            "createdBy": "6364c4a1704a90ce691c6853",
+            "deleteBy": [],
+            "isGroup": true,
+            "isCalling": false
         }
 ```
 ### Delete conversation for you
@@ -692,19 +702,18 @@
         }
     - Dữ liệu nhận về
         {
-            "conversation": {
-                "_id": "634d2c073a0555e973021109",
-                "name": "test group",
-                "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png",
-                "lastMessage": "634d2c073a0555e97302110b",
-                "members": [
-                    "634a58d1a85520274df88512",
-                    "634a58d2a85520274df88516"
-                ],
-                "createdBy": "634a58d1a85520274df88512",
-                "deleteBy": [],
-                "__v": 0
-            }
+            "_id": "6367372e1f3cf92b3e3bbc8d",
+            "name": "Test ChangeName",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "lastMessage": "636737611f3cf92b3e3bbc95",
+            "members": [
+                "6364d27c7b56f1d96e7d2dcc",
+                "6364c4a1704a90ce691c6853"
+            ],
+            "createdBy": "6364c4a1704a90ce691c6853",
+            "deleteBy": [],
+            "isGroup": true,
+            "isCalling": false
         }
 ```
 
@@ -712,23 +721,25 @@
 ```json
     - Method : POST : /change-name/:conversationId
     - DỮ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/change-name/634d2c073a0555e973021109
+        http://localhost:3000/api/v3/conversations/change-name/6367372e1f3cf92b3e3bbc8d
         {
             "newName":"Test ChangeName",
-            "userId":"634a58d1a85520274df88512"
+            "userId":"6364d27c7b56f1d96e7d2dcc"
         }
     - Dữ liệu trả về
         {
-            "_id": "634d2c073a0555e973021109",
+            "_id": "6367372e1f3cf92b3e3bbc8d",
             "name": "Test ChangeName",
-            "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png",
-            "lastMessage": "634d2cf33a0555e973021120",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "lastMessage": "636737611f3cf92b3e3bbc95",
             "members": [
-                "634a58d1a85520274df88512"
+                "6364d27c7b56f1d96e7d2dcc",
+                "6364c4a1704a90ce691c6853"
             ],
-            "createdBy": "634a58d1a85520274df88512",
+            "createdBy": "6364c4a1704a90ce691c6853",
             "deleteBy": [],
-            "__v": 0
+            "isGroup": true,
+            "isCalling": false
         }
 ```
 # Path:  http://localhost:3000/api/v3/friendRequests
@@ -799,7 +810,9 @@
 ```
 ### FriendRequests
     - Method: POST : friend-request/:friendRequestID
+
     * Chấp nhận kết bạn
+
 ```json
     - Dữ liệu gửi đi
         http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
@@ -811,27 +824,24 @@
     - Dữ liệu trả về
         {
             "message": "Accept friend request",
-            "listFriendsReceiver": {
-                "_id": "633d9a890babef86c197c978",
-                "userID": "633d56db8a9d52c78fcc625f",
-                "friends": [
-                    "633d56db8a9d52c78fcc6257"
-                ],
-                "__v": 0
-            },
-            "listFriendsSender": {
-                "_id": "633d9813d507f66d6d7cba5f",
-                "userID": "633d56db8a9d52c78fcc6257",
-                "friends": [
-                    "633d56db8a9d52c78fcc6263",
-                    "633d56db8a9d52c78fcc625b",
-                    "633d56db8a9d52c78fcc625f"
-                ],
-                "__v": 0
-            }
+            "friendRequestID": "6367793924fa716f66770d10",
+            "listFriendsReceiver": [
+                "6364c4a1704a90ce691c6853",
+                "6364d27c7b56f1d96e7d2dcc",
+                "63663020db57b42fef1ce814",
+                "6364c4a1704a90ce691c6853",
+                "636776cd6bf24197fff96198"
+            ],
+            "listFriendsSender": [
+                "6364c4a1704a90ce691c6853",
+                "6364c4ba704a90ce691c685f"
+            ],
+            "idSender": "636776cd6bf24197fff96198",
+            "idReceiver": "6364c4ba704a90ce691c685f"
         }
 ```
     * Từ chối kết bạn
+    
 ```json
     - Dữ liệu gửi đi
         http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5

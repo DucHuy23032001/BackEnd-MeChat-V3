@@ -45,17 +45,17 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
-
+// 0566613411
 // run();
 // async function run() {
 //   ///User 1
 //   const _HuyAccount = await Account.create({
-//     phoneNumber:"0879276284",
+//     phoneNumber:"0566613411",
 //     passWord:await bcrypt.hash("123456", 10),
 //   });
 
 //   const _HuyUser = await User.create({
-//     fullName:"Nguyễn Đức Huy",
+//     fullName:"Sinh",
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_HuyAccount,
@@ -63,79 +63,79 @@ process.on("unhandledRejection", (err) => {
 //     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/huyBack.jpg",     
 //   });
 
-//   //User 2
+// //   //User 2
 
-//   const _PhuongAccount = await Account.create({
-//     phoneNumber:"0396887293",
-//     passWord:await bcrypt.hash("123456", 10),
-//   });
+// //   const _PhuongAccount = await Account.create({
+// //     phoneNumber:"0396887293",
+// //     passWord:await bcrypt.hash("123456", 10),
+// //   });
 
-//   const _PhuongUser = await User.create({
-//     fullName:"Võ Minh Phương",
-//     bio:"Sông Lam",
-//     birthday:Date.now(),
-//     accountID:_PhuongAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/phuongAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/phuongBack.jpg",
-//   });
+// //   const _PhuongUser = await User.create({
+// //     fullName:"Võ Minh Phương",
+// //     bio:"Sông Lam",
+// //     birthday:Date.now(),
+// //     accountID:_PhuongAccount,
+// //     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/phuongAvar.jpg",
+// //     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/phuongBack.jpg",
+// //   });
 
-//   //User 3
-//   const _TuanAccount = await Account.create({
-//     phoneNumber:"0343220597",
-//     passWord:await bcrypt.hash("123456", 10),
-//   });
+// //   //User 3
+// //   const _TuanAccount = await Account.create({
+// //     phoneNumber:"0343220597",
+// //     passWord:await bcrypt.hash("123456", 10),
+// //   });
 
-//   const _TuanUser = await User.create({
-//     fullName:"Lê Tuấn",
-//     bio:"Sông Lam",
-//     birthday:Date.now(),
-//     accountID:_TuanAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tuanAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tuanBack.jpg",
-//   });
+// //   const _TuanUser = await User.create({
+// //     fullName:"Lê Tuấn",
+// //     bio:"Sông Lam",
+// //     birthday:Date.now(),
+// //     accountID:_TuanAccount,
+// //     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tuanAvar.jpg",
+// //     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tuanBack.jpg",
+// //   });
 
-//   //User 4
-//   const _NhoAccount = await Account.create({
-//     phoneNumber:"0397548005",
-//     passWord:await bcrypt.hash("123456", 10),
-//   });
+// //   //User 4
+// //   const _NhoAccount = await Account.create({
+// //     phoneNumber:"0397548005",
+// //     passWord:await bcrypt.hash("123456", 10),
+// //   });
 
-//   const _NhoUser = await User.create({
-//     fullName:"Võ Thành Nhớ",
-//     bio:"Sông Lam",
-//     birthday:Date.now(),
-//     accountID:_NhoAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/nhoAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/nhoBack.jpg",
-//   });
+// //   const _NhoUser = await User.create({
+// //     fullName:"Võ Thành Nhớ",
+// //     bio:"Sông Lam",
+// //     birthday:Date.now(),
+// //     accountID:_NhoAccount,
+// //     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/nhoAvar.jpg",
+// //     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/nhoBack.jpg",
+// //   });
 
-//   //User 5
-//   const _TranAccount = await Account.create({
-//     phoneNumber:"0325676569",
-//     passWord:await bcrypt.hash("123456", 10),
-//   });
+// //   //User 5
+// //   const _TranAccount = await Account.create({
+// //     phoneNumber:"0325676569",
+// //     passWord:await bcrypt.hash("123456", 10),
+// //   });
 
-//   const _TranUser = await User.create({
-//     fullName:"Tăng Bảo Trấn",
-//     bio:"Sông Lam",
-//     birthday:Date.now(),
-//     accountID:_TranAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tranAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tranBack.jpg",
-//   });
+// //   const _TranUser = await User.create({
+// //     fullName:"Tăng Bảo Trấn",
+// //     bio:"Sông Lam",
+// //     birthday:Date.now(),
+// //     accountID:_TranAccount,
+// //     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tranAvar.jpg",
+// //     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tranBack.jpg",
+// //   });
 
 //   await _HuyAccount.save();
 //   await _HuyUser.save();
 
-//   await _TuanAccount.save();
-//   await _TuanUser.save();
+// //   await _TuanAccount.save();
+// //   await _TuanUser.save();
 
-//   await _NhoAccount.save();
-//   await _NhoUser.save();
+// //   await _NhoAccount.save();
+// //   await _NhoUser.save();
 
-//   await _PhuongAccount.save();
-//   await _PhuongUser.save();
+// //   await _PhuongAccount.save();
+// //   await _PhuongUser.save();
 
-//   await _TranAccount.save();
-//   await _TranUser.save();
+// //   await _TranAccount.save();
+// //   await _TranUser.save();
 // }

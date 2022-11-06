@@ -54,15 +54,15 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
           _lastMessage.content = "[Video]";
         }
-        _imageLinkLastMessage = _lastMessage.imageLink[_lastMessage.imageLink.length - 1];
+        // _imageLinkLastMessage = _lastMessage.imageLink[_lastMessage.imageLink.length - 1];
       }
      }
      if(_lastMessage.fileLink){
         _lastMessage.content = "[File]";
      }
-     else{
-      _imageLinkLastMessage = null;
-     }
+    //  else{
+    //   _imageLinkLastMessage = null;
+    //  }
      if(!i.isGroup){
       i.createdBy = null;
      }
