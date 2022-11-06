@@ -336,7 +336,18 @@ exports.changeName = async (req, res) => {
       senderID: _user,
       action: _user.fullName + "đã thay đổi tên nhóm thành: " + _newName,
     });
-    res.status(200).json(_conversationAfter);
+    let _data = {
+      _id:_conversationAfter.id,
+      name : _conversationAfter.name[0],
+      imageLink:_conversationAfter.imageLink[0],
+      lastMessage:_conversationAfter.lastMessage,
+      members:_conversationAfter.members,
+      createdBy:_conversationAfter.createdBy,
+      deleteBy : _conversationAfter.deleteBy,
+      isGroup:_conversationAfter.isGroup,
+      isCalling:_conversationAfter.isCalling
+    }
+    res.status(200).json(_data);
   } catch (error) {
     res.status(500).json({ msg: error });
   }
@@ -352,8 +363,19 @@ exports.deleteConversation = async (req, res) => {
       _confirm = false;
     }
     if (_confirm == false) {
+      let _data = {
+        _id:_conversation.id,
+        name : _conversation.name[0],
+        imageLink:_conversation.imageLink[0],
+        lastMessage:_conversation.lastMessage,
+        members:_conversation.members,
+        createdBy:_conversation.createdBy,
+        deleteBy : _conversation.deleteBy,
+        isGroup:_conversation.isGroup,
+        isCalling:_conversation.isCalling
+      }
       await Conversation.findByIdAndDelete({ _id: _conversationId });
-      res.status(200).json({ msg: "Delete group chat successfully" , _id:_conversationId});
+      res.status(200).json(_data);
     } else {
       res.status(500).json({ msg: "Only admin can delete group" });
     }
