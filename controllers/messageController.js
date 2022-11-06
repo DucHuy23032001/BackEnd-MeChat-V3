@@ -131,6 +131,7 @@ exports.createMessageManyFile = async (req, res, next) => {
       }
     }
     const { content, conversationID, senderID } = req.body;
+
     const _newMessage = await Message.create({
       content: content,
       conversationID: conversationID,
@@ -139,6 +140,25 @@ exports.createMessageManyFile = async (req, res, next) => {
       fileLink: _fileLink,
       action: null,
     });
+    let _content = "";
+    if(_imageLinks){
+      if (_imageLinks[_imageLinks.length - 1] != null) {
+        var _confirmEnd = _imageLinks[_imageLinks.length - 1].split(".");
+        if (
+          _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
+          _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
+          _confirmEnd[_confirmEnd.length - 1] == "png"
+        ) {
+          _content = "[Hình ảnh]";
+        } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
+          _content = "[Video]";
+        }
+      }
+     }
+     if(_fileLink){
+        _content = "[File]";
+     }
+
     const _conversation = await Conversation.findByIdAndUpdate(
       { _id: conversationID },
       {
@@ -146,7 +166,11 @@ exports.createMessageManyFile = async (req, res, next) => {
       },
       { new: true }
     );
-    res.status(200).json(_newMessage);
+    let _data = {
+      content:_content,
+      newMessage: _newMessage
+    }
+    res.status(200).json(_data);
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }

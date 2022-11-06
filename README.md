@@ -375,7 +375,6 @@
         }  
 ```
 # Path: http://localhost:3000/api/v3/messages
-
 ### get 10 lastMessageInConversation
 ```json
     - Method: POST: /ten-last-messages/:conversationId
@@ -571,20 +570,20 @@
 
     - Dữ liệu trả về
         {
-            "content": "1",
-            "imageLink": [
-                "https://mechat.s3.ap-southeast-1.amazonaws.com/huy.jpg",
-                "https://mechat.s3.ap-southeast-1.amazonaws.com/huyhung.jpg"
-            ],
-            "fileLink": "",
-            "conversationID": "63642c1da9e50f4b9dbab20c",
-            "senderID": "63642bd4fb35ed20a056ea6e",
-            "action": null,
-            "deleteBy": [],
-            "_id": "63649b42822facc87e8da201",
-            "createdAt": "2022-11-04T04:55:30.519Z",
-            "updatedAt": "2022-11-04T04:55:30.519Z",
-            "__v": 0
+            "content": "[File]",
+            "newMessage": {
+                "content": null,
+                "imageLink": [],
+                "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+                "conversationID": "6364c5422942d6d374b065ba",
+                "senderID": "6364c4a1704a90ce691c6853",
+                "action": null,
+                "deleteBy": [],
+                "_id": "636760053ea0c2513c380c69",
+                "createdAt": "2022-11-06T07:19:33.730Z",
+                "updatedAt": "2022-11-06T07:19:33.730Z",
+                "__v": 0
+            }
         }
 ```         
 
