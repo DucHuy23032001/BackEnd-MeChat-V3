@@ -25,7 +25,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       let _imageLinks = i.imageLink;
       let _imageLink = "";
       let _imageLinkLastMessage = "";
-      let _members = [];
+      // let _members = [];
       let _data;
       const _user = await User.findById(req.params.userId);
 
@@ -62,6 +62,9 @@ exports.getAllConversationByUserID = async (req, res, next) => {
      }
      else{
       _imageLinkLastMessage = null;
+     }
+     if(!i.isGroup){
+      i.createdBy = null;
      }
       _data = {
         id: i.id,
