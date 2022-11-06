@@ -119,8 +119,18 @@ exports.createConversation = async (req, res, next) => {
       },
       { new: true }
     );
-
-    res.status(200).json(_updateConversation);
+    let _data = {
+      _id:_updateConversation.id,
+      name : _updateConversation.name[0],
+      imageLink:_updateConversation.imageLink[0],
+      lastMessage:_updateConversation.lastMessage,
+      members:_updateConversation.members,
+      createdBy:_updateConversation.createdBy,
+      deleteBy : _updateConversation.deleteBy,
+      isGroup:_updateConversation.isGroup,
+      isCalling:_updateConversation.isCalling
+    }
+    res.status(200).json(_data);
   } catch (error) {
     res.status(500).json({ msg: error });
   }
