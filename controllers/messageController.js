@@ -70,7 +70,6 @@ exports.createMessageManyFile = async (req, res, next) => {
     if (!req.files) {
       _imageLinks = null;
       _fileLink = null;
-      console.log("null");
     }
     else {
       if(req.files.imageLinks){
@@ -78,10 +77,10 @@ exports.createMessageManyFile = async (req, res, next) => {
           const _imageLinksClient = req.files.imageLinks;
           for (let i = 0; i < _imageLinksClient.length; i++) {
             const _fileContent = Buffer.from(_imageLinksClient[i].data, "binary");
-            console.log(_imageLinksClient[i].name);
             const _param = {
               Bucket: "mechat-v2",
               Key: uuidv4() + _imageLinksClient[i].name,
+              ContentType: 'image/png',
               Body: _fileContent,
             }
             const _paramLocation = await s3
@@ -97,7 +96,7 @@ exports.createMessageManyFile = async (req, res, next) => {
           let _fileContentImage = Buffer.from(req.files.imageLinks.data, "binary");
           let _paramImage = {
             Bucket: "mechat-v2",
-            Key: req.files.imageLinks.name,
+            Key: uuidv4() + req.files.imageLinks.name,
             ContentType: 'image/png',
             Body: _fileContentImage,
           };
@@ -120,7 +119,6 @@ exports.createMessageManyFile = async (req, res, next) => {
           Key: _fileLinkClient.name,
           Body: _fileContent,
         }
-        // console.log(_param);
         const _paramFileLocation = await s3
           .upload(_param, (err, data) => {
             if (err) {
@@ -153,82 +151,82 @@ exports.createMessageManyFile = async (req, res, next) => {
   }
 };
 //Ok
-exports.createMessage = async (req, res, next) => {
-  try {
-    let _imageLink;
-    let _fileLink;
-    AWS.config.update({
-      accessKeyId: process.env.ID,
-      secretAccessKey: process.env.SECRET,
-      region: process.env.region,
-    });
-    const s3 = new AWS.S3();
-    if (!req.files) {
-      _imageLink = null;
-      _fileLink = null;
-    } else {
-      if (req.files.imageLink) {
-        const _fileContentImage = Buffer.from(req.files.imageLink.data, "binary");
+// exports.createMessage = async (req, res, next) => {
+//   try {
+//     let _imageLink;
+//     let _fileLink;
+//     AWS.config.update({
+//       accessKeyId: process.env.ID,
+//       secretAccessKey: process.env.SECRET,
+//       region: process.env.region,
+//     });
+//     const s3 = new AWS.S3();
+//     if (!req.files) {
+//       _imageLink = null;
+//       _fileLink = null;
+//     } else {
+//       if (req.files.imageLink) {
+//         const _fileContentImage = Buffer.from(req.files.imageLink.data, "binary");
 
-        const _paramImage = {
-          Bucket: "mechat-v2",
-          Key: req.files.imageLink.name,
-          ContentType: 'image/png',
-          Body: _fileContentImage,
-        };
+//         const _paramImage = {
+//           Bucket: "mechat-v2",
+//           Key: req.files.imageLink.name,
+//           ContentType: 'image/png',
+//           Body: _fileContentImage,
+//         };
 
-        const _paramLocation = await s3
-          .upload(_paramImage, (err, data) => {
-            if (err) {
-              throw err;
-            }
-          })
-          .promise();
+//         const _paramLocation = await s3
+//           .upload(_paramImage, (err, data) => {
+//             if (err) {
+//               throw err;
+//             }
+//           })
+//           .promise();
 
-        _imageLink = _paramLocation.Location;
-      }
-      if (req.files.fileLink) {
-        const _fileContent = Buffer.from(req.files.fileLink.data, "binary");
+//         _imageLink = _paramLocation.Location;
+//       }
+//       if (req.files.fileLink) {
+//         const _fileContent = Buffer.from(req.files.fileLink.data, "binary");
 
-        const _paramFile = {
-          Bucket: "mechat-v2",
-          Key: req.files.fileLink.name,
-          ContentType: 'application/pdf',
-          Body: _fileContent,
-        };
+//         const _paramFile = {
+//           Bucket: "mechat-v2",
+//           Key: req.files.fileLink.name,
+//           ContentType: 'application/pdf',
+//           Body: _fileContent,
+//         };
 
-        const _paramFileLocation = await s3
-          .upload(_paramFile, (err, data) => {
-            if (err) {
-              throw err;
-            }
-          })
-          .promise();
+//         const _paramFileLocation = await s3
+//           .upload(_paramFile, (err, data) => {
+//             if (err) {
+//               throw err;
+//             }
+//           })
+//           .promise();
 
-        _fileLink = _paramFileLocation.Location;
-      }
-    }
-    const { content, conversationID, senderID } = req.body;
-    const _newMessage = await Message.create({
-      content: content,
-      conversationID: conversationID,
-      senderID: senderID,
-      imageLink: _imageLink,
-      fileLink: _fileLink,
-      action: null,
-    });
-    const _conversation = await Conversation.findByIdAndUpdate(
-      { _id: conversationID },
-      {
-        lastMessage: _newMessage,
-      },
-      { new: true }
-    );
-    res.status(200).json(_newMessage);
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-};
+//         _fileLink = _paramFileLocation.Location;
+//       }
+//     }
+//     const { content, conversationID, senderID } = req.body;
+//     const _newMessage = await Message.create({
+//       content: content,
+//       conversationID: conversationID,
+//       senderID: senderID,
+//       imageLink: _imageLink,
+//       fileLink: _fileLink,
+//       action: null,
+//     });
+//     const _conversation = await Conversation.findByIdAndUpdate(
+//       { _id: conversationID },
+//       {
+//         lastMessage: _newMessage,
+//       },
+//       { new: true }
+//     );
+//     res.status(200).json(_newMessage);
+//   } catch (err) {
+//     res.status(500).json({ msg: err.message });
+//   }
+// };
 //Oke
 exports.deleteMessage = async (req, res, next) => {
   try {

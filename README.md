@@ -45,7 +45,7 @@
             }
         }
 ```
-# Path: http://localhost:3000/api/v1/users
+# Path: http://localhost:3000/api/v3/users
 ### Đăng nhập
 ```json
     - Method: POST: /login
@@ -169,7 +169,7 @@
           
 ```json
     - Dữ liệu gửi đi
-    http://localhost:3000/api/v1/users/get-user-by-phone/0879276284
+    http://localhost:3000/api/v3/users/get-user-by-phone/0879276284
 ```
 ```json
     - Dữ liệu trả về
@@ -195,7 +195,7 @@
     - Method: GET:    /:userID
 ```json  
     - Dữ liệu gửi đi
-    http://localhost:3000/api/v1/users/63370d32e7a8a746c7842aa8
+    http://localhost:3000/api/v3/users/63370d32e7a8a746c7842aa8
     - Dữ liệu trả về
         {
             "status": "success",
@@ -329,7 +329,7 @@
 ```json  
     - Method: get:    get-friends-user/:userId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v1/users/get-friends-user/634277c306b139dc4c72a4ab
+ http://localhost:3000/api/v3/users/get-friends-user/634277c306b139dc4c72a4ab
     - Dữ liệu trả về
        {
             "status": "success",
@@ -374,7 +374,7 @@
             ]
         }  
 ```
-# Path: http://localhost:3000/api/v1/messages
+# Path: http://localhost:3000/api/v3/messages
 
 ### get 10 lastMessageInConversation
 ```json
@@ -403,7 +403,7 @@
 ``` json
     - Method: GET: nobody
     - Dữ liệu gửi đi
- http://localhost:3000/api/v1/messages/6342a2cd2d1f50338655e82b
+ http://localhost:3000/api/v3/messages/6342a2cd2d1f50338655e82b
     - Dữ liệu nhận về
    [
     {
@@ -507,257 +507,50 @@
             "__v": 0
         }
 ```
-# Path: http://localhost:3000/api/v1/conversations
-### Lấy nhóm chát theo id nhóm
-```json
-    - Method: GET: /get-conversation/:conversationId
-    - Dữ liệu gửi đi 
- http://localhost:3000/api/v1/conversations/get-conversation/633d9813d507f66d6d7cba63
-    - Dữ liệu trả về
-        {
-            "status": "success",
-            "conversation": {
-                "_id": "633d9813d507f66d6d7cba63",
-                "name": [
-                    "Nguyễn Đức Huy",
-                    "Võ Thành Nhớ"
-                ],
-                "imageLink": [
-                    "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg",
-                    "https://mechat.s3.ap-southeast-1.amazonaws.com/nhoAvar.jpg"
-                ],
-                "lastMessage": "633d9813d507f66d6d7cba66",
-                "members": [
-                    "633d56db8a9d52c78fcc6257",
-                    "633d56db8a9d52c78fcc6263"
-                ],
-                "createdBy": [
-                    "633d56db8a9d52c78fcc6257",
-                    "633d56db8a9d52c78fcc6263"
-                ],
-                "deleteBy": null,
-                "__v": 0
-            }
-        }
-```
+# Path: http://localhost:3000/api/v3/conversations
 ### Lấy tất cả nhóm chát theo idUser
-    - Method: GET :   /:userId
 ```json
+    - Method: GET :   /:userId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v1/conversations/633d56db8a9d52c78fcc625b
+ http://localhost:3000/api/v3/conversations/6364c4a1704a90ce691c6853
     - Dữ liệu trả về
-       {
-            "status": "success",
-            "data": [
-                {
-                    "id": "633d985cd507f66d6d7cba72",
-                    "name": [
-                        "Nguyễn Đức Huy"
-                    ],
-                    "image": [
-                        "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg"
-                    ],
-                    "userId": [
-                        "633d56db8a9d52c78fcc6257",
-                        "633d56db8a9d52c78fcc625b"
-                    ],
-                    "lastMessage": {
-                        "_id": "633d985cd507f66d6d7cba75",
-                        "content": "Accept",
-                        "imageLink": "",
-                        "conversationID": "633d985cd507f66d6d7cba72",
-                        "senderID": "633d56db8a9d52c78fcc625b",
-                        "action": [
-                            {
-                                "_id": "633fad245b7b2f284eee26af",
-                                "userID": "633d56db8a9d52c78fcc6257",
-                                "method": true
-                            }
-                        ],
-                        "createdAt": "2022-10-05T14:44:44.072Z",
-                        "updatedAt": "2022-10-05T14:44:44.072Z",
-                        "__v": 0
-                    },
-                    "time": "2022-10-05T14:44:44.072Z"
-                },
-                {
-                    "id": "633f9c7d596d8bbe5b0a0e1b",
-                    "name": [
-                        "Nguyễn Đức Huy",
-                        "Lê Tuấn"
-                    ],
-                    "image": [
-                        "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png"
-                    ],
-                    "userId": [
-                        "633d56db8a9d52c78fcc6257",
-                        "633d56db8a9d52c78fcc625b",
-                        "633d56db8a9d52c78fcc625f"
-                    ],
-                    "lastMessage": {
-                        "_id": "633f9c7d596d8bbe5b0a0e1d",
-                        "content": "A",
-                        "imageLink": "",
-                        "conversationID": "633f9c7d596d8bbe5b0a0e1b",
-                        "senderID": "633d56db8a9d52c78fcc6257",
-                        "action": [
-                            {
-                                "userID": "633d56db8a9d52c78fcc6257",
-                                "method": true,
-                                "_id": "633f9c7d596d8bbe5b0a0e1e"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625b",
-                                "method": true,
-                                "_id": "633f9c7d596d8bbe5b0a0e1f"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625f",
-                                "method": true,
-                                "_id": "633f9c7d596d8bbe5b0a0e20"
-                            }
-                        ],
-                        "createdAt": "2022-10-07T03:26:53.185Z",
-                        "updatedAt": "2022-10-07T03:26:53.185Z",
-                        "__v": 0
-                    },
-                    "time": "2022-10-07T03:26:53.185Z"
-                },
-                {
-                    "id": "633f9cb3f2b002885757eeba",
-                    "name": [
-                        "Nguyễn Đức Huy",
-                        "Lê Tuấn"
-                    ],
-                    "image": [
-                        "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png"
-                    ],
-                    "userId": [
-                        "633d56db8a9d52c78fcc6257",
-                        "633d56db8a9d52c78fcc625b",
-                        "633d56db8a9d52c78fcc625f"
-                    ],
-                    "lastMessage": {
-                        "_id": "633f9cb3f2b002885757eebc",
-                        "content": "A",
-                        "imageLink": "",
-                        "conversationID": "633f9cb3f2b002885757eeba",
-                        "senderID": "633d56db8a9d52c78fcc6257",
-                        "action": [
-                            {
-                                "userID": "633d56db8a9d52c78fcc6257",
-                                "method": true,
-                                "_id": "633f9cb3f2b002885757eebd"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625b",
-                                "method": true,
-                                "_id": "633f9cb3f2b002885757eebe"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625f",
-                                "method": true,
-                                "_id": "633f9cb3f2b002885757eebf"
-                            }
-                        ],
-                        "createdAt": "2022-10-07T03:27:47.442Z",
-                        "updatedAt": "2022-10-07T03:27:47.442Z",
-                        "__v": 0
-                    },
-                    "time": "2022-10-07T03:27:47.442Z"
-                },
-                {
-                    "id": "633f9cf24d50cdb1ac1a953c",
-                    "name": [
-                        "Nguyễn Đức Huy",
-                        "Lê Tuấn"
-                    ],
-                    "image": [
-                        "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png"
-                    ],
-                    "userId": [
-                        "633d56db8a9d52c78fcc6257",
-                        "633d56db8a9d52c78fcc625b",
-                        "633d56db8a9d52c78fcc625f"
-                    ],
-                    "lastMessage": {
-                        "_id": "633f9cf24d50cdb1ac1a953e",
-                        "content": "A",
-                        "imageLink": "",
-                        "conversationID": "633f9cf24d50cdb1ac1a953c",
-                        "senderID": "633d56db8a9d52c78fcc6257",
-                        "action": [
-                            {
-                                "userID": "633d56db8a9d52c78fcc6257",
-                                "method": true,
-                                "_id": "633f9cf24d50cdb1ac1a953f"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625b",
-                                "method": true,
-                                "_id": "633f9cf24d50cdb1ac1a9540"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625f",
-                                "method": true,
-                                "_id": "633f9cf24d50cdb1ac1a9541"
-                            }
-                        ],
-                        "createdAt": "2022-10-07T03:28:50.589Z",
-                        "updatedAt": "2022-10-07T03:28:50.589Z",
-                        "__v": 0
-                    },
-                    "time": "2022-10-07T03:28:50.589Z"
-                },
-                {
-                    "id": "633fa50412b456aa7aac1004",
-                    "name": [
-                        "Nguyễn Đức Huy",
-                        "Lê Tuấn"
-                    ],
-                    "image": [
-                        "https://mechat.s3.ap-southeast-1.amazonaws.com/avatarGroup.png"
-                    ],
-                    "userId": [
-                        "633d56db8a9d52c78fcc6257",
-                        "633d56db8a9d52c78fcc625b",
-                        "633d56db8a9d52c78fcc625f"
-                    ],
-                    "lastMessage": {
-                        "_id": "633fa50412b456aa7aac1006",
-                        "content": "A",
-                        "imageLink": "",
-                        "conversationID": "633fa50412b456aa7aac1004",
-                        "senderID": "633d56db8a9d52c78fcc6257",
-                        "action": [
-                            {
-                                "userID": "633d56db8a9d52c78fcc6257",
-                                "method": true,
-                                "_id": "633fa50412b456aa7aac1007"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625b",
-                                "method": true,
-                                "_id": "633fa50412b456aa7aac1008"
-                            },
-                            {
-                                "userID": "633d56db8a9d52c78fcc625f",
-                                "method": true,
-                                "_id": "633fa50412b456aa7aac1009"
-                            }
-                        ],
-                        "createdAt": "2022-10-07T04:03:16.088Z",
-                        "updatedAt": "2022-10-07T04:03:16.088Z",
-                        "__v": 0
-                    },
-                    "time": "2022-10-07T04:03:16.088Z"
-                }
-            ]
+{
+    "status": "success",
+    "data": [
+        {
+            "id": "6364c5422942d6d374b065ba",
+            "name": "Minh Phuong",
+            "members": [
+                "6364c4a1704a90ce691c6853",
+                "6364c4ba704a90ce691c685f"
+            ],
+            "imageLinkOfConver": "https://mechat.s3.ap-southeast-1.amazonaws.com/5302e28d-81ef-461a-8fac-0515acea3065.jpeg",
+            "content": "[Hình ảnh]",
+            "lastMessage": null,
+            "time": "2022-11-06T04:05:43.839Z",
+            "isGroup": false,
+            "createdBy": "6364c4ba704a90ce691c685f",
+            "isCalling": false
+        },
+        {
+            "id": "6364d74e3dc787e7553e8fa3",
+            "name": "Nhớ",
+            "members": [
+                "6364d27c7b56f1d96e7d2dcc",
+                "6364c4a1704a90ce691c6853"
+            ],
+            "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
+            "content": null,
+            "lastMessage": "Hai bạn đã là bạn bè",
+            "time": "2022-11-04T09:11:42.561Z",
+            "isGroup": false,
+            "createdBy": "6364c4a1704a90ce691c6853",
+            "isCalling": false
         }
-
+    ]
+}
 ```
 ### Tạo một nhóm chát mới
-    - Method: POST :   /create-conversation
 ```json
     - Method: POST:   /create-conversation
     - Dữ liệu gửi đi
@@ -768,24 +561,19 @@
         }     
     - Dữ liệu trả về
         {
-            "_id": "6366109ee1a74a27c4a947e7",
-            "name": [
-                "Tuan group"
-            ],
-            "imageLink": [
-                "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
-            ],
-            "lastMessage": "6366109ee1a74a27c4a947e9",
+            "_id": "6367372e1f3cf92b3e3bbc8d",
+            "name": "Tuan group",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "lastMessage": "6367372e1f3cf92b3e3bbc8f",
             "members": [
-                "6364c4a1704a90ce691c6853",
                 "6364c4ba704a90ce691c685f",
-                "6364d27c7b56f1d96e7d2dcc"
+                "6364d27c7b56f1d96e7d2dcc",
+                "6364c4a1704a90ce691c6853"
             ],
             "createdBy": "6364c4a1704a90ce691c6853",
             "deleteBy": [],
             "isGroup": true,
-            "isCalling": false,
-            "__v": 0
+            "isCalling": false
         }
 ``` 
 ### Add member to conversation
@@ -823,35 +611,18 @@
         }  
     - Dữ liệu nhận về
         {
-            "content": null,
-            "imageLink": [],
-            "fileLink": null,
-            "conversationID": {
-                "_id": "6366109ee1a74a27c4a947e7",
-                "name": [
-                    "Tuan group"
-                ],
-                "imageLink": [
-                    "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
-                ],
-                "lastMessage": "6366109ee1a74a27c4a947e9",
-                "members": [
-                    "6364c4a1704a90ce691c6853",
-                    "6364d27c7b56f1d96e7d2dcc"
-                ],
-                "createdBy": "6364c4a1704a90ce691c6853",
-                "deleteBy": [],
-                "isGroup": true,
-                "isCalling": false,
-                "__v": 0
-            },
-            "senderID": "6364c4a1704a90ce691c6853",
-            "action": "Lê Tuấn đã xóa Minh Phương ra khỏi nhóm!",
+            "_id": "6367372e1f3cf92b3e3bbc8d",
+            "name": "Tuan group",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "lastMessage": "636737611f3cf92b3e3bbc95",
+            "members": [
+                "6364d27c7b56f1d96e7d2dcc",
+                "6364c4a1704a90ce691c6853"
+            ],
+            "createdBy": "6364c4a1704a90ce691c6853",
             "deleteBy": [],
-            "_id": "63661140e1a74a27c4a947f0",
-            "createdAt": "2022-11-05T07:31:12.055Z",
-            "updatedAt": "2022-11-05T07:31:12.055Z",
-            "__v": 0
+            "isGroup": true,
+            "isCalling": false
         }
 ```
 ### Delete conversation 
@@ -864,7 +635,8 @@
         } 
     - Dữ liệu nhận về
         {
-            "msg": "Delete group chat successfully"
+            "msg": "Delete group chat successfully",
+            "_id": "6367372e1f3cf92b3e3bbc8d"
         }
 ```
 ### Delete conversation for you
@@ -929,7 +701,7 @@
             "__v": 0
         }
 ```
-# Path:  http://localhost:3000/api/v1/friendRequests
+# Path:  http://localhost:3000/api/v3/friendRequests
 ### CreateFriendRequests
 ``` json
     - Method : POST: /create
@@ -960,7 +732,7 @@
                 {
                     "idFriendRequest": "6356585bffb62a2b82d706f6",
                     "receiverId": "63563cc0e35d5d15b57f877b",
-                    "fullName": "nho v1",
+                    "fullName": "nho v3",
                     "content": "Hello! I'm Nguyễn Đức Huy! Nice to meet you!",
                     "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/download.jpg"
                 }
@@ -971,7 +743,7 @@
 ```json
     - Method: GET : /get-list-request/:userID
     - Dữ liệu gửi đi
- http://localhost:3000/api/v1/friendRequests/get-list-request/633d56dc8a9d52c78fcc6267
+ http://localhost:3000/api/v3/friendRequests/get-list-request/633d56dc8a9d52c78fcc6267
     - Dữ liệu trả về
         {
             "data": {
@@ -1000,7 +772,7 @@
 ```json
     * Chấp nhận kết bạn
     - Dữ liệu gửi đi
- http://localhost:3000/api/v1/friendRequests/friend-request/633d9c420f23a2435d0256d5
+ http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
         {
             "status":true,
             "senderID":"633d56db8a9d52c78fcc6257",
@@ -1032,7 +804,7 @@
 ```json
     * Từ chối kết bạn
     - Dữ liệu gửi đi
- http://localhost:3000/api/v1/friendRequests/friend-request/633d9c420f23a2435d0256d5
+ http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
         {
             "status":false,
             "senderID":"633d56db8a9d52c78fcc6257",

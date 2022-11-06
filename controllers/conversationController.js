@@ -72,6 +72,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         lastMessage: _lastMessage.action,
         time: _lastMessage.createdAt,
         isGroup: i.isGroup,
+        createdBy:i.createdBy,
         isCalling: i.isCalling,
       };
       _datas.push(_data);
@@ -179,7 +180,7 @@ exports.addMemberConversation = async (req, res) => {
           _memberNewUser.fullName +
           " vào nhóm.",
       });
-      const _conversation = await Conversation.findByIdAndUpdate(
+      const _updateConversation = await Conversation.findByIdAndUpdate(
         { _id: conversationId },
         {
           members: _members,
@@ -187,7 +188,18 @@ exports.addMemberConversation = async (req, res) => {
         },
         { new: true }
       );
-      res.status(200).json(_message);
+      let _data = {
+        _id:_updateConversation.id,
+        name : _updateConversation.name[0],
+        imageLink:_updateConversation.imageLink[0],
+        lastMessage:_updateConversation.lastMessage,
+        members:_updateConversation.members,
+        createdBy:_updateConversation.createdBy,
+        deleteBy : _updateConversation.deleteBy,
+        isGroup:_updateConversation.isGroup,
+        isCalling:_updateConversation.isCalling
+      }
+      res.status(200).json(_data);
     } else {
       res.status(500).json({ msg: "Thành viên đã tồn tại!" });
     }
@@ -224,7 +236,7 @@ exports.deleteMemberConversation = async (req, res) => {
             _memberDelete.fullName +
             " ra khỏi nhóm!",
         });
-        const _conversation = await Conversation.findByIdAndUpdate(
+        const _updateConversation = await Conversation.findByIdAndUpdate(
           { _id: conversationId },
           {
             lastMessage: _message,
@@ -232,7 +244,18 @@ exports.deleteMemberConversation = async (req, res) => {
           },
           { new: true }
         );
-        res.status(200).json(_message);
+        let _data = {
+          _id:_updateConversation.id,
+          name : _updateConversation.name[0],
+          imageLink:_updateConversation.imageLink[0],
+          lastMessage:_updateConversation.lastMessage,
+          members:_updateConversation.members,
+          createdBy:_updateConversation.createdBy,
+          deleteBy : _updateConversation.deleteBy,
+          isGroup:_updateConversation.isGroup,
+          isCalling:_updateConversation.isCalling
+        }
+        res.status(200).json(_data);
       } else {
         return res.status(500).json({ msg: "Admin can delete admin" });
       }
@@ -255,21 +278,33 @@ exports.outConversation = async (req, res) => {
     if (userId == _conversationNow.createdBy) {
       _newCreateBy = _members[0];
     }
-    let _conversation = await Conversation.findByIdAndUpdate(
-      { _id: _conversationId },
-      {
-        createdBy: _newCreateBy,
-        members: _members,
-      },
-      { new: true }
-    );
     const _message = await Message.create({
       content: null,
       conversationID: _conversationNow,
       senderID: _memberOut.id,
       action: _memberOut.fullName + " Đã thoát khỏi nhóm",
     });
-    res.status(200).json({ conversation: _conversation });
+    let _updateConversation = await Conversation.findByIdAndUpdate(
+      { _id: _conversationId },
+      {
+        createdBy: _newCreateBy,
+        members: _members,
+        lastMessage:_message
+      },
+      { new: true }
+    );
+    let _data = {
+      _id:_updateConversation.id,
+      name : _updateConversation.name[0],
+      imageLink:_updateConversation.imageLink[0],
+      lastMessage:_updateConversation.lastMessage,
+      members:_updateConversation.members,
+      createdBy:_updateConversation.createdBy,
+      deleteBy : _updateConversation.deleteBy,
+      isGroup:_updateConversation.isGroup,
+      isCalling:_updateConversation.isCalling
+    }
+    res.status(200).json(_data);
   } catch (error) {
     return res.status(500).json({ errorMessage: error });
   }
