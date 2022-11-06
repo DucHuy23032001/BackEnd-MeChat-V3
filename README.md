@@ -46,56 +46,10 @@
         }
 ```
 # Path: http://localhost:3000/api/v3/users
-### Đăng nhập
-```json
-    - Method: POST: /login
-    - Dữ liệu gửi đi
-        {
-        "phoneNumber":"0879276284",
-        "passWord":"123456"
-        }            
-    - Dữ liệu trả về
-        {
-            "status": "success",
-            "_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM4NjU3ZTk5ZTM1MmIzOTRiNDliY2EiLCJpYXQiOjE2NjQ3Njg3MDIsImV4cCI6MTY2NDc2OTMwMn0.WbNzp-8OiPuQQ6jFM7HrBz3HFGePwFSVm8t27oiY_yc",
-            "data": {
-                "id": "6338657e99e352b394b49bca",
-                "name": "\"Huy Update\"",
-                "avartar": "https://mechat.s3.ap-southeast-1.amazonaws.com/trang2.jpg",
-                "background": "https://mechat.s3.ap-southeast-1.amazonaws.com/nutrang.jpg"
-            }
-        }
-```       
-### Đăng ký
-```Json
-    - Method: POST: /signup
-        
-    - Dữ liệu gửi đi    
-        {
-            "phoneNumber":"0879276299",
-            "passWord":"123456",
-            "fullName":"signup",
-        }
-    - Dữ liệu trả về
-        {
-            "status": "success",
-            "_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzM3MTZmYjUzZGFhNjUwMGNjYTk4ZTIiLCJpYXQiOjE2NjQ1NTQ3NDcsImV4cCI6MTY2NDU1NTM0N30.bRCu4-TYPxhmQ0z-DNM6jR_ttkAxH5JMu7vmrJdovbY",
-            "data": {
-                "_account": {
-                    "phoneNumber": "0879276299",
-                    "status": true,
-                    "role": "User",
-                    "_id": "633716fb53daa6500cca98e0",
-                    "__v": 0
-                }
-            }
-        }
-```
 ### Lấy tất cả users 
-        - GET: no body
-        - Dữ liệu gửi đi : không
-        
 ```json
+    - GET: no body
+    - Dữ liệu gửi đi : không
     - Dữ liệu trả về : Tất cả user
         {
             "status": "success",
@@ -125,53 +79,14 @@
                     "friendID": null,
                     "phoneNumber": "0879276284"
                 },
-                {
-                    "_id": "6338657e99e352b394b49bd2",
-                    "fullName": "Lê Tuấn",
-                    "bio": "Sông Lam",
-                    "gender": 0,
-                    "birthday": "2022-10-01T16:06:22.988Z",
-                    "status": true,
-                    "avatarLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/tuanAvar.jpg",
-                    "backgroundLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/tuanBack.jpg",
-                    "friendID": null,
-                    "phoneNumber": "0879276284"
-                },
-                {
-                    "_id": "6338657f99e352b394b49bd6",
-                    "fullName": "Võ Thành Nhớ",
-                    "bio": "Sông Lam",
-                    "gender": 0,
-                    "birthday": "2022-10-01T16:06:23.243Z",
-                    "status": true,
-                    "avatarLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/nhoAvar.jpg",
-                    "backgroundLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/nhoBack.jpg",
-                    "friendID": null,
-                    "phoneNumber": "0879276284"
-                },
-                {
-                    "_id": "6338657f99e352b394b49bda",
-                    "fullName": "Tăng Bảo Trấn",
-                    "bio": "Sông Lam",
-                    "gender": 0,
-                    "birthday": "2022-10-01T16:06:23.411Z",
-                    "status": true,
-                    "avatarLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/tranAvar.jpg",
-                    "backgroundLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/tranBack.jpg",
-                    "friendID": null,
-                    "phoneNumber": "0879276284"
-                }
             ]
         }
 ```
 ### Lấy user theo số điện thoại
+```json
     - Method: GET:    /get-user-by-phone/:phoneNumber
-          
-```json
     - Dữ liệu gửi đi
-    http://localhost:3000/api/v3/users/get-user-by-phone/0879276284
-```
-```json
+        http://localhost:3000/api/v3/users/get-user-by-phone/0879276284
     - Dữ liệu trả về
         {
             "_id": "63370d32e7a8a746c7842aa8",
@@ -191,11 +106,11 @@
             "__v": 0
         }
 ```
-                        ### Lấy user theo id
-    - Method: GET:    /:userID
-```json  
+### Lấy user theo id
+```json 
+    - Method: GET:    /:userID 
     - Dữ liệu gửi đi
-    http://localhost:3000/api/v3/users/63370d32e7a8a746c7842aa8
+        http://localhost:3000/api/v3/users/63370d32e7a8a746c7842aa8
     - Dữ liệu trả về
         {
             "status": "success",
@@ -221,7 +136,6 @@
         }
 ```
 ### Chỉnh sửa User (Text)
-
 ```json  
     - Method: put:    /:userID
     - Dữ liệu gửi đi
@@ -257,13 +171,12 @@
         }   
 ```
 ### Chỉnh sửa avatar
-
 ```json  
     - Method: POST:   /update-avatar/:userId
     - Dữ liệu gửi đi
     http://localhost:3000/api/v3/users/update-avatar/634a58d1a85520274df8850e
     
-    Dữ liệu đưa vào form-data: key = avatarLink (file)
+    Dữ liệu đưa vào form-data: key(tên) = avatarLink (file)
 
     - Dữ liệu trả về
     {
@@ -299,7 +212,7 @@
     - Dữ liệu gửi đi
     http://localhost:3000/api/v3/users/update-background/634a58d1a85520274df8850e
     
-    Dữ liệu đưa vào form-data: key = backLink (file)
+    Dữ liệu đưa vào form-data: key(tên) = backLink (file)
 
     - Dữ liệu trả về
     {
@@ -329,7 +242,7 @@
 ```json  
     - Method: get:    get-friends-user/:userId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/users/get-friends-user/634277c306b139dc4c72a4ab
+        http://localhost:3000/api/v3/users/get-friends-user/634277c306b139dc4c72a4ab
     - Dữ liệu trả về
        {
             "status": "success",
@@ -356,11 +269,10 @@
         }   
 ```
 ### Xóa 1 bạn bè
-  
 ```json  
     - Method: post:    delete_friend/:userId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/users/delete-friend/6343cc8513eeee3c3a87c698
+        http://localhost:3000/api/v3/users/delete-friend/6343cc8513eeee3c3a87c698
         {
             "status":true,
             "userDeleteId":"634277c406b139dc4c72a4b7"
@@ -379,7 +291,7 @@
 ```json
     - Method: POST: /ten-last-messages/:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/messages/ten-last-messages/635f43faead5a8774275361a
+        http://localhost:3000/api/v3/messages/ten-last-messages/635f43faead5a8774275361a
     (count là tổng số tin nhắn đang hiển thị trên UI)
         {
             "count":0
@@ -529,36 +441,35 @@
 ``` json
     - Method: GET: nobody
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/messages/6342a2cd2d1f50338655e82b
+        http://localhost:3000/api/v3/messages/6342a2cd2d1f50338655e82b
     - Dữ liệu nhận về
-   [
-    {
-        "_id": "635f43faead5a8774275361c",
-        "content": null,
-        "imageLink": null,
-        "fileLink": null,
-        "senderID": "635f12961ac24d08dc61a611",
-        "createdAt": "2022-10-31T03:41:46.347Z",
-        "action": "Hai bạn đã là bạn bè",
-        "deleteBy": null
-    },
-    {
-        "_id": "635f440ed874178f4e497ab5",
-        "content": "Alo",
-        "imageLink": null,
-        "fileLink": null,
-        "senderID": "635f12961ac24d08dc61a609",
-        "createdAt": "2022-10-31T03:42:06.176Z",
-        "action": null,
-        "deleteBy": null
-    },
-    ...................
-]
+    [
+        {
+            "_id": "635f43faead5a8774275361c",
+            "content": null,
+            "imageLink": null,
+            "fileLink": null,
+            "senderID": "635f12961ac24d08dc61a611",
+            "createdAt": "2022-10-31T03:41:46.347Z",
+            "action": "Hai bạn đã là bạn bè",
+            "deleteBy": null
+        },
+        {
+            "_id": "635f440ed874178f4e497ab5",
+            "content": "Alo",
+            "imageLink": null,
+            "fileLink": null,
+            "senderID": "635f12961ac24d08dc61a609",
+            "createdAt": "2022-10-31T03:42:06.176Z",
+            "action": null,
+            "deleteBy": null
+        },
+        ...................
+    ]
 ```
 ### Thêm message
-    - Method: POST:   body (form-data)
 ```json
-    #thêm thành công
+    - Method: POST:   body (form-data)
     - Dữ liệu gửi đi
         {
             "content":"Add message",
@@ -569,25 +480,23 @@
         }
 
     - Dữ liệu trả về
-{
-    "contentMessage": "[File]",
-    "_id": "636760d67f369a646e778cd9",
-    "content": null,
-    "imageLink": [],
-    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
-    "conversationID": "6364c5422942d6d374b065ba",
-    "senderID": "6364c4a1704a90ce691c6853",
-    "action": null,
-    "deleteBy": []
-}
+        {
+            "contentMessage": "[File]",
+            "_id": "636760d67f369a646e778cd9",
+            "content": null,
+            "imageLink": [],
+            "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Gi%E1%BB%9Bi%20thi%E1%BB%87u%20%C4%91%E1%BB%91i%20th%E1%BB%A7%20c%E1%BA%A1nh%20tranh.docx",
+            "conversationID": "6364c5422942d6d374b065ba",
+            "senderID": "6364c4a1704a90ce691c6853",
+            "action": null,
+            "deleteBy": []
+        }
 ```         
-
 ### Xóa message 
-    
 ```json
     - Method: DELETE: /:messageId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/messages/63553df0d6efa86d5ca705fc
+        http://localhost:3000/api/v3/messages/63553df0d6efa86d5ca705fc
         {
             "conversationID":"6354f250d2c16a0be9a94a15"
         }                    
@@ -600,7 +509,7 @@
 ```json
     - Method: DELETE: /delete-for-you/:messageId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/messages/delete-for-you/635f12e40c640098f0ee9308
+        http://localhost:3000/api/v3/messages/delete-for-you/635f12e40c640098f0ee9308
         {
             "userId":"635f12971ac24d08dc61a615"
         }                  
@@ -613,7 +522,7 @@
 ```json
     - Method: GET: /recall/:messageId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/messages/recall/635539662851cec893b19a8d                   
+        http://localhost:3000/api/v3/messages/recall/635539662851cec893b19a8d                   
     - Dữ liệu trả về
         {
             "_id": "635539662851cec893b19a8d",
@@ -633,43 +542,43 @@
 ```json
     - Method: GET :   /:userId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/conversations/6364c4a1704a90ce691c6853
+        http://localhost:3000/api/v3/conversations/6364c4a1704a90ce691c6853
     - Dữ liệu trả về
-{
-    "status": "success",
-    "data": [
         {
-            "id": "6364c5422942d6d374b065ba",
-            "name": "Minh Phuong",
-            "members": [
-                "6364c4a1704a90ce691c6853",
-                "6364c4ba704a90ce691c685f"
-            ],
-            "imageLinkOfConver": "https://mechat.s3.ap-southeast-1.amazonaws.com/5302e28d-81ef-461a-8fac-0515acea3065.jpeg",
-            "content": "[Hình ảnh]",
-            "lastMessage": null,
-            "time": "2022-11-06T04:05:43.839Z",
-            "isGroup": false,
-            "createdBy": "6364c4ba704a90ce691c685f",
-            "isCalling": false
-        },
-        {
-            "id": "6364d74e3dc787e7553e8fa3",
-            "name": "Nhớ",
-            "members": [
-                "6364d27c7b56f1d96e7d2dcc",
-                "6364c4a1704a90ce691c6853"
-            ],
-            "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
-            "content": null,
-            "lastMessage": "Hai bạn đã là bạn bè",
-            "time": "2022-11-04T09:11:42.561Z",
-            "isGroup": false,
-            "createdBy": "6364c4a1704a90ce691c6853",
-            "isCalling": false
+            "status": "success",
+            "data": [
+                {
+                    "id": "6364c5422942d6d374b065ba",
+                    "name": "Minh Phuong",
+                    "members": [
+                        "6364c4a1704a90ce691c6853",
+                        "6364c4ba704a90ce691c685f"
+                    ],
+                    "imageLinkOfConver": "https://mechat.s3.ap-southeast-1.amazonaws.com/5302e28d-81ef-461a-8fac-0515acea3065.jpeg",
+                    "content": "[Hình ảnh]",
+                    "lastMessage": null,
+                    "time": "2022-11-06T04:05:43.839Z",
+                    "isGroup": false,
+                    "createdBy": "6364c4ba704a90ce691c685f",
+                    "isCalling": false
+                },
+                {
+                    "id": "6364d74e3dc787e7553e8fa3",
+                    "name": "Nhớ",
+                    "members": [
+                        "6364d27c7b56f1d96e7d2dcc",
+                        "6364c4a1704a90ce691c6853"
+                    ],
+                    "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
+                    "content": null,
+                    "lastMessage": "Hai bạn đã là bạn bè",
+                    "time": "2022-11-04T09:11:42.561Z",
+                    "isGroup": false,
+                    "createdBy": "6364c4a1704a90ce691c6853",
+                    "isCalling": false
+                }
+            ]
         }
-    ]
-}
 ```
 ### Tạo một nhóm chát mới
 ```json
@@ -701,7 +610,7 @@
 ```json
     - Method: POST : /add-member-conversation/:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/conversations/add-member-conversation/6366109ee1a74a27c4a947e7
+        http://localhost:3000/api/v3/conversations/add-member-conversation/6366109ee1a74a27c4a947e7
         {
             "newMemberID":"6364c4ba704a90ce691c685f",
             "memberAddID":"6364d27c7b56f1d96e7d2dcc"
@@ -725,7 +634,7 @@
 ```json
     - Method : DELETE : /delete-member/:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/conversations/delete-member/6366109ee1a74a27c4a947e7
+        http://localhost:3000/api/v3/conversations/delete-member/6366109ee1a74a27c4a947e7
         {
             "memberId":"6364c4ba704a90ce691c685f",
             "mainId":"6364c4a1704a90ce691c6853"
@@ -748,9 +657,9 @@
 ```
 ### Delete conversation 
 ```json
- - Method : DELETE : /delete-conversation /:conversationId
+    - Method : DELETE : /delete-conversation /:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/conversations/delete-conversation/634d2c073a0555e973021109
+        http://localhost:3000/api/v3/conversations/delete-conversation/634d2c073a0555e973021109
         {
             "mainId":"634a58d1a85520274df88512"
         } 
@@ -762,9 +671,9 @@
 ```
 ### Delete conversation for you
 ```json
- - Method : DELETE : /delete-for-you/:conversationId
+    - Method : DELETE : /delete-for-you/:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/conversations/delete-for-you/635fe79743ebe4d945d4b1e2
+        http://localhost:3000/api/v3/conversations/delete-for-you/635fe79743ebe4d945d4b1e2
         {
             "userId":"635fe7612a6ba8c0eea9c6c0"
         }
@@ -777,7 +686,7 @@
 ```json
     - Method: POST : /out-conversation/:conversationId
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/conversations/out-conversation/634d2c073a0555e973021109
+        http://localhost:3000/api/v3/conversations/out-conversation/634d2c073a0555e973021109
         {
             "userId":"634a58d1a85520274df8850e"
         }
@@ -803,7 +712,7 @@
 ```json
     - Method : POST : /change-name/:conversationId
     - DỮ liệu gửi đi
- http://localhost:3000/api/v3/conversations/change-name/634d2c073a0555e973021109
+        http://localhost:3000/api/v3/conversations/change-name/634d2c073a0555e973021109
         {
             "newName":"Test ChangeName",
             "userId":"634a58d1a85520274df88512"
@@ -846,7 +755,7 @@
 ```json
     - Method: GET : /get-of-me/:userID
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/friendRequests/get-of-me/6347f10893dccf4ddec4f604
+        http://localhost:3000/api/v3/friendRequests/get-of-me/6347f10893dccf4ddec4f604
     - Dữ liệu trả về
         {
             "data": [
@@ -864,7 +773,7 @@
 ```json
     - Method: GET : /get-list-request/:userID
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/friendRequests/get-list-request/633d56dc8a9d52c78fcc6267
+        http://localhost:3000/api/v3/friendRequests/get-list-request/633d56dc8a9d52c78fcc6267
     - Dữ liệu trả về
         {
             "data": {
@@ -890,10 +799,10 @@
 ```
 ### FriendRequests
     - Method: POST : friend-request/:friendRequestID
-```json
     * Chấp nhận kết bạn
+```json
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
+        http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
         {
             "status":true,
             "senderID":"633d56db8a9d52c78fcc6257",
@@ -922,10 +831,10 @@
             }
         }
 ```
-```json
     * Từ chối kết bạn
+```json
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
+        http://localhost:3000/api/v3/friendRequests/friend-request/633d9c420f23a2435d0256d5
         {
             "status":false,
             "senderID":"633d56db8a9d52c78fcc6257",
@@ -951,7 +860,7 @@
 ```json
     - Method: DELETE: /:friendRequestID
     - Dữ liệu gửi đi
- http://localhost:3000/api/v3/friendRequests/6348e9c1bdf82ace11be8acb
+        http://localhost:3000/api/v3/friendRequests/6348e9c1bdf82ace11be8acb
         {
             "status":true,
             "senderID":"6347f10993dccf4ddec4f60c"
