@@ -7,7 +7,7 @@ const Account = require("../models/account");
 //Oke
 exports.addFriendRequestController = async (req, res) => {
   try {
-    const { senderID, receiverID,content } = req.body;
+    const { senderID, receiverID, content } = req.body;
     const _senderUser = await User.findById(senderID);
     if (senderID == receiverID) {
       return res
@@ -24,15 +24,15 @@ exports.addFriendRequestController = async (req, res) => {
     const _newFriendRequest = await FriendRequest.create({
       senderID: senderID,
       receiverID: receiverID,
-      content:"Hello! I'm " + _senderUser.fullName + "!" + " Nice to meet you!"
+      content: "Hello! I'm " + _senderUser.fullName + "!" + " Nice to meet you!"
     });
     const _account = await Account.findById(_senderUser.accountID);
     const _data = {
       idFriendRequest: _newFriendRequest.id,
       senderId: senderID,
-      phoneNumber:_account.phoneNumber,
+      phoneNumber: _account.phoneNumber,
       fullName: _senderUser.fullName,
-      receiverId:receiverID,
+      receiverId: receiverID,
       content: _newFriendRequest.content,
       imageLink: _senderUser.avatarLink,
     };
@@ -63,7 +63,7 @@ exports.getFriendRequestOfMe = async (req, res) => {
       let _data = {
         idFriendRequest: i.id,
         receiverId: _userReceiver.id,
-        phoneNumber:_account.phoneNumber,
+        phoneNumber: _account.phoneNumber,
         fullName: _userReceiver.fullName,
         content: i.content,
         imageLink: _userReceiver.avatarLink,
@@ -96,9 +96,9 @@ exports.getListUserSendRequestAddFriendOfMe = async (req, res) => {
       let _data = {
         idFriendRequest: i.id,
         senderId: _userSender.id,
-        phoneNumber:_account.phoneNumber,
+        phoneNumber: _account.phoneNumber,
         fullName: _userSender.fullName,
-        receiverId:_userID,
+        receiverId: _userID,
         content: i.content,
         imageLink: _userSender.avatarLink,
       };
@@ -117,7 +117,7 @@ exports.friendRequest = async (req, res) => {
   const _friendRequestID = req.params.friendRequestID;
   const _senderID = req.body.senderID;
   const _receiverID = req.body.receiverID;
-  let _conversationData ;
+  let _conversationData;
   const _friendRequest = await FriendRequest.findById(_friendRequestID);
   if (_friendRequest) {
     try {
@@ -130,57 +130,57 @@ exports.friendRequest = async (req, res) => {
         const _findConversation = await Conversation.find({
           members: { $in: [_senderID] },
         });
-        for (let i of _findConversation) {
-          let _members = [];
-          _members = i.members
-          if(_members.length == 2){
-            if(_members[0] == _receiverID || _members[1] == _receiverID){
-              _confirm = false
-              _idConversation = i.id
-            }
-          }
-        }
-        if (_confirm == false) {
-          const _message = await Message.create({
-            content: null,
-            imageLink: null,
-            conversationID: _idConversation,
-            senderID: _receiverUser,
-            action:"Hai bạn đã là bạn bè"
-          });
-          let _updateConversation = await Conversation.findByIdAndUpdate(
-            { _id: _idConversation },
-            {
-              lastMessage: _message.id,
-            },
-            { new: true }
-          );
-          _conversationData = null;
-        } 
-        else {
-          let _conversation = await Conversation.create({
-            name: [_senderUser.fullName, _receiverUser.fullName],
-            imageLink: [_senderUser.avatarLink, _receiverUser.avatarLink],
-            members: [_senderUser, _receiverUser],
-            createdBy: _receiverUser,
-            deleteBy: null,
-          });
-          _conversationData = _conversation;
-          const _message = await Message.create({
-            content: null,
-            imageLink: null,
-            conversationID: _conversation.id,
-            senderID: _receiverUser,
-            action:"Hai bạn đã là bạn bè"
-          });
-          var _updateConversation = await Conversation.findByIdAndUpdate(
-            { _id: _conversation.id },
-            {
-              lastMessage: _message.id,
-            },
-            { new: true }
-          );
-        }
+        // for (let i of _findConversation) {
+        //   let _members = [];
+        //   _members = i.members
+        //   if(_members.length == 2){
+        //     if(_members[0] == _receiverID || _members[1] == _receiverID){
+        //       _confirm = false
+        //       _idConversation = i.id
+        //     }
+        //   }
+        // }
+        // if (_confirm == false) {
+        //   const _message = await Message.create({
+        //     content: null,
+        //     imageLink: null,
+        //     conversationID: _idConversation,
+        //     senderID: _receiverUser,
+        //     action:"Hai bạn đã là bạn bè"
+        //   });
+        //   let _updateConversation = await Conversation.findByIdAndUpdate(
+        //     { _id: _idConversation },
+        //     {
+        //       lastMessage: _message.id,
+        //     },
+        //     { new: true }
+        //   );
+        //   _conversationData = null;
+        // } 
+        // else {
+        let _conversation = await Conversation.create({
+          name: [_senderUser.fullName, _receiverUser.fullName],
+          imageLink: [_senderUser.avatarLink, _receiverUser.avatarLink],
+          members: [_senderUser, _receiverUser],
+          createdBy: _receiverUser,
+          deleteBy: null,
+        });
+        _conversationData = _conversation;
+        const _message = await Message.create({
+          content: null,
+          imageLink: null,
+          conversationID: _conversation.id,
+          senderID: _receiverUser,
+          action: "Hai bạn đã là bạn bè"
+        });
+        var _updateConversation = await Conversation.findByIdAndUpdate(
+          { _id: _conversation.id },
+          {
+            lastMessage: _message.id,
+          },
+          { new: true }
+        );
+        // }
 
         //Xử lý thằng gửi
         let _friendsSenDer = _senderUser.friends;
@@ -206,27 +206,26 @@ exports.friendRequest = async (req, res) => {
         await FriendRequest.findByIdAndRemove(_friendRequestID);
         return res.status(200).json({
           message: "Accept friend request",
-          friendRequestID:_friendRequestID,
+          friendRequestID: _friendRequestID,
           listFriendsReceiver: _friendsReceiverUpdate.friends,
           listFriendsSender: _friendsSenDerUpdate.friends,
-          idSender:_senderID,
-          idReceiver:_receiverID,
-          conversation:_conversationData
+          idSender: _senderID,
+          idReceiver: _receiverID,
+          conversation: _conversationData
           // _id:_updateConversation.id,
           // name:_updateConversation.name,
           // imageLink:_updateConversation.imageLink,
           // members:_updateConversation.members,
           // isGroup:_updateConversation.isGroup,
           // isCalling:_updateConversation.isCalling,
-          // createBy:_updateConversation.createdBy
-          
+          // createBy:_updateConversation.createdBy        
         });
       } else {
         await FriendRequest.findByIdAndRemove(_friendRequestID);
         return res.status(200).json({
           message: "Don't accept friend request",
-          friendRequestID:_friendRequestID,
-          idSender:_senderID
+          friendRequestID: _friendRequestID,
+          idSender: _senderID
         });
       }
     } catch (err) {

@@ -99,7 +99,7 @@ exports.updateBack = async (req, res, next) => {
       const _userUpdate = await User.findById(_user.id);
       const _account = await Account.findById(_userUpdate.accountID);
       const _data = {
-        _id:_userUpdate.id,
+        _id: _userUpdate.id,
         fullName: _userUpdate.fullName,
         bio: _userUpdate.bio,
         gender: _userUpdate.gender,
@@ -108,7 +108,7 @@ exports.updateBack = async (req, res, next) => {
         avatarLink: _userUpdate.avatarLink,
         backgroundLink: _userUpdate.backgroundLink,
         friends: _userUpdate.friends,
-        phoneNumber:_account.phoneNumber
+        phoneNumber: _account.phoneNumber
       };
       res.status(200).json(_data);
     } else {
@@ -126,7 +126,7 @@ exports.updateAvar = async (req, res, next) => {
     AWS.config.update({
       accessKeyId: process.env.ID,
       secretAccessKey: process.env.SECRET,
-      region: process.env.region, 
+      region: process.env.region,
     });
     const s3 = new AWS.S3();
     if (req.files != null) {
@@ -173,7 +173,7 @@ exports.updateAvar = async (req, res, next) => {
       const _userUpdate = await User.findById(_user.id);
       const _account = await Account.findById(_userUpdate.accountID);
       const _data = {
-        _id:_userUpdate.id,
+        _id: _userUpdate.id,
         fullName: _userUpdate.fullName,
         bio: _userUpdate.bio,
         gender: _userUpdate.gender,
@@ -182,7 +182,7 @@ exports.updateAvar = async (req, res, next) => {
         avatarLink: _userUpdate.avatarLink,
         backgroundLink: _userUpdate.backgroundLink,
         friends: _userUpdate.friends,
-        phoneNumber:_account.phoneNumber
+        phoneNumber: _account.phoneNumber
       };
       res.status(200).json(_data);
     } else {
@@ -215,7 +215,7 @@ exports.updateUserText = async (req, res, next) => {
     const _userUpdate = await User.findById(_user.id);
     const _account = await Account.findById(_userUpdate.accountID);
     const _data = {
-      _id:_userUpdate.id,
+      _id: _userUpdate.id,
       fullName: _userUpdate.fullName,
       bio: _userUpdate.bio,
       gender: _userUpdate.gender,
@@ -224,7 +224,7 @@ exports.updateUserText = async (req, res, next) => {
       avatarLink: _userUpdate.avatarLink,
       backgroundLink: _userUpdate.backgroundLink,
       friends: _userUpdate.friends,
-      phoneNumber:_account.phoneNumber
+      phoneNumber: _account.phoneNumber
     };
     res.status(200).json(_data);
   } catch (error) {
@@ -393,10 +393,28 @@ exports.deleteFriend = async (req, res, next) => {
         { new: true }
       );
 
+      // Xử lý conver
+      let _conversationDeleted;
+      const _findConversation = await Conversation.find({
+        members: { $in: [_userId] },
+      });
+      
+      for (let i of _findConversation) {
+        let _members = [];
+        _members = i.members
+        if (_members.length == 2) {
+          if (_members[0] == _userDeleteId || _members[1] == _userDeleteId) {
+            _conversationDeleted = i;
+            await Conversation.deleteOne(i);
+          }
+        }
+      }
+
       return res.status(200).json({
         message: "Done!",
         listFriendsUserDelete: _friendsReciverUpdate.friends,
         listFriendsUser: _friendsSenDerUpdate.friends,
+        conversationDeleted: _conversationDeleted
       });
     } else {
       await FriendRequest.findByIdAndRemove(_friendRequestID);
