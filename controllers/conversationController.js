@@ -2,7 +2,15 @@ const AppError = require("../utils/appError");
 const Conversation = require("../models/conversation");
 const User = require("../models/user");
 const Message = require("../models/message");
+const { v4: uuidv4 } = require('uuid');
+const AWS = require("aws-sdk");
 
+AWS.config.update({
+  accessKeyId: process.env.ID,
+  secretAccessKey: process.env.SECRET,
+  region: process.env.region,
+});
+const s3 = new AWS.S3();
 //Oke
 exports.getAllConversationByUserID = async (req, res, next) => {
   try {
@@ -38,26 +46,26 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         _name = i.name[0];
         _imageLink = i.imageLink[0];
       }
-     if(_lastMessage.imageLink){
-      if (_lastMessage.imageLink[_lastMessage.imageLink.length - 1] != null) {
-        var _confirmEnd = _lastMessage.imageLink[_lastMessage.imageLink.length - 1].split(".");
-        if (
-          _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
-          _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
-          _confirmEnd[_confirmEnd.length - 1] == "png"
-        ) {
-          _lastMessage.content = "[Hình ảnh]";
-        } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
-          _lastMessage.content = "[Video]";
+      if (_lastMessage.imageLink) {
+        if (_lastMessage.imageLink[_lastMessage.imageLink.length - 1] != null) {
+          var _confirmEnd = _lastMessage.imageLink[_lastMessage.imageLink.length - 1].split(".");
+          if (
+            _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
+            _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
+            _confirmEnd[_confirmEnd.length - 1] == "png"
+          ) {
+            _lastMessage.content = "[Hình ảnh]";
+          } else if (_confirmEnd[_confirmEnd.length - 1] == "mp4") {
+            _lastMessage.content = "[Video]";
+          }
         }
       }
-     }
-     if(_lastMessage.fileLink){
+      if (_lastMessage.fileLink) {
         _lastMessage.content = "[File]";
-     }
-     if(!i.isGroup){
-      i.createdBy = null;
-     }
+      }
+      if (!i.isGroup) {
+        i.createdBy = null;
+      }
       _data = {
         id: i.id,
         name: _name,
@@ -67,11 +75,11 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         lastMessage: _lastMessage.action,
         time: _lastMessage.createdAt,
         isGroup: i.isGroup,
-        createdBy:i.createdBy,
+        createdBy: i.createdBy,
         isCalling: i.isCalling,
       };
       _datas.push(_data);
-    } 
+    }
     res.status(200).json({
       status: "success",
       data: _datas,
@@ -91,7 +99,7 @@ exports.createConversation = async (req, res, next) => {
     _imageLink.push(
       "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
     );
-    let _members = [] ;
+    let _members = [];
     _members = members;
     _members.push(createdBy);
     const _newConversation = await Conversation.create({
@@ -116,15 +124,15 @@ exports.createConversation = async (req, res, next) => {
       { new: true }
     );
     let _data = {
-      _id:_updateConversation.id,
-      name : _updateConversation.name[0],
-      imageLink:_updateConversation.imageLink[0],
-      lastMessage:_updateConversation.lastMessage,
-      members:_updateConversation.members,
-      createdBy:_updateConversation.createdBy,
-      deleteBy : _updateConversation.deleteBy,
-      isGroup:_updateConversation.isGroup,
-      isCalling:_updateConversation.isCalling
+      _id: _updateConversation.id,
+      name: _updateConversation.name[0],
+      imageLink: _updateConversation.imageLink[0],
+      lastMessage: _updateConversation.lastMessage,
+      members: _updateConversation.members,
+      createdBy: _updateConversation.createdBy,
+      deleteBy: _updateConversation.deleteBy,
+      isGroup: _updateConversation.isGroup,
+      isCalling: _updateConversation.isCalling
     }
     res.status(200).json(_data);
   } catch (error) {
@@ -161,8 +169,7 @@ exports.addMemberConversation = async (req, res) => {
     for (let i of _conversationNow.members) {
       console.log(i);
       console.log("-------------------------");
-      for(let j of _newMember)
-      {
+      for (let j of _newMember) {
         console.log(j);
         if (i == j) {
           _confirm = false;
@@ -170,16 +177,16 @@ exports.addMemberConversation = async (req, res) => {
       }
     }
 
-    for(let i = 0 ; i < _newMember.length ; i++){
+    for (let i = 0; i < _newMember.length; i++) {
       _members.push(_newMember[i]);
     }
     let _dem = "";
-    if(_newMember.length == 1){
+    if (_newMember.length == 1) {
       let _demUser = await User.findById(_newMember[0]);
-      _dem = _demUser.fullName + " vào nhóm!"; 
+      _dem = _demUser.fullName + " vào nhóm!";
     }
-    if(_newMember.length > 1){
-      _dem = _newMember.length + " thành viên vào nhóm!"; 
+    if (_newMember.length > 1) {
+      _dem = _newMember.length + " thành viên vào nhóm!";
     }
     if (_confirm) {
       const _message = await Message.create({
@@ -200,16 +207,16 @@ exports.addMemberConversation = async (req, res) => {
         { new: true }
       );
       let _data = {
-        _id:_updateConversation.id,
-        name : _updateConversation.name[0],
-        imageLink:_updateConversation.imageLink[0],
-        lastMessage:_updateConversation.lastMessage,
-        members:_updateConversation.members,
-        createdBy:_updateConversation.createdBy,
-        deleteBy : _updateConversation.deleteBy,
-        isGroup:_updateConversation.isGroup,
-        isCalling:_updateConversation.isCalling,
-        action:_message.action
+        _id: _updateConversation.id,
+        name: _updateConversation.name[0],
+        imageLink: _updateConversation.imageLink[0],
+        lastMessage: _updateConversation.lastMessage,
+        members: _updateConversation.members,
+        createdBy: _updateConversation.createdBy,
+        deleteBy: _updateConversation.deleteBy,
+        isGroup: _updateConversation.isGroup,
+        isCalling: _updateConversation.isCalling,
+        action: _message.action
       }
       res.status(200).json(_data);
     } else {
@@ -257,15 +264,15 @@ exports.deleteMemberConversation = async (req, res) => {
           { new: true }
         );
         let _data = {
-          _id:_updateConversation.id,
-          name : _updateConversation.name[0],
-          imageLink:_updateConversation.imageLink[0],
-          lastMessage:_updateConversation.lastMessage,
-          members:_updateConversation.members,
-          createdBy:_updateConversation.createdBy,
-          deleteBy : _updateConversation.deleteBy,
-          isGroup:_updateConversation.isGroup,
-          isCalling:_updateConversation.isCalling
+          _id: _updateConversation.id,
+          name: _updateConversation.name[0],
+          imageLink: _updateConversation.imageLink[0],
+          lastMessage: _updateConversation.lastMessage,
+          members: _updateConversation.members,
+          createdBy: _updateConversation.createdBy,
+          deleteBy: _updateConversation.deleteBy,
+          isGroup: _updateConversation.isGroup,
+          isCalling: _updateConversation.isCalling
         }
         res.status(200).json(_data);
       } else {
@@ -301,20 +308,20 @@ exports.outConversation = async (req, res) => {
       {
         createdBy: _newCreateBy,
         members: _members,
-        lastMessage:_message
+        lastMessage: _message
       },
       { new: true }
     );
     let _data = {
-      _id:_updateConversation.id,
-      name : _updateConversation.name[0],
-      imageLink:_updateConversation.imageLink[0],
-      lastMessage:_updateConversation.lastMessage,
-      members:_updateConversation.members,
-      createdBy:_updateConversation.createdBy,
-      deleteBy : _updateConversation.deleteBy,
-      isGroup:_updateConversation.isGroup,
-      isCalling:_updateConversation.isCalling
+      _id: _updateConversation.id,
+      name: _updateConversation.name[0],
+      imageLink: _updateConversation.imageLink[0],
+      lastMessage: _updateConversation.lastMessage,
+      members: _updateConversation.members,
+      createdBy: _updateConversation.createdBy,
+      deleteBy: _updateConversation.deleteBy,
+      isGroup: _updateConversation.isGroup,
+      isCalling: _updateConversation.isCalling
     }
     res.status(200).json(_data);
   } catch (error) {
@@ -346,15 +353,75 @@ exports.changeName = async (req, res) => {
       action: _user.fullName + "đã thay đổi tên nhóm thành: " + _newName,
     });
     let _data = {
-      _id:_conversationAfter.id,
-      name : _conversationAfter.name[0],
-      imageLink:_conversationAfter.imageLink[0],
-      lastMessage:_conversationAfter.lastMessage,
-      members:_conversationAfter.members,
-      createdBy:_conversationAfter.createdBy,
-      deleteBy : _conversationAfter.deleteBy,
-      isGroup:_conversationAfter.isGroup,
-      isCalling:_conversationAfter.isCalling
+      _id: _conversationAfter.id,
+      name: _conversationAfter.name[0],
+      imageLink: _conversationAfter.imageLink[0],
+      lastMessage: _conversationAfter.lastMessage,
+      members: _conversationAfter.members,
+      createdBy: _conversationAfter.createdBy,
+      deleteBy: _conversationAfter.deleteBy,
+      isGroup: _conversationAfter.isGroup,
+      isCalling: _conversationAfter.isCalling
+    }
+    res.status(200).json(_data);
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+//Oke 
+exports.changeAvatar = async (req, res) => {
+  try {
+    const _userId = req.body.userId;
+    const _fileImage = req.files.imageLink;
+    const _conversationId = req.params.conversationId;
+
+    const _conversation = await Conversation.findById(_conversationId);
+    const _user = await User.findById(_userId);
+
+    const _fileContentImage = Buffer.from(_fileImage.data, "binary");
+    const _paramAvatar = {
+      Bucket: "mechat-v2",
+      Key: uuidv4() + _fileImage.name,
+      ContentType: 'image/png',
+      Body: _fileContentImage,
+    };
+    console.log(_paramAvatar);
+    let _paramLocation = await s3
+      .upload(_paramAvatar, (err, data) => {
+        if (err) {
+          throw err;
+        }
+      })
+      .promise();
+    // console.log(_paramLocation);
+    let _path = _paramLocation.Location
+
+    const _message = await Message.create({
+      content: null,
+      conversationID: _conversation,
+      senderID: _user,
+      action: _user.fullName + "đã thay đổi ảnh đại diện nhóm"
+    });
+    const _conversationAfter = await Conversation.findByIdAndUpdate(
+      { _id: _conversationId },
+      {
+        imageLink: _path,
+        lastMessage: _message
+      },
+      { new: true }
+    );
+    // const _conver = await Conversation
+    console.log(_conversationAfter);
+    let _data = {
+      _id: _conversationAfter.id,
+      name: _conversationAfter.name[0],
+      imageLink: _conversationAfter.imageLink[0],
+      lastMessage: _conversationAfter.lastMessage,
+      members: _conversationAfter.members,
+      createdBy: _conversationAfter.createdBy,
+      deleteBy: _conversationAfter.deleteBy,
+      isGroup: _conversationAfter.isGroup,
+      isCalling: _conversationAfter.isCalling
     }
     res.status(200).json(_data);
   } catch (error) {
@@ -373,15 +440,15 @@ exports.deleteConversation = async (req, res) => {
     }
     if (_confirm == false) {
       let _data = {
-        _id:_conversation.id,
-        name : _conversation.name[0],
-        imageLink:_conversation.imageLink[0],
-        lastMessage:_conversation.lastMessage,
-        members:_conversation.members,
-        createdBy:_conversation.createdBy,
-        deleteBy : _conversation.deleteBy,
-        isGroup:_conversation.isGroup,
-        isCalling:_conversation.isCalling
+        _id: _conversation.id,
+        name: _conversation.name[0],
+        imageLink: _conversation.imageLink[0],
+        lastMessage: _conversation.lastMessage,
+        members: _conversation.members,
+        createdBy: _conversation.createdBy,
+        deleteBy: _conversation.deleteBy,
+        isGroup: _conversation.isGroup,
+        isCalling: _conversation.isCalling
       }
       await Conversation.findByIdAndDelete({ _id: _conversationId });
       res.status(200).json(_data);

@@ -124,8 +124,8 @@ exports.friendRequest = async (req, res) => {
       if (_status) {
         const _senderUser = await User.findById(_senderID);
         const _receiverUser = await User.findById(_receiverID);
-        let _confirm = true;
-        var _idConversation = "";
+        // let _confirm = true;
+        // var _idConversation = "";
 
         const _findConversation = await Conversation.find({
           members: { $in: [_senderID] },
@@ -165,7 +165,7 @@ exports.friendRequest = async (req, res) => {
           createdBy: _receiverUser,
           deleteBy: null,
         });
-        _conversationData = _conversation;
+        // _conversationData = _conversation;
         const _message = await Message.create({
           content: null,
           imageLink: null,
@@ -203,15 +203,35 @@ exports.friendRequest = async (req, res) => {
           { new: true }
         );
 
+        _updateConversation.lastMessage = "Hai bạn đã là bạn bè";
+        console.log(_updateConversation);
         await FriendRequest.findByIdAndRemove(_friendRequestID);
         return res.status(200).json({
           message: "Accept friend request",
           friendRequestID: _friendRequestID,
           listFriendsReceiver: _friendsReceiverUpdate.friends,
           listFriendsSender: _friendsSenDerUpdate.friends,
+          sender:{
+            id:_senderUser.id,
+            name:_senderUser.fullName,
+            avatar:_senderUser.avatarLink
+          },
+          receiver:{
+            id:_receiverUser.id,
+            name:_receiverUser.fullName,
+            avatar:_receiverUser.avatarLink
+          },
           idSender: _senderID,
           idReceiver: _receiverID,
-          conversation: _conversationData
+          conversation: {
+            id: _updateConversation.id,
+            members: _updateConversation.members,
+            isGroup: _updateConversation.isGroup,
+            isCalling: _updateConversation.isCalling,
+            createBy: _updateConversation.createdBy,
+            lastMessage:"Hai bạn đã là bạn bè"
+          }
+
           // _id:_updateConversation.id,
           // name:_updateConversation.name,
           // imageLink:_updateConversation.imageLink,

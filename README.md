@@ -770,6 +770,35 @@
             "isCalling": false
         }
 ```
+### Change-avatar 
+```json
+    - Method : POST : /change-avatar/:conversationId
+    - DỮ liệu gửi đi
+ http://localhost:3000/api/v3/conversations/change-avatar/6368c60aaaad07cd2de4d6f9
+        {
+            "userId":"6367985e8b88a0af24508268",
+            "imageLink":file
+        }
+    - Dữ liệu trả về
+        {
+            "_id": "6368c60aaaad07cd2de4d6f9",
+            "name": "Nhóm A",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/07f519bd-0972-44b7-8231-f02505044643background.jpg",
+            "lastMessage": "6368fb7eea661840b63f5d71",
+            "members": [
+                "6367985e8b88a0af24508268",
+                "6367985d8b88a0af24508260",
+                "6367985e8b88a0af2450826c",
+                "6367985d8b88a0af2450825c",
+                "6367985e8b88a0af24508264",
+                "6367a4198cbf4f0780e0671f"
+            ],
+            "createdBy": "6367985e8b88a0af2450826c",
+            "deleteBy": [],
+            "isGroup": true,
+            "isCalling": false
+        }
+```
 # Path:  http://localhost:3000/api/v3/friendRequests
 ### CreateFriendRequests
 ``` json
@@ -852,91 +881,42 @@
     - Dữ liệu trả về
         {
             "message": "Accept friend request",
-            "friendRequestID": "6368b6b7c00af598b77a00b7",
+            "friendRequestID": "6368fa4ba64c4aa2b1443f91",
             "listFriendsReceiver": [
-                "6367985e8b88a0af24508264",
-                "6367985d8b88a0af24508260",
                 "6367985e8b88a0af2450826c",
-                "6367985e8b88a0af24508264",
+                "6367985d8b88a0af2450825c",
+                "6367985e8b88a0af24508268",
                 "6367a4198cbf4f0780e0671f"
             ],
             "listFriendsSender": [
                 "6367985e8b88a0af2450826c",
-                "6367985d8b88a0af2450825c"
+                "6367985d8b88a0af2450825c",
+                "6367985d8b88a0af24508260",
+                "6367985e8b88a0af24508268",
+                "6368e6f75f598c0692985f80"
             ],
+            "sender": {
+                "id": "6367a4198cbf4f0780e0671f",
+                "name": "Sơn",
+                "avatar": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg"
+            },
+            "receiver": {
+                "id": "6368e6f75f598c0692985f80",
+                "name": "dev",
+                "avatar": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg"
+            },
             "idSender": "6367a4198cbf4f0780e0671f",
-            "idReceiver": "6367985d8b88a0af2450825c",
+            "idReceiver": "6368e6f75f598c0692985f80",
             "conversation": {
-                "name": [
-                    "Sơn",
-                    "Nguyen Duc Huy"
-                ],
-                "imageLink": [
-                    "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
-                    "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg"
-                ],
-                "lastMessage": null,
+                "id": "6368fa56a64c4aa2b1443f99",
                 "members": [
-                    {
-                        "_id": "6367a4198cbf4f0780e0671f",
-                        "fullName": "Sơn",
-                        "bio": "Đá banh",
-                        "gender": 0,
-                        "birthday": "2022-11-05T17:00:00.000Z",
-                        "status": true,
-                        "avatarLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
-                        "backgroundLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
-                        "accountID": "6367a4198cbf4f0780e0671d",
-                        "friends": [
-                            "6367985e8b88a0af2450826c",
-                            "6367985d8b88a0af2450825c"
-                        ],
-                        "__v": 0
-                    },
-                    {
-                        "_id": "6367985d8b88a0af2450825c",
-                        "fullName": "Nguyen Duc Huy",
-                        "bio": "Sông Lam",
-                        "gender": 0,
-                        "birthday": "2022-11-06T11:19:57.678Z",
-                        "status": true,
-                        "avatarLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg",
-                        "backgroundLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/huyBack.jpg",
-                        "accountID": "6367985c8b88a0af24508259",
-                        "friends": [
-                            "6367985e8b88a0af24508264",
-                            "6367985d8b88a0af24508260",
-                            "6367985e8b88a0af2450826c",
-                            "6367985e8b88a0af24508264",
-                            "6367a4198cbf4f0780e0671f"
-                        ],
-                        "__v": 0
-                    }
+                    "6367a4198cbf4f0780e0671f",
+                    "6368e6f75f598c0692985f80"
                 ],
-                "createdBy": {
-                    "_id": "6367985d8b88a0af2450825c",
-                    "fullName": "Nguyen Duc Huy",
-                    "bio": "Sông Lam",
-                    "gender": 0,
-                    "birthday": "2022-11-06T11:19:57.678Z",
-                    "status": true,
-                    "avatarLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg",
-                    "backgroundLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/huyBack.jpg",
-                    "accountID": "6367985c8b88a0af24508259",
-                    "friends": [
-                        "6367985e8b88a0af24508264",
-                        "6367985d8b88a0af24508260",
-                        "6367985e8b88a0af2450826c",
-                        "6367985e8b88a0af24508264",
-                        "6367a4198cbf4f0780e0671f"
-                    ],
-                    "__v": 0
-                },
-                "deleteBy": null,
                 "isGroup": false,
                 "isCalling": false,
-                "_id": "6368b6cbc00af598b77a00bf",
-                "__v": 0
+                "createBy": "6368e6f75f598c0692985f80",
+                "lastMessage": "Hai bạn đã là bạn bè"
             }
         }
 ```
