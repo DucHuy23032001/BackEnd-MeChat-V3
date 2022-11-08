@@ -180,6 +180,7 @@ exports.createMessageManyFile = async (req, res, next) => {
       content:_newMessage.content,
       imageLink : _newMessage.imageLink,
       fileLink:_newMessage.fileLink,
+      members:_conversation.members,
       conversationID:_newMessage.conversationID,
       senderID:_newMessage.senderID,
       action:_newMessage.action,
