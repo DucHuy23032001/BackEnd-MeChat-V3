@@ -137,6 +137,7 @@ exports.createMessageManyFile = async (req, res, next) => {
       fileLink: _fileLink,
       action: null,
     });
+
     let _content = "";
     if(_imageLinks){
       if (_imageLinks[_imageLinks.length - 1] != null) {
@@ -172,6 +173,7 @@ exports.createMessageManyFile = async (req, res, next) => {
       },
       { new: true }
     );
+
     let _data = {
       contentMessage:_content,
       _id:_newMessage.id,
@@ -182,7 +184,7 @@ exports.createMessageManyFile = async (req, res, next) => {
       senderID:_newMessage.senderID,
       action:_newMessage.action,
       deleteBy:_newMessage.deleteBy,
-      createAt:_newMessage.createAt,
+      createAt:_newMessage.createdAt,
     }
     res.status(200).json(_data);
   } catch (err) {
