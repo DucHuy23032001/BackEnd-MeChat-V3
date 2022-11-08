@@ -615,9 +615,9 @@
         }     
     - Dữ liệu trả về
         {
-            "_id": "6367372e1f3cf92b3e3bbc8d",
+            "id": "6367372e1f3cf92b3e3bbc8d",
             "name": "Tuan group",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
             "lastMessage": "6367372e1f3cf92b3e3bbc8f",
             "members": [
                 "6364c4ba704a90ce691c685f",
