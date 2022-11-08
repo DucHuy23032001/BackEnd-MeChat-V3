@@ -609,25 +609,27 @@
     - Method: POST:   /create-conversation
     - Dữ liệu gửi đi
         {
-            "members":["6364c4ba704a90ce691c685f","6364d27c7b56f1d96e7d2dcc"], 
-            "createdBy":"6364c4a1704a90ce691c6853",
-            "name":"Tuan group"
-        }     
+            "members":["6367985d8b88a0af24508260","6367985e8b88a0af24508264"], 
+            "createdBy":"6367985d8b88a0af2450825c",
+            "name":"Group Huy tao 4"
+        }    
     - Dữ liệu trả về
         {
-            "id": "6367372e1f3cf92b3e3bbc8d",
-            "name": "Tuan group",
+            "id": "6369b6fc034100d8eabdc8f8",
+            "name": "Group Huy tao 4",
             "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "6367372e1f3cf92b3e3bbc8f",
+            "lastMessage": "6369b6fc034100d8eabdc8fa",
+            "time": "2022-11-08T01:55:08.088Z",
             "members": [
-                "6364c4ba704a90ce691c685f",
-                "6364d27c7b56f1d96e7d2dcc",
-                "6364c4a1704a90ce691c6853"
+                "6367985d8b88a0af24508260",
+                "6367985e8b88a0af24508264",
+                "6367985d8b88a0af2450825c"
             ],
-            "createdBy": "6364c4a1704a90ce691c6853",
+            "createdBy": "6367985d8b88a0af2450825c",
             "deleteBy": [],
             "isGroup": true,
-            "isCalling": false
+            "isCalling": false,
+            "action": "Nguyen Duc Huy đã tạo nhóm"
         }
 ``` 
 ### Add member to conversation
@@ -641,22 +643,21 @@
         }
     - Dữ liệu trả về 
         {
-            "_id": "63679b1620503a5c60b004be",
-            "name": "Group Huy tao",
+            "_id": "6369b59dca9f69c85bbc937d",
+            "name": "Group Huy tao 4",
             "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "63679cefbc0092d25eaf09c7",
+            "lastMessage": "6369b669034100d8eabdc8ed",
+            "time": "2022-11-08T01:52:41.835Z",
             "members": [
                 "6367985d8b88a0af24508260",
-                "6367985e8b88a0af24508264",
                 "6367985d8b88a0af2450825c",
-                "6367985e8b88a0af24508268",
-                "6367985e8b88a0af2450826c"
+                "6367985e8b88a0af24508268"
             ],
             "createdBy": "6367985d8b88a0af2450825c",
             "deleteBy": [],
             "isGroup": true,
             "isCalling": false,
-            "action": "Nguyen Duc Huy đã thêm 2 thành viên vào nhóm!"
+            "action": "Nguyen Duc Huy đã thêm Võ Thành Nhớ vào nhóm!"
         }
 ```
 ### Delete member
@@ -670,18 +671,10 @@
         }  
     - Dữ liệu nhận về
         {
-            "_id": "6367372e1f3cf92b3e3bbc8d",
-            "name": "Tuan group",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "636737611f3cf92b3e3bbc95",
-            "members": [
-                "6364d27c7b56f1d96e7d2dcc",
-                "6364c4a1704a90ce691c6853"
-            ],
-            "createdBy": "6364c4a1704a90ce691c6853",
-            "deleteBy": [],
-            "isGroup": true,
-            "isCalling": false
+            "_id": "6369b59dca9f69c85bbc937d",
+            "idMember": "6367985e8b88a0af24508264",
+            "action": "Nguyen Duc Huy đã xóa Lê Tuấn ra khỏi nhóm!",
+            "time": "2022-11-08T01:52:19.539Z"
         }
 ```
 ### Delete conversation 
@@ -694,18 +687,12 @@
         } 
     - Dữ liệu nhận về
         {
-            "_id": "6367372e1f3cf92b3e3bbc8d",
-            "name": "Tuan group",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "636737611f3cf92b3e3bbc95",
+            "_id": "6369b59dca9f69c85bbc937d",
             "members": [
-                "6364d27c7b56f1d96e7d2dcc",
-                "6364c4a1704a90ce691c6853"
-            ],
-            "createdBy": "6364c4a1704a90ce691c6853",
-            "deleteBy": [],
-            "isGroup": true,
-            "isCalling": false
+                "6367985d8b88a0af24508260",
+                "6367985d8b88a0af2450825c",
+                "6367985e8b88a0af24508268"
+            ]
         }
 ```
 ### Delete conversation for you
@@ -725,24 +712,16 @@
 ```json
     - Method: POST : /out-conversation/:conversationId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/out-conversation/634d2c073a0555e973021109
+        http://localhost:3000/api/v3/conversations/out-conversation/6369a31eba2b0499ce19a429
         {
-            "userId":"634a58d1a85520274df8850e"
+            "userId":"634a58d1a85520274df88512"
         }
     - Dữ liệu nhận về
         {
-            "_id": "6367372e1f3cf92b3e3bbc8d",
-            "name": "Test ChangeName",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "636737611f3cf92b3e3bbc95",
-            "members": [
-                "6364d27c7b56f1d96e7d2dcc",
-                "6364c4a1704a90ce691c6853"
-            ],
-            "createdBy": "6364c4a1704a90ce691c6853",
-            "deleteBy": [],
-            "isGroup": true,
-            "isCalling": false
+            "_id": "6369a31eba2b0499ce19a429",
+            "idMember": "6367985d8b88a0af24508260",
+            "time": "2022-11-08T01:54:25.459Z",
+            "action": "Võ Minh Phương Đã thoát khỏi nhóm"
         }
 ```
 ### Change Name 
@@ -881,42 +860,39 @@
     - Dữ liệu trả về
         {
             "message": "Accept friend request",
-            "friendRequestID": "6368fa4ba64c4aa2b1443f91",
+            "friendRequestID": "6369b71a034100d8eabdc906",
             "listFriendsReceiver": [
-                "6367985e8b88a0af2450826c",
-                "6367985d8b88a0af2450825c",
-                "6367985e8b88a0af24508268",
-                "6367a4198cbf4f0780e0671f"
+                "6367985d8b88a0af2450825c"
             ],
             "listFriendsSender": [
-                "6367985e8b88a0af2450826c",
-                "6367985d8b88a0af2450825c",
                 "6367985d8b88a0af24508260",
-                "6367985e8b88a0af24508268",
-                "6368e6f75f598c0692985f80"
+                "6367985e8b88a0af2450826c",
+                "6367a4198cbf4f0780e0671f",
+                "6367985e8b88a0af24508264"
             ],
             "sender": {
-                "id": "6367a4198cbf4f0780e0671f",
-                "name": "Sơn",
-                "avatar": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg"
+                "id": "6367985d8b88a0af2450825c",
+                "name": "Nguyen Duc Huy",
+                "avatar": "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg"
             },
             "receiver": {
-                "id": "6368e6f75f598c0692985f80",
-                "name": "dev",
-                "avatar": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg"
+                "id": "6367985e8b88a0af24508264",
+                "name": "Lê Tuấn",
+                "avatar": "https://mechat.s3.ap-southeast-1.amazonaws.com/3cf9ea0b-b387-4a00-8af0-ddf8a457a96a.png"
             },
-            "idSender": "6367a4198cbf4f0780e0671f",
-            "idReceiver": "6368e6f75f598c0692985f80",
+            "idSender": "6367985d8b88a0af2450825c",
+            "idReceiver": "6367985e8b88a0af24508264",
             "conversation": {
-                "id": "6368fa56a64c4aa2b1443f99",
+                "id": "6369b725034100d8eabdc90d",
                 "members": [
-                    "6367a4198cbf4f0780e0671f",
-                    "6368e6f75f598c0692985f80"
+                    "6367985d8b88a0af2450825c",
+                    "6367985e8b88a0af24508264"
                 ],
                 "isGroup": false,
                 "isCalling": false,
-                "createBy": "6368e6f75f598c0692985f80",
-                "lastMessage": "Hai bạn đã là bạn bè"
+                "createBy": "6367985e8b88a0af24508264",
+                "lastMessage": "Hai bạn đã là bạn bè",
+                "time": "2022-11-08T01:55:49.966Z"
             }
         }
 ```

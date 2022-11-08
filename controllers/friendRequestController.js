@@ -229,7 +229,8 @@ exports.friendRequest = async (req, res) => {
             isGroup: _updateConversation.isGroup,
             isCalling: _updateConversation.isCalling,
             createBy: _updateConversation.createdBy,
-            lastMessage:"Hai bạn đã là bạn bè"
+            lastMessage:"Hai bạn đã là bạn bè",
+            time:_message.createdAt,
           }
 
           // _id:_updateConversation.id,
