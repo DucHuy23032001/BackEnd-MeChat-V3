@@ -278,7 +278,7 @@ exports.deleteMemberConversation = async (req, res) => {
           // lastMessage: _updateConversation.lastMessage,
           action:_message.action,
           time:_message.createdAt,
-          // members: _updateConversation.members,
+          members: _updateConversation.members,
           // createdBy: _updateConversation.createdBy,
           // deleteBy: _updateConversation.deleteBy,
           // isGroup: _updateConversation.isGroup,
