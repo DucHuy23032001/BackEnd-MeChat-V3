@@ -136,14 +136,13 @@ exports.createConversation = async (req, res, next) => {
       id: _updateConversation.id,
       name: _updateConversation.name[0],
       imageLinkOfConver: _updateConversation.imageLink[0],
-      lastMessage: _updateConversation.lastMessage,
+      lastMessage: _message.action,
       time:_message.createdAt,
       members: _updateConversation.members,
       createdBy: _updateConversation.createdBy,
       deleteBy: _updateConversation.deleteBy,
       isGroup: _updateConversation.isGroup,
       isCalling: _updateConversation.isCalling, 
-      action:_message.action
     }
     res.status(200).json(_data);
   } catch (error) {
@@ -312,7 +311,7 @@ exports.outConversation = async (req, res) => {
       content: null,
       conversationID: _conversationNow,
       senderID: _memberOut.id,
-      action: _memberOut.fullName + " Đã thoát khỏi nhóm",
+      action: _memberOut.fullName + " đã thoát khỏi nhóm",
     });
     let _updateConversation = await Conversation.findByIdAndUpdate(
       { _id: _conversationId },
@@ -364,7 +363,7 @@ exports.changeName = async (req, res) => {
       content: null,
       conversationID: _conversation,
       senderID: _user,
-      action: _user.fullName + "đã thay đổi tên nhóm thành: " + _newName,
+      action: _user.fullName + " đã thay đổi tên nhóm thành: " + _newName,
     });
     let _data = {
       _id: _conversationAfter.id,
@@ -414,7 +413,7 @@ exports.changeAvatar = async (req, res) => {
       content: null,
       conversationID: _conversation,
       senderID: _user,
-      action: _user.fullName + "đã thay đổi ảnh đại diện nhóm"
+      action: _user.fullName + " đã thay đổi ảnh đại diện nhóm!"
     });
     const _conversationAfter = await Conversation.findByIdAndUpdate(
       { _id: _conversationId },
