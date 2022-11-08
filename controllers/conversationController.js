@@ -330,7 +330,7 @@ exports.outConversation = async (req, res) => {
       // lastMessage: _updateConversation.lastMessage,
       time:_message.createdAt,
       action:_message.action
-      // members: _updateConversation.members,
+      members: _updateConversation.members,
       // createdBy: _updateConversation.createdBy,
       // deleteBy: _updateConversation.deleteBy,
       // isGroup: _updateConversation.isGroup,
