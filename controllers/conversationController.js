@@ -329,7 +329,7 @@ exports.outConversation = async (req, res) => {
       // imageLink: _updateConversation.imageLink[0],
       // lastMessage: _updateConversation.lastMessage,
       time:_message.createdAt,
-      action:_message.action
+      action:_message.action,
       members: _updateConversation.members,
       // createdBy: _updateConversation.createdBy,
       // deleteBy: _updateConversation.deleteBy,
