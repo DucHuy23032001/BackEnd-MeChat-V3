@@ -519,3 +519,21 @@ exports.blockConversation = async (req, res, next) => {
     res.status(500).json({ msg: err.message });
   }
 };
+//Oke
+exports.removeBlockConversation = async (req, res, next) => {
+  try {
+    const _conversationId = req.params.conversationId;
+    const _userId = req.body.userId;
+    const _conversation = await Conversation.findById(_conversationId);
+    let _blockBy = _conversation.blockBy;
+    _blockBy.pull(_userId);
+    await Conversation.findByIdAndUpdate(_conversationId, {
+      blockBy: _blockBy,
+    });
+    const _conversationAfterUpdate = await Conversation.findById(_conversationId);
+    let _data = { idConversation:_conversationId , blockBy:_conversationAfterUpdate.blockBy};
+    res.status(200).json(_data);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
