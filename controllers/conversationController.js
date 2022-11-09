@@ -86,6 +86,8 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         isGroup: i.isGroup,
         createdBy: i.createdBy,
         isCalling: i.isCalling,
+        deleteBy:i.deleteBy,
+        blockBy:i.blockBy
       };
       _datas.push(_data);
     }
@@ -176,7 +178,6 @@ exports.addMemberConversation = async (req, res) => {
     let _confirm = true;
     for (let i of _conversationNow.members) {
       for (let j of _newMember) {
-        console.log(j);
         if (i == j) {
           _confirm = false;
         }
@@ -214,16 +215,17 @@ exports.addMemberConversation = async (req, res) => {
       );
       let _data = {
         id: _updateConversation.id,
-        name: _updateConversation.name[0],
-        imageLink: _updateConversation.imageLink[0],
-        lastMessage: _updateConversation.lastMessage,
+        // name: _updateConversation.name[0],
+        // imageLink: _updateConversation.imageLink[0],
+        // lastMessage: _updateConversation.lastMessage,
         time:_message.createdAt,
         members: _updateConversation.members,
-        createdBy: _updateConversation.createdBy,
-        deleteBy: _updateConversation.deleteBy,
-        isGroup: _updateConversation.isGroup,
-        isCalling: _updateConversation.isCalling,
-        action: _message.action
+        // createdBy: _updateConversation.createdBy,
+        // deleteBy: _updateConversation.deleteBy,
+        // isGroup: _updateConversation.isGroup,
+        // isCalling: _updateConversation.isCalling,
+        action: _message.action,
+        newMember:_newMember
       }
       res.status(200).json(_data);
     } else {
@@ -326,7 +328,7 @@ exports.outConversation = async (req, res) => {
       _id: _updateConversation.id,
       idMember:userId,
       // name: _updateConversation.name[0],
-      // imageLink: _updateConversation.imageLink[0],
+      // imageLink: _updateConversation.imageLink[0], 
       // lastMessage: _updateConversation.lastMessage,
       time:_message.createdAt,
       action:_message.action,
@@ -366,7 +368,7 @@ exports.changeName = async (req, res) => {
       action: _user.fullName + " đã thay đổi tên nhóm thành: " + _newName,
     });
     let _data = {
-      _id: _conversationAfter.id,
+      id: _conversationAfter.id,
       name: _conversationAfter.name[0],
       imageLink: _conversationAfter.imageLink[0],
       lastMessage: _conversationAfter.lastMessage,
@@ -399,7 +401,7 @@ exports.changeAvatar = async (req, res) => {
       ContentType: 'image/png',
       Body: _fileContentImage,
     };
-    console.log(_paramAvatar);
+    // console.log(_paramAvatar);
     let _paramLocation = await s3
       .upload(_paramAvatar, (err, data) => {
         if (err) {
@@ -425,7 +427,7 @@ exports.changeAvatar = async (req, res) => {
     );
 
     let _data = {
-      _id: _conversationAfter.id,
+      id: _conversationAfter.id,
       name: _conversationAfter.name[0],
       imageLink: _conversationAfter.imageLink[0],
       lastMessage: _conversationAfter.lastMessage,

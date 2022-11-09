@@ -566,40 +566,48 @@
 ```json
     - Method: GET :   /:userId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/6364c4a1704a90ce691c6853
+        http://localhost:3000/api/v3/conversations/636b163e80f85770969964e7
     - Dữ liệu trả về
         {
             "status": "success",
             "data": [
                 {
-                    "id": "6364c5422942d6d374b065ba",
-                    "name": "Minh Phuong",
+                    "id": "636b169d72d42c01c1de5254",
+                    "name": "Võ Minh Phương",
                     "members": [
-                        "6364c4a1704a90ce691c6853",
-                        "6364c4ba704a90ce691c685f"
+                        "636b163e80f85770969964e7",
+                        "636b163e80f85770969964eb"
                     ],
-                    "imageLinkOfConver": "https://mechat.s3.ap-southeast-1.amazonaws.com/5302e28d-81ef-461a-8fac-0515acea3065.jpeg",
-                    "content": "[Hình ảnh]",
-                    "lastMessage": null,
-                    "time": "2022-11-06T04:05:43.839Z",
-                    "isGroup": false,
-                    "createdBy": "6364c4ba704a90ce691c685f",
-                    "isCalling": false
-                },
-                {
-                    "id": "6364d74e3dc787e7553e8fa3",
-                    "name": "Nhớ",
-                    "members": [
-                        "6364d27c7b56f1d96e7d2dcc",
-                        "6364c4a1704a90ce691c6853"
-                    ],
-                    "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
+                    "imageLinkOfConver": "https://mechat.s3.ap-southeast-1.amazonaws.com/f6070779-9893-4929-a2b6-bdb533859893.jpeg",
                     "content": null,
                     "lastMessage": "Hai bạn đã là bạn bè",
-                    "time": "2022-11-04T09:11:42.561Z",
+                    "time": "2022-11-09T02:55:25.277Z",
                     "isGroup": false,
-                    "createdBy": "6364c4a1704a90ce691c6853",
-                    "isCalling": false
+                    "createdBy": null,
+                    "isCalling": false,
+                    "deleteBy": null,
+                    "blockBy": []
+                },
+                {
+                    "id": "636b4ce00648ef9b9bb276a7",
+                    "name": "Nhóm của tui ",
+                    "members": [
+                        "636b163e80f85770969964e7",
+                        "636b163e80f85770969964eb",
+                        "636b163e80f85770969964ef",
+                        "636b3cb194c02355d2559b67"
+                    ],
+                    "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ff35336e-1ab9-4bd7-904c-c6f526ade6de2519ebdb-499e-451b-b2c9-dee53d96ca98.jpeg",
+                    "content": null,
+                    "lastMessage": "Tăng Bảo Trấn đã thoát khỏi nhóm",
+                    "time": "2022-11-09T11:46:29.907Z",
+                    "isGroup": true,
+                    "createdBy": "636b163e80f85770969964eb",
+                    "isCalling": false,
+                    "deleteBy": [],
+                    "blockBy": [
+                        "636b163e80f85770969964ef"
+                    ]
                 }
             ]
         }
@@ -643,21 +651,26 @@
         }
     - Dữ liệu trả về 
         {
-            "id": "6369b59dca9f69c85bbc937d",
-            "name": "Group Huy tao 4",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "6369b669034100d8eabdc8ed",
-            "time": "2022-11-08T01:52:41.835Z",
+            "id": "636b4ce00648ef9b9bb276a7",
+            "name": "Nhóm của tui ",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ff35336e-1ab9-4bd7-904c-c6f526ade6de2519ebdb-499e-451b-b2c9-dee53d96ca98.jpeg",
+            "lastMessage": "636bc4cc6fa6797a27da0208",
+            "time": "2022-11-09T15:18:36.930Z",
             "members": [
-                "6367985d8b88a0af24508260",
-                "6367985d8b88a0af2450825c",
-                "6367985e8b88a0af24508268"
+                "636b163e80f85770969964e7",
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964ef",
+                "636b3cb194c02355d2559b67",
+                "636b163f80f85770969964f3"
             ],
-            "createdBy": "6367985d8b88a0af2450825c",
+            "createdBy": "636b163e80f85770969964eb",
             "deleteBy": [],
             "isGroup": true,
             "isCalling": false,
-            "action": "Nguyen Duc Huy đã thêm Võ Thành Nhớ vào nhóm!"
+            "action": "Võ Minh Phương đã thêm Võ Thành Nhớ vào nhóm!",
+            "newMember": [
+                "636b163f80f85770969964f3"
+            ]
         }
 ```
 ### Delete member
@@ -735,7 +748,7 @@
         }
     - Dữ liệu trả về
         {
-            "_id": "6367372e1f3cf92b3e3bbc8d",
+            "id": "6367372e1f3cf92b3e3bbc8d",
             "name": "Test ChangeName",
             "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
             "lastMessage": "636737611f3cf92b3e3bbc95",
@@ -760,7 +773,7 @@
         }
     - Dữ liệu trả về
         {
-            "_id": "6368c60aaaad07cd2de4d6f9",
+            "id": "6368c60aaaad07cd2de4d6f9",
             "name": "Nhóm A",
             "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/07f519bd-0972-44b7-8231-f02505044643background.jpg",
             "lastMessage": "6368fb7eea661840b63f5d71",
