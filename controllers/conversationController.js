@@ -213,7 +213,7 @@ exports.addMemberConversation = async (req, res) => {
         { new: true }
       );
       let _data = {
-        _id: _updateConversation.id,
+        id: _updateConversation.id,
         name: _updateConversation.name[0],
         imageLink: _updateConversation.imageLink[0],
         lastMessage: _updateConversation.lastMessage,

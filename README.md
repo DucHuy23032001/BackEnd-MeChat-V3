@@ -643,7 +643,7 @@
         }
     - Dữ liệu trả về 
         {
-            "_id": "6369b59dca9f69c85bbc937d",
+            "id": "6369b59dca9f69c85bbc937d",
             "name": "Group Huy tao 4",
             "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
             "lastMessage": "6369b669034100d8eabdc8ed",
