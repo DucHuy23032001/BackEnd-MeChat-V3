@@ -5,10 +5,10 @@ const Schema = mongoose.Schema;
 const conversationSchema = new Schema({
     name:[],
     imageLink:[],
-    lastMessage: {type:Schema.Types.ObjectId,ref:'Message',default:null},
+    lastMessage: {type:Schema.Types.ObjectId,ref:'Message'},
     members :[{type: Schema.Types.ObjectId,required:true, ref: 'User'}] ,
     createdBy:{type:Schema.Types.ObjectId,required:true, ref:'User'},
-    deleteBy:[{type:Schema.Types.ObjectId, ref:'User'}],
+    deleteBy:[{type:Schema.Types.ObjectId,default:null,ref:'User'}],
     isGroup:{
         type:Boolean,
         default:false
@@ -16,7 +16,8 @@ const conversationSchema = new Schema({
     isCalling:{
         type:Boolean,
         default:false
-    }
+    },
+    blockBy:[{type:Schema.Types.ObjectId,default:null, ref:'User'}],
 })
 
 module.exports = mongoose.model("Conversation",conversationSchema);

@@ -778,6 +778,23 @@
             "isCalling": false
         }
 ```
+### BlockConversation
+```json
+    - Method : POST : /block-conversation/:conversationId
+    - DỮ liệu gửi đi
+ http://localhost:3000/api/v3/conversations/block-conversation/636b169d72d42c01c1de5254
+        {
+            "userId":"636b163e80f85770969964e7"
+        }
+    - Dữ liệu trả về
+        {
+            "idUser": "636b163e80f85770969964e7",
+            "idConversation": "636b169d72d42c01c1de5254",
+            "blockBy": [
+                "636b163e80f85770969964e7"
+            ]
+        }
+```
 # Path:  http://localhost:3000/api/v3/friendRequests
 ### CreateFriendRequests
 ``` json
