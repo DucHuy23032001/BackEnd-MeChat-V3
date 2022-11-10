@@ -617,57 +617,54 @@
     - Method: POST:   /create-conversation
     - Dữ liệu gửi đi
         {
-            "members":["6367985d8b88a0af24508260","6367985e8b88a0af24508264"], 
-            "createdBy":"6367985d8b88a0af2450825c",
-            "name":"Group Huy tao 4"
-        }    
+            "members":["636b163e80f85770969964ef","636b163e80f85770969964eb"], 
+            "createdBy":"636b163e80f85770969964e7",
+            "name":"Group Huy tao n"
+        }   
     - Dữ liệu trả về
         {
-            "id": "6369b6fc034100d8eabdc8f8",
-            "name": "Group Huy tao 4",
+            "id": "636d0b04bfda2411ac7455d5",
+            "name": "Group Huy tao n",
             "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "6369b6fc034100d8eabdc8fa",
-            "time": "2022-11-08T01:55:08.088Z",
+            "action": "Nguyen Duc Huy đã tạo nhóm",
+            "time": "2022-11-10T14:30:28.327Z",
             "members": [
-                "6367985d8b88a0af24508260",
-                "6367985e8b88a0af24508264",
-                "6367985d8b88a0af2450825c"
+                "636b163e80f85770969964ef",
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964e7"
             ],
-            "createdBy": "6367985d8b88a0af2450825c",
+            "createdBy": "636b163e80f85770969964e7",
             "deleteBy": [],
             "isGroup": true,
-            "isCalling": false,
-            "action": "Nguyen Duc Huy đã tạo nhóm"
+            "isCalling": false
         }
 ``` 
 ### Add member to conversation
 ```json
     - Method: POST : /add-member-conversation/:conversationId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/add-member-conversation/63679b1620503a5c60b004be
+        http://localhost:3000/api/v3/conversations/add-member-conversation/636d0b04bfda2411ac7455d5
         {
-            "newMemberID":["6367985e8b88a0af24508268","6367985e8b88a0af2450826c"],
-            "memberAddID":"6367985d8b88a0af2450825c"
+            "newMemberID":["636b163f80f85770969964f3"],
+            "memberAddID":"636b163e80f85770969964ef"
         }
     - Dữ liệu trả về 
         {
-            "id": "636b4ce00648ef9b9bb276a7",
-            "name": "Nhóm của tui ",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ff35336e-1ab9-4bd7-904c-c6f526ade6de2519ebdb-499e-451b-b2c9-dee53d96ca98.jpeg",
-            "lastMessage": "636bc4cc6fa6797a27da0208",
-            "time": "2022-11-09T15:18:36.930Z",
+            "id": "636d0b04bfda2411ac7455d5",
+            "name": "Group Huy tao n",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "time": "2022-11-10T14:31:53.665Z",
             "members": [
-                "636b163e80f85770969964e7",
-                "636b163e80f85770969964eb",
                 "636b163e80f85770969964ef",
-                "636b3cb194c02355d2559b67",
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964e7",
                 "636b163f80f85770969964f3"
             ],
-            "createdBy": "636b163e80f85770969964eb",
+            "createdBy": "636b163e80f85770969964e7",
             "deleteBy": [],
             "isGroup": true,
             "isCalling": false,
-            "action": "Võ Minh Phương đã thêm Võ Thành Nhớ vào nhóm!",
+            "action": "Lê Tuấn đã thêm Võ Thành Nhớ vào nhóm!",
             "newMember": [
                 "636b163f80f85770969964f3"
             ]
@@ -677,17 +674,28 @@
 ```json
     - Method : DELETE : /delete-member/:conversationId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/delete-member/6366109ee1a74a27c4a947e7
+        http://localhost:3000/api/v3/conversations/delete-member/636d0b04bfda2411ac7455d5
         {
-            "memberId":"6364c4ba704a90ce691c685f",
-            "mainId":"6364c4a1704a90ce691c6853"
+            "memberId":"636b163e80f85770969964ef",
+            "mainId":"636b163e80f85770969964e7"
         }  
     - Dữ liệu nhận về
         {
-            "_id": "6369b59dca9f69c85bbc937d",
-            "idMember": "6367985e8b88a0af24508264",
+            "_id": "636d0b04bfda2411ac7455d5",
+            "idMember": "636b163e80f85770969964ef",
+            "name": "Group Huy tao n",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
             "action": "Nguyen Duc Huy đã xóa Lê Tuấn ra khỏi nhóm!",
-            "time": "2022-11-08T01:52:19.539Z"
+            "time": "2022-11-10T14:32:47.547Z",
+            "members": [
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964e7",
+                "636b163f80f85770969964f3"
+            ],
+            "createdBy": "636b163e80f85770969964e7",
+            "deleteBy": [],
+            "isGroup": true,
+            "isCalling": false
         }
 ```
 ### Delete conversation 
@@ -725,38 +733,49 @@
 ```json
     - Method: POST : /out-conversation/:conversationId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/out-conversation/6369a31eba2b0499ce19a429
+        http://localhost:3000/api/v3/conversations/out-conversation/636d0b04bfda2411ac7455d5
         {
-            "userId":"634a58d1a85520274df88512"
+            "userId":"636b163f80f85770969964f3"
         }
     - Dữ liệu nhận về
         {
-            "_id": "6369a31eba2b0499ce19a429",
-            "idMember": "6367985d8b88a0af24508260",
-            "time": "2022-11-08T01:54:25.459Z",
-            "action": "Võ Minh Phương Đã thoát khỏi nhóm"
+            "_id": "636d0b04bfda2411ac7455d5",
+            "idMember": "636b163f80f85770969964f3",
+            "name": "Group Huy tao n",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
+            "time": "2022-11-10T14:33:59.040Z",
+            "action": "Võ Thành Nhớ đã thoát khỏi nhóm",
+            "members": [
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964e7"
+            ],
+            "createdBy": "636b163e80f85770969964e7",
+            "deleteBy": [],
+            "isGroup": true,
+            "isCalling": false
         }
 ```
 ### Change Name 
 ```json
     - Method : POST : /change-name/:conversationId
     - DỮ liệu gửi đi
-        http://localhost:3000/api/v3/conversations/change-name/6367372e1f3cf92b3e3bbc8d
+        http://localhost:3000/api/v3/conversations/change-name/636d0b04bfda2411ac7455d5
         {
             "newName":"Test ChangeName",
-            "userId":"6364d27c7b56f1d96e7d2dcc"
+            "userId":"636b163e80f85770969964e7"
         }
     - Dữ liệu trả về
         {
-            "id": "6367372e1f3cf92b3e3bbc8d",
+            "id": "636d0b04bfda2411ac7455d5",
             "name": "Test ChangeName",
             "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "lastMessage": "636737611f3cf92b3e3bbc95",
+            "action": "Nguyen Duc Huy đã thay đổi tên nhóm thành: Test ChangeName",
+            "time": "2022-11-10T14:34:46.671Z",
             "members": [
-                "6364d27c7b56f1d96e7d2dcc",
-                "6364c4a1704a90ce691c6853"
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964e7"
             ],
-            "createdBy": "6364c4a1704a90ce691c6853",
+            "createdBy": "636b163e80f85770969964e7",
             "deleteBy": [],
             "isGroup": true,
             "isCalling": false
@@ -766,26 +785,23 @@
 ```json
     - Method : POST : /change-avatar/:conversationId
     - DỮ liệu gửi đi
- http://localhost:3000/api/v3/conversations/change-avatar/6368c60aaaad07cd2de4d6f9
+ http://localhost:3000/api/v3/conversations/change-avatar/636d0b04bfda2411ac7455d5
         {
-            "userId":"6367985e8b88a0af24508268",
+            "userId":"636b163e80f85770969964e7",
             "imageLink":file
         }
     - Dữ liệu trả về
         {
-            "id": "6368c60aaaad07cd2de4d6f9",
-            "name": "Nhóm A",
-            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/07f519bd-0972-44b7-8231-f02505044643background.jpg",
-            "lastMessage": "6368fb7eea661840b63f5d71",
+            "id": "636d0b04bfda2411ac7455d5",
+            "name": "Test ChangeName",
+            "imageLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/0167558f-3c51-4311-a694-c3352c58a72aavatar-group.png",
+            "action": "Nguyen Duc Huy đã thay đổi ảnh đại diện nhóm!",
+            "time": "2022-11-10T14:36:28.852Z",
             "members": [
-                "6367985e8b88a0af24508268",
-                "6367985d8b88a0af24508260",
-                "6367985e8b88a0af2450826c",
-                "6367985d8b88a0af2450825c",
-                "6367985e8b88a0af24508264",
-                "6367a4198cbf4f0780e0671f"
+                "636b163e80f85770969964eb",
+                "636b163e80f85770969964e7"
             ],
-            "createdBy": "6367985e8b88a0af2450826c",
+            "createdBy": "636b163e80f85770969964e7",
             "deleteBy": [],
             "isGroup": true,
             "isCalling": false

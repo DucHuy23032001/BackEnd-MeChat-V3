@@ -80,8 +80,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         name: _name,
         members: i.members,
         imageLinkOfConver: _imageLink,
-        content: _lastMessage.content,
-        lastMessage: _lastMessage.action,
+        action: _lastMessage.action,
         time: _lastMessage.createdAt,
         isGroup: i.isGroup,
         createdBy: i.createdBy,
@@ -138,7 +137,7 @@ exports.createConversation = async (req, res, next) => {
       id: _updateConversation.id,
       name: _updateConversation.name[0],
       imageLinkOfConver: _updateConversation.imageLink[0],
-      lastMessage: _message.action,
+      action: _message.action,
       time:_message.createdAt,
       members: _updateConversation.members,
       createdBy: _updateConversation.createdBy,
@@ -215,15 +214,14 @@ exports.addMemberConversation = async (req, res) => {
       );
       let _data = {
         id: _updateConversation.id,
-        // name: _updateConversation.name[0],
-        // imageLink: _updateConversation.imageLink[0],
-        // lastMessage: _updateConversation.lastMessage,
+        name: _updateConversation.name[0],
+        imageLink: _updateConversation.imageLink[0],
         time:_message.createdAt,
         members: _updateConversation.members,
-        // createdBy: _updateConversation.createdBy,
-        // deleteBy: _updateConversation.deleteBy,
-        // isGroup: _updateConversation.isGroup,
-        // isCalling: _updateConversation.isCalling,
+        createdBy: _updateConversation.createdBy,
+        deleteBy: _updateConversation.deleteBy,
+        isGroup: _updateConversation.isGroup,
+        isCalling: _updateConversation.isCalling,
         action: _message.action,
         newMember:_newMember
       }
@@ -275,16 +273,15 @@ exports.deleteMemberConversation = async (req, res) => {
         let _data = {
           _id: _updateConversation.id,
           idMember:memberId,
-          // name: _updateConversation.name[0],
-          // imageLink: _updateConversation.imageLink[0],
-          // lastMessage: _updateConversation.lastMessage,
+          name: _updateConversation.name[0],
+          imageLink: _updateConversation.imageLink[0],
           action:_message.action,
           time:_message.createdAt,
           members: _updateConversation.members,
-          // createdBy: _updateConversation.createdBy,
-          // deleteBy: _updateConversation.deleteBy,
-          // isGroup: _updateConversation.isGroup,
-          // isCalling: _updateConversation.isCalling
+          createdBy: _updateConversation.createdBy,
+          deleteBy: _updateConversation.deleteBy,
+          isGroup: _updateConversation.isGroup,
+          isCalling: _updateConversation.isCalling
         }
         res.status(200).json(_data);
       } else {
@@ -327,16 +324,15 @@ exports.outConversation = async (req, res) => {
     let _data = {
       _id: _updateConversation.id,
       idMember:userId,
-      // name: _updateConversation.name[0],
-      // imageLink: _updateConversation.imageLink[0], 
-      // lastMessage: _updateConversation.lastMessage,
+      name: _updateConversation.name[0],
+      imageLink: _updateConversation.imageLink[0], 
       time:_message.createdAt,
       action:_message.action,
       members: _updateConversation.members,
-      // createdBy: _updateConversation.createdBy,
-      // deleteBy: _updateConversation.deleteBy,
-      // isGroup: _updateConversation.isGroup,
-      // isCalling: _updateConversation.isCalling
+      createdBy: _updateConversation.createdBy,
+      deleteBy: _updateConversation.deleteBy,
+      isGroup: _updateConversation.isGroup,
+      isCalling: _updateConversation.isCalling
     }
     res.status(200).json(_data);
   } catch (error) {
@@ -371,7 +367,7 @@ exports.changeName = async (req, res) => {
       id: _conversationAfter.id,
       name: _conversationAfter.name[0],
       imageLink: _conversationAfter.imageLink[0],
-      lastMessage: _conversationAfter.lastMessage,
+      action: _message.action,
       time:_message.createdAt,
       members: _conversationAfter.members,
       createdBy: _conversationAfter.createdBy,
@@ -430,7 +426,7 @@ exports.changeAvatar = async (req, res) => {
       id: _conversationAfter.id,
       name: _conversationAfter.name[0],
       imageLink: _conversationAfter.imageLink[0],
-      lastMessage: _conversationAfter.lastMessage,
+      action: _message.action,
       time:_message.createdAt,
       members: _conversationAfter.members,
       createdBy: _conversationAfter.createdBy,
@@ -456,14 +452,12 @@ exports.deleteConversation = async (req, res) => {
     if (_confirm == false) {
       let _data = {
         _id: _conversation.id,
-        // name: _conversation.name[0],
-        // imageLink: _conversation.imageLink[0],
-        // lastMessage: _conversation.lastMessage,
+        name: _conversation.name[0],
+        imageLink: _conversation.imageLink[0],
         members: _conversation.members,
-        // createdBy: _conversation.createdBy,
-        // deleteBy: _conversation.deleteBy,
-        // isGroup: _conversation.isGroup,
-        // isCalling: _conversation.isCalling
+        createdBy: _conversation.createdBy,
+        deleteBy: _conversation.deleteBy,
+        isGroup: _conversation.isGroup,
       }
       await Conversation.findByIdAndDelete({ _id: _conversationId });
       res.status(200).json(_data);
