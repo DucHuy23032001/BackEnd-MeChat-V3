@@ -626,7 +626,7 @@
             "id": "636d0b04bfda2411ac7455d5",
             "name": "Group Huy tao n",
             "imageLinkOfConver": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
-            "action": "Nguyen Duc Huy đã tạo nhóm",
+            "lastMessage": "Nguyen Duc Huy đã tạo nhóm",
             "time": "2022-11-10T14:30:28.327Z",
             "members": [
                 "636b163e80f85770969964ef",
@@ -664,7 +664,7 @@
             "deleteBy": [],
             "isGroup": true,
             "isCalling": false,
-            "action": "Lê Tuấn đã thêm Võ Thành Nhớ vào nhóm!",
+            "lastMessage": "Lê Tuấn đã thêm Võ Thành Nhớ vào nhóm!",
             "newMember": [
                 "636b163f80f85770969964f3"
             ]
@@ -835,6 +835,21 @@
         {
             "idConversation": "636b169d72d42c01c1de5254",
             "blockBy": []
+        }
+```
+### ChangeCreateByConversation
+```json
+    - Method : PUT : /change-createBy/:conversationId
+    - DỮ liệu gửi đi
+        http://localhost:3000/api/v3/conversations/change-createBy/636dae48d975405787518106
+        {
+            "userId":"636b163e80f85770969964eb",
+        }
+    - Dữ liệu trả về
+        {
+            "idConversation": "636dae48d975405787518106",
+            "createBy": "636b163e80f85770969964eb",
+            "action": "Võ Minh Phương đã trở thành trưởng nhóm!"
         }
 ```
 # Path:  http://localhost:3000/api/v3/friendRequests

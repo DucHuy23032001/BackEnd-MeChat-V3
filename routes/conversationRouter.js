@@ -3,6 +3,8 @@ const ConversationsController = require("../controllers/conversationController")
 
 Router.get("/:userId", ConversationsController.getAllConversationByUserID);
 
+Router.put("/change-createBy/:conversationId", ConversationsController.changeCreateByConversation);
+
 Router.post("/create-conversation", ConversationsController.createConversation);
 Router.post("/change-name/:conversationId", ConversationsController.changeName);
 Router.post("/change-avatar/:conversationId",ConversationsController.changeAvatar)

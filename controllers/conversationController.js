@@ -517,6 +517,31 @@ exports.blockConversation = async (req, res, next) => {
   }
 };
 //Oke
+exports.changeCreateByConversation = async (req, res, next) => {
+  try {
+    const _conversationId = req.params.conversationId;
+    const _userId = req.body.userId;
+    const _conversation = await Conversation.findById(_conversationId);
+    const _user = await User.findById(_userId);
+    const _message = await Message.create({
+      content: null,
+      conversationID: _conversation,
+      senderID: _conversation.createdBy,
+      action: _user.fullName + " đã trở thành trưởng nhóm!"
+    });
+    await Conversation.findByIdAndUpdate(_conversationId, {
+      createdBy: _userId,
+      lastMessage:_message,
+    });
+    const _conversationAfterUpdate = await Conversation.findById(_conversationId);
+    let _data = { idConversation:_conversationId , createBy:_conversationAfterUpdate.createdBy, action:_message.action};
+    res.status(200).json(_data);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
+//Oke
 exports.removeBlockConversation = async (req, res, next) => {
   try {
     const _conversationId = req.params.conversationId;
