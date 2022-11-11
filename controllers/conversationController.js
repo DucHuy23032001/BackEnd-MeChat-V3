@@ -138,7 +138,7 @@ exports.createConversation = async (req, res, next) => {
       id: _updateConversation.id,
       name: _updateConversation.name[0],
       imageLinkOfConver: _updateConversation.imageLink[0],
-      action: _message.action,
+      lastMessage: _message.action,
       time:_message.createdAt,
       members: _updateConversation.members,
       createdBy: _updateConversation.createdBy,
@@ -223,7 +223,7 @@ exports.addMemberConversation = async (req, res) => {
         deleteBy: _updateConversation.deleteBy,
         isGroup: _updateConversation.isGroup,
         isCalling: _updateConversation.isCalling,
-        action: _message.action,
+        lastMessage: _message.action,
         newMember:_newMember
       }
       res.status(200).json(_data);
