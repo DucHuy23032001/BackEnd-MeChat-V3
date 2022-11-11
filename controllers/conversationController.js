@@ -561,7 +561,7 @@ exports.removeBlockConversation = async (req, res, next) => {
       blockBy: _blockBy,
     });
     const _conversationAfterUpdate = await Conversation.findById(_conversationId);
-    let _data = { idConversation: _conversationId, blockBy: _conversationAfterUpdate.blockBy };
+    let _data = { id: _conversationId,userId:_userId, blockBy: _conversationAfterUpdate.blockBy };
     res.status(200).json(_data);
   } catch (err) {
     res.status(500).json({ msg: err.message });

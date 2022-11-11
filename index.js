@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 //models
 const Account = require("./models/account");
 const Conversation = require("./models/conversation");
-// const Friend = require("./models/friend");
 const FriendRequest = require("./models/friendRequest");
 const Message = require("./models/message");
 const User = require("./models/user");
@@ -29,8 +28,6 @@ mongoose.connect(
   },
   (e) => console.error(e)
 );
-
-//Socket
 
 // Start the server
 const _port = process.env.PORT;
