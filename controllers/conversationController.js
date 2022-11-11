@@ -51,8 +51,8 @@ exports.getAllConversationByUserID = async (req, res, next) => {
           var _confirmEnd = _lastMessage.imageLink[_lastMessage.imageLink.length - 1].split(".");
           if (
             _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
-            _confirmEnd[_confirmEnd.length - 1] == "jpeg"||
-            _confirmEnd[_confirmEnd.length - 1] == "png" ||        
+            _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
+            _confirmEnd[_confirmEnd.length - 1] == "png" ||
             _confirmEnd[_confirmEnd.length - 1] == "gif" ||
             _confirmEnd[_confirmEnd.length - 1] == "pdf"
           ) {
@@ -64,7 +64,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
             _confirmEnd[_confirmEnd.length - 1] == "avi" ||
             _confirmEnd[_confirmEnd.length - 1] == "mkv" ||
             _confirmEnd[_confirmEnd.length - 1] == "wmv"
-            ) {
+          ) {
             _lastMessage.content = "[Video]";
           }
         }
@@ -86,8 +86,8 @@ exports.getAllConversationByUserID = async (req, res, next) => {
         isGroup: i.isGroup,
         createdBy: i.createdBy,
         isCalling: i.isCalling,
-        deleteBy:i.deleteBy,
-        blockBy:i.blockBy
+        deleteBy: i.deleteBy,
+        blockBy: i.blockBy
       };
       _datas.push(_data);
     }
@@ -139,12 +139,12 @@ exports.createConversation = async (req, res, next) => {
       name: _updateConversation.name[0],
       imageLinkOfConver: _updateConversation.imageLink[0],
       lastMessage: _message.action,
-      time:_message.createdAt,
+      time: _message.createdAt,
       members: _updateConversation.members,
       createdBy: _updateConversation.createdBy,
       deleteBy: _updateConversation.deleteBy,
       isGroup: _updateConversation.isGroup,
-      isCalling: _updateConversation.isCalling, 
+      isCalling: _updateConversation.isCalling,
     }
     res.status(200).json(_data);
   } catch (error) {
@@ -217,14 +217,14 @@ exports.addMemberConversation = async (req, res) => {
         id: _updateConversation.id,
         name: _updateConversation.name[0],
         imageLink: _updateConversation.imageLink[0],
-        time:_message.createdAt,
+        time: _message.createdAt,
         members: _updateConversation.members,
         createdBy: _updateConversation.createdBy,
         deleteBy: _updateConversation.deleteBy,
         isGroup: _updateConversation.isGroup,
         isCalling: _updateConversation.isCalling,
         lastMessage: _message.action,
-        newMember:_newMember
+        newMember: _newMember
       }
       res.status(200).json(_data);
     } else {
@@ -273,11 +273,11 @@ exports.deleteMemberConversation = async (req, res) => {
         );
         let _data = {
           _id: _updateConversation.id,
-          idMember:memberId,
+          idMember: memberId,
           name: _updateConversation.name[0],
           imageLink: _updateConversation.imageLink[0],
-          action:_message.action,
-          time:_message.createdAt,
+          action: _message.action,
+          time: _message.createdAt,
           members: _updateConversation.members,
           createdBy: _updateConversation.createdBy,
           deleteBy: _updateConversation.deleteBy,
@@ -324,11 +324,11 @@ exports.outConversation = async (req, res) => {
     );
     let _data = {
       _id: _updateConversation.id,
-      idMember:userId,
+      idMember: userId,
       name: _updateConversation.name[0],
-      imageLink: _updateConversation.imageLink[0], 
-      time:_message.createdAt,
-      action:_message.action,
+      imageLink: _updateConversation.imageLink[0],
+      time: _message.createdAt,
+      action: _message.action,
       members: _updateConversation.members,
       createdBy: _updateConversation.createdBy,
       deleteBy: _updateConversation.deleteBy,
@@ -369,7 +369,7 @@ exports.changeName = async (req, res) => {
       name: _conversationAfter.name[0],
       imageLink: _conversationAfter.imageLink[0],
       action: _message.action,
-      time:_message.createdAt,
+      time: _message.createdAt,
       members: _conversationAfter.members,
       createdBy: _conversationAfter.createdBy,
       deleteBy: _conversationAfter.deleteBy,
@@ -428,7 +428,7 @@ exports.changeAvatar = async (req, res) => {
       name: _conversationAfter.name[0],
       imageLink: _conversationAfter.imageLink[0],
       action: _message.action,
-      time:_message.createdAt,
+      time: _message.createdAt,
       members: _conversationAfter.members,
       createdBy: _conversationAfter.createdBy,
       deleteBy: _conversationAfter.deleteBy,
@@ -497,21 +497,29 @@ exports.deleteConversationForYou = async (req, res, next) => {
     res.status(500).json({ msg: err.message });
   }
 };
-
 //Oke
 exports.blockConversation = async (req, res, next) => {
   try {
     const _conversationId = req.params.conversationId;
     const _userId = req.body.userId;
-    const _conversation = await Conversation.findById(_conversationId);
-    let _blockBy = _conversation.blockBy;
-    _blockBy.push(_userId);
-    await Conversation.findByIdAndUpdate(_conversationId, {
-      blockBy: _blockBy,
-    });
-    const _conversationAfterUpdate = await Conversation.findById(_conversationId);
-    let _data = { idConversation:_conversationId , blockBy:_conversationAfterUpdate.blockBy};
-    res.status(200).json(_data);
+    if (_userId != null) {
+      const _conversation = await Conversation.findById(_conversationId);
+      let _blockBy = _conversation.blockBy;
+      _blockBy.push(_userId);
+      await Conversation.findByIdAndUpdate(_conversationId, {
+        blockBy: _blockBy,
+      });
+      const _conversationAfterUpdate = await Conversation.findById(_conversationId);
+      let _data = {
+        id: _conversationId,
+        userId: _userId,
+        blockBy: _conversationAfterUpdate.blockBy
+      };
+      res.status(200).json(_data);
+    }
+    else{
+      res.status(500).json({ msg: "userId null!" });
+    }
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
@@ -531,10 +539,10 @@ exports.changeCreateByConversation = async (req, res, next) => {
     });
     await Conversation.findByIdAndUpdate(_conversationId, {
       createdBy: _userId,
-      lastMessage:_message,
+      lastMessage: _message,
     });
     const _conversationAfterUpdate = await Conversation.findById(_conversationId);
-    let _data = { idConversation:_conversationId , createBy:_conversationAfterUpdate.createdBy, action:_message.action};
+    let _data = { idConversation: _conversationId, createBy: _conversationAfterUpdate.createdBy, action: _message.action };
     res.status(200).json(_data);
   } catch (err) {
     res.status(500).json({ msg: err.message });
@@ -553,7 +561,7 @@ exports.removeBlockConversation = async (req, res, next) => {
       blockBy: _blockBy,
     });
     const _conversationAfterUpdate = await Conversation.findById(_conversationId);
-    let _data = { idConversation:_conversationId , blockBy:_conversationAfterUpdate.blockBy};
+    let _data = { idConversation: _conversationId, blockBy: _conversationAfterUpdate.blockBy };
     res.status(200).json(_data);
   } catch (err) {
     res.status(500).json({ msg: err.message });

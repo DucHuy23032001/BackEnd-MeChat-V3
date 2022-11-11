@@ -817,7 +817,7 @@
         }
     - Dữ liệu trả về
         {
-            "idConversation": "636b169d72d42c01c1de5254",
+            "id": "636b169d72d42c01c1de5254",
             "blockBy": [
                 "636b163e80f85770969964e7"
             ]
