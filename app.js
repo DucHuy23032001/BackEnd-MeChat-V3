@@ -14,7 +14,7 @@ const accountRouter = require('./routes/accountRouter')
 const friendRequestRouter = require('./routes/friendRequestRouter')
 const messageRouter = require('./routes/messageRouter')
 const authRouter = require('./routes/authRouter')
-
+const reportRouter = require('./routes/reportRouter')
 
 const globalErrHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
@@ -55,6 +55,7 @@ app.use('/api/v3/messages', messageRouter);
 app.use('/api/v3/accounts', accountRouter);
 app.use('/api/v3/friendRequests', friendRequestRouter);
 app.use('/api/v3/auths', authRouter);
+app.use('/api/v3/reports',reportRouter);
 
 
 

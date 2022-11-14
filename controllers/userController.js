@@ -108,7 +108,8 @@ exports.updateBack = async (req, res, next) => {
         avatarLink: _userUpdate.avatarLink,
         backgroundLink: _userUpdate.backgroundLink,
         friends: _userUpdate.friends,
-        phoneNumber: _account.phoneNumber
+        phoneNumber: _account.phoneNumber,
+        warning:_userUpdate.warning
       };
       res.status(200).json(_data);
     } else {
@@ -182,7 +183,8 @@ exports.updateAvar = async (req, res, next) => {
         avatarLink: _userUpdate.avatarLink,
         backgroundLink: _userUpdate.backgroundLink,
         friends: _userUpdate.friends,
-        phoneNumber: _account.phoneNumber
+        phoneNumber: _account.phoneNumber,
+        warning:_userUpdate.warning
       };
       res.status(200).json(_data);
     } else {
@@ -224,7 +226,8 @@ exports.updateUserText = async (req, res, next) => {
       avatarLink: _userUpdate.avatarLink,
       backgroundLink: _userUpdate.backgroundLink,
       friends: _userUpdate.friends,
-      phoneNumber: _account.phoneNumber
+      phoneNumber: _account.phoneNumber,
+      warning:_userUpdate.warning
     };
     res.status(200).json(_data);
   } catch (error) {
@@ -250,6 +253,7 @@ exports.getUserByID = async (req, res, next) => {
       backgroundLink: _user.backgroundLink,
       friends: _user.friends,
       phoneNumber: _account.phoneNumber,
+      warning:_user.warning
     };
     if (!_user) {
       return next(
@@ -324,6 +328,7 @@ exports.getUserByPhoneNumber = async (req, res) => {
       backgroundLink: _user.backgroundLink,
       friends: _user.friends,
       phoneNumber: _account.phoneNumber,
+      warning:_user.warning
     };
     res.status(200).json(_data);
   } catch (err) {
@@ -349,6 +354,7 @@ exports.getAllUsers = async (req, res, next) => {
         backgroundLink: i.backgroundLink,
         friends: i.friends,
         phoneNumber: _account.phoneNumber,
+        warning:i.warning
       };
       _datas.push(_data);
     }
@@ -422,23 +428,6 @@ exports.deleteFriend = async (req, res, next) => {
         message: "Don't done!",
       });
     }
-  } catch (error) {
-    return res.status(500).json({ msg: error });
-  }
-};
-
-//Tạo để thiết lập data chứ đéo có tác dụng gì, sau này nhớ xóa
-//Oke
-exports.deleteAllFriends = async (req, res, next) => {
-  try {
-    const { userId } = req.params;
-    const _user = await User.findByIdAndUpdate(userId, {
-      friends: [],
-    });
-    res.status(200).json({
-      status: "success",
-      user: _user,
-    });
   } catch (error) {
     return res.status(500).json({ msg: error });
   }

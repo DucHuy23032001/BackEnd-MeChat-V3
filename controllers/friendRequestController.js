@@ -70,9 +70,7 @@ exports.getFriendRequestOfMe = async (req, res) => {
       };
       _datas.push(_data);
     }
-    res.status(200).json({
-      data: _datas,
-    });
+    res.status(200).json(_datas);
   } catch (err) {
     return res.status(500).json({ msg: err.message });
   }

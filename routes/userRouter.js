@@ -9,7 +9,6 @@ Router.get('/',UserController.getAllUsers);
 Router.get('/get-friends-user/:userId',UserController.getAllFriendsUserByUserID);
 Router.get('/get-user-by-phone/:phoneNumber',UserController.getUserByPhoneNumber);
 
-Router.post('/:userId',UserController.deleteAllFriends);
 Router.post('/delete-friend/:userId',UserController.deleteFriend);
 Router.post('/update-avatar/:userId',UserController.updateAvar);
 Router.post('/update-background/:userId',UserController.updateBack);

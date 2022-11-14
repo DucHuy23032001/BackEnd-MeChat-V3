@@ -878,19 +878,34 @@
 ```json
     - Method: GET : /get-of-me/:userID
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/friendRequests/get-of-me/6347f10893dccf4ddec4f604
+        http://localhost:3000/api/v3/friendRequests/get-of-me/6371c8e34a860a6021339d39
     - Dữ liệu trả về
-        {
-            "data": [
-                {
-                    "idFriendRequest": "6356585bffb62a2b82d706f6",
-                    "receiverId": "63563cc0e35d5d15b57f877b",
-                    "fullName": "nho v3",
-                    "content": "Hello! I'm Nguyễn Đức Huy! Nice to meet you!",
-                    "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/download.jpg"
-                }
-            ]
-        }
+        [
+            {
+                "idFriendRequest": "6371fd90b3b1659a3c0b82f9",
+                "receiverId": "6371c8e34a860a6021339d35",
+                "phoneNumber": "0397548005",
+                "fullName": "Võ Thành Nhớ",
+                "content": "Hello! I'm Tăng Bảo Trấn! Nice to meet you!",
+                "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/download.jpg"
+            },
+            {
+                "idFriendRequest": "63721eefe19d20de1f20ad07",
+                "receiverId": "6371c8e34a860a6021339d29",
+                "phoneNumber": "0879276284",
+                "fullName": "Nguyen Duc Huy",
+                "content": "Hello! I'm Tăng Bảo Trấn! Nice to meet you!",
+                "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg"
+            },
+            {
+                "idFriendRequest": "63721ef5e19d20de1f20ad0c",
+                "receiverId": "6371c8e34a860a6021339d2d",
+                "phoneNumber": "0396887293",
+                "fullName": "Võ Minh Phương",
+                "content": "Hello! I'm Tăng Bảo Trấn! Nice to meet you!",
+                "imageLink": "https://mechat.s3.ap-southeast-1.amazonaws.com/7a8363de-1496-42c8-815b-f0994de42f1b.jpeg"
+            }
+        ]
 ```
 ### getListUserSendRequestAddFriendOfMe
 ```json
@@ -1053,5 +1068,89 @@
                 "status": true,
                 "__v": 0
             }
+        }
+```
+# PATH:  http://localhost:3000/api/v3/reports
+### Lấy tất cả Report
+```json
+    - GET :     no body
+    - Dữ liệu gửi đi
+    - Dữ liệu trả về
+        {
+            "status": "success",
+            "results": 5,
+            "data": [
+                {
+                    "id": "6372130d0fefee77861c8567",
+                    "messageID": "6371f6a687ea3c9f3286962c",
+                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ef041dc4-876e-4ba1-8953-9ee1638ab4e3huy.jpg",
+                    "idUser": "6371c8e34a860a6021339d35",
+                    "fullName": "Võ Thành Nhớ"
+                },
+                {
+                    "id": "6372132ef017982316f7858b",
+                    "messageID": "6371f6a687ea3c9f3286962c",
+                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/7a40ff5e-ffa6-47f8-bdaa-b685e1dcfef6huy.jpg",
+                    "idUser": "6371c8e34a860a6021339d35",
+                    "fullName": "Võ Thành Nhớ"
+                },
+                {
+                    "id": "637213a07a495a0e692cb58b",
+                    "messageID": "6371f6a687ea3c9f3286962c",
+                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ed7bc862-9b4d-4e8b-89ed-c882957356c3huy.jpg",
+                    "idUser": "6371c8e34a860a6021339d35",
+                    "fullName": "Võ Thành Nhớ"
+                },
+                {
+                    "id": "637213ffd5c00f9fdd619027",
+                    "messageID": "6371f6a687ea3c9f3286962c",
+                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/48f6b65b-0e1b-4fae-be60-52bff9e059cchuy.jpg",
+                    "idUser": "6371c8e34a860a6021339d35",
+                    "fullName": "Võ Thành Nhớ"
+                },
+                {
+                    "id": "6372140f0277b80d146bedfb",
+                    "messageID": "6371f6a687ea3c9f3286962c",
+                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/4b677bc9-2980-45db-91d4-e5fd987d40b4huy.jpg",
+                    "idUser": "6371c8e34a860a6021339d35",
+                    "fullName": "Võ Thành Nhớ"
+                }
+            ]
+        }
+```
+### Thêm Report
+```json
+    - POST: no body
+    - Dữ liệu gửi đi (form-data)
+        {
+            "messageId":"6371f6a687ea3c9f3286962c",
+            "fileImage": file
+        }
+    - Dữ liệu trả về
+        {
+            "id": "6372163611359998a115c6a7",
+            "messageID": "6371f6a687ea3c9f3286962c",
+            "content": "Hí",
+            "imageLink": null,
+            "fileLink": null,
+            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/f48dd001-4898-40e8-a969-c368d948d992huy.jpg",
+            "createAt": "2022-11-14T10:19:34.445Z"
+        }
+```
+### Tìm Report theo Id
+```json
+    - POST: no body
+    - Dữ liệu gửi đi (form-data)
+        {
+            "messageId":"6371f6a687ea3c9f3286962c",
+        }
+    - Dữ liệu trả về
+        {
+            "id": "6372163611359998a115c6a7",
+            "messageID": "6371f6a687ea3c9f3286962c",
+            "content": "Hí",
+            "imageLink": null,
+            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/f48dd001-4898-40e8-a969-c368d948d992huy.jpg",
+            "createAt": "2022-11-14T10:19:34.445Z"
         }
 ```
