@@ -1078,42 +1078,37 @@
     - Dữ liệu trả về
         {
             "status": "success",
-            "results": 5,
+            "results": 3,
             "data": [
                 {
                     "id": "6372130d0fefee77861c8567",
                     "messageID": "6371f6a687ea3c9f3286962c",
+                    "imageLink": null,
+                    "content": "Hí",
                     "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ef041dc4-876e-4ba1-8953-9ee1638ab4e3huy.jpg",
                     "idUser": "6371c8e34a860a6021339d35",
-                    "fullName": "Võ Thành Nhớ"
+                    "fullName": "Võ Thành Nhớ",
+                    "createdAt": "2022-11-14T10:06:05.157Z"
                 },
                 {
                     "id": "6372132ef017982316f7858b",
                     "messageID": "6371f6a687ea3c9f3286962c",
+                    "imageLink": null,
+                    "content": "Hí",
                     "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/7a40ff5e-ffa6-47f8-bdaa-b685e1dcfef6huy.jpg",
                     "idUser": "6371c8e34a860a6021339d35",
-                    "fullName": "Võ Thành Nhớ"
+                    "fullName": "Võ Thành Nhớ",
+                    "createdAt": "2022-11-14T10:06:38.679Z"
                 },
                 {
                     "id": "637213a07a495a0e692cb58b",
                     "messageID": "6371f6a687ea3c9f3286962c",
+                    "imageLink": null,
+                    "content": "Hí",
                     "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ed7bc862-9b4d-4e8b-89ed-c882957356c3huy.jpg",
                     "idUser": "6371c8e34a860a6021339d35",
-                    "fullName": "Võ Thành Nhớ"
-                },
-                {
-                    "id": "637213ffd5c00f9fdd619027",
-                    "messageID": "6371f6a687ea3c9f3286962c",
-                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/48f6b65b-0e1b-4fae-be60-52bff9e059cchuy.jpg",
-                    "idUser": "6371c8e34a860a6021339d35",
-                    "fullName": "Võ Thành Nhớ"
-                },
-                {
-                    "id": "6372140f0277b80d146bedfb",
-                    "messageID": "6371f6a687ea3c9f3286962c",
-                    "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/4b677bc9-2980-45db-91d4-e5fd987d40b4huy.jpg",
-                    "idUser": "6371c8e34a860a6021339d35",
-                    "fullName": "Võ Thành Nhớ"
+                    "fullName": "Võ Thành Nhớ",
+                    "createdAt": "2022-11-14T10:08:32.128Z"
                 }
             ]
         }
@@ -1128,29 +1123,63 @@
         }
     - Dữ liệu trả về
         {
-            "id": "6372163611359998a115c6a7",
+            "id": "637220127fb26c80ddbcf39a",
             "messageID": "6371f6a687ea3c9f3286962c",
             "content": "Hí",
             "imageLink": null,
-            "fileLink": null,
-            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/f48dd001-4898-40e8-a969-c368d948d992huy.jpg",
-            "createAt": "2022-11-14T10:19:34.445Z"
+            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ceb824d1-23e3-4b37-89a7-a77f81ef60f7huyhung.jpg",
+            "createdAt": "2022-11-14T11:01:38.194Z"
         }
 ```
 ### Tìm Report theo Id
 ```json
-    - POST: no body
-    - Dữ liệu gửi đi (form-data)
+    - GET: /:reportId
+    - Dữ liệu gửi đi 
+        http://localhost:3000/api/v3/reports/6372130d0fefee77861c8567
+    - Dữ liệu trả về
         {
-            "messageId":"6371f6a687ea3c9f3286962c",
+            "id": "6372130d0fefee77861c8567",
+            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ef041dc4-876e-4ba1-8953-9ee1638ab4e3huy.jpg",
+            "content": "Hí",
+            "imageLink": null,
+            "createdAt": "2022-11-14T08:04:54.867Z",
+            "idUser": "6371c8e34a860a6021339d35",
+            "fullName": "Võ Thành Nhớ"
+        }
+```
+### Xóa Report 
+```json
+    - DELETE : /:reportId
+    - Dữ liệu gửi đi 
+        http://localhost:3000/api/v3/reports/
+        {
+            "status":true
         }
     - Dữ liệu trả về
         {
-            "id": "6372163611359998a115c6a7",
+            "_id": "6372130d0fefee77861c8567",
             "messageID": "6371f6a687ea3c9f3286962c",
-            "content": "Hí",
-            "imageLink": null,
-            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/f48dd001-4898-40e8-a969-c368d948d992huy.jpg",
-            "createAt": "2022-11-14T10:19:34.445Z"
+            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/ef041dc4-876e-4ba1-8953-9ee1638ab4e3huy.jpg",
+            "createdAt": "2022-11-14T10:06:05.157Z",
+            "updatedAt": "2022-11-14T10:06:05.157Z",
+            "__v": 0
+        }
+```
+### Accept Report
+```json
+    - DELETE : /:reportId
+    - Dữ liệu gửi đi 
+        http://localhost:3000/api/v3/reports/6372132ef017982316f7858b
+        {
+            "status":true
+        }
+    - Dữ liệu trả về
+        {
+            "_id": "6372132ef017982316f7858b",
+            "messageID": "6371f6a687ea3c9f3286962c",
+            "image": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/7a40ff5e-ffa6-47f8-bdaa-b685e1dcfef6huy.jpg",
+            "createdAt": "2022-11-14T10:06:38.679Z",
+            "updatedAt": "2022-11-14T10:06:38.679Z",
+            "__v": 0
         }
 ```

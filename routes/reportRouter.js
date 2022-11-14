@@ -7,6 +7,7 @@ Router.post('/',ReportController.addReport);
 Router
     .route('/:reportId')
     .get(ReportController.getReportById)
+    .post(ReportController.acceptReport)
     .delete(ReportController.deleteReport);
 
 module.exports = Router;

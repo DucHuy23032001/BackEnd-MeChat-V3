@@ -10,7 +10,7 @@ AWS.config.update({
     region: process.env.region,
 });
 const s3 = new AWS.S3();
-
+//Oke
 exports.getAllReports = async (req, res) => {
     try {
         let _datas = [];
@@ -22,9 +22,12 @@ exports.getAllReports = async (req, res) => {
             const _data = {
                 id: i.id,
                 messageID: i.messageID,
+                imageLink:_message.imageLink,
+                content:_message.content,
                 image: i.image,
                 idUser:_user.id,
                 fullName:_user.fullName,
+                createdAt:i.createdAt,
             };
             _datas.push(_data);
         }
@@ -38,7 +41,6 @@ exports.getAllReports = async (req, res) => {
         return res.status(500).json({ msg: error });
     }
 }
-
 //Oke
 exports.addReport = async (req, res) => {
     try {
@@ -67,28 +69,27 @@ exports.addReport = async (req, res) => {
             messageID:_newReport.messageID,
             content:_messageReport.content,
             imageLink:_messageReport.imageLink,
-            fileLink:_messageReport.fileLink,
             image:_newReport.image,
-            createAt:_newReport.createdAt
+            createdAt:_newReport.createdAt
         }
         res.status(200).json(_data);
     } catch (error) {
         return res.status(500).json({ msg: error });
     }
 }
+//Oke
 exports.getReportById = async (req,res) =>{
     try {
-        const _id = req.params.id
-        const _report = await Report.findById(id);
+        const _id = req.params.reportId
+        const _report = await Report.findById(_id);
         const _message = await Message.findById(_report.messageID);
         const _user = await User.findById(_message.senderID);
         let _data = {
             id:_report.id,
-            imageReport : _report.image,
+            image : _report.image,
             content : _message.content,
             imageLink : _message.imageLink,
-            fileLink : _message.fileLink,
-            createAt : _message.createAt,
+            createdAt : _message.createdAt,
             idUser:_user.id,
             fullName:_user.fullName,
         }
@@ -97,7 +98,7 @@ exports.getReportById = async (req,res) =>{
         return res.status(500).json({ msg: error });
     }
 }
-
+//Oke
 exports.deleteReport = async (req,res) =>{
     try {
         const { status } = req.body;
@@ -109,7 +110,7 @@ exports.deleteReport = async (req,res) =>{
         return res.status(500).json({ msg: error });
     }
 }
-
+//Oke
 exports.acceptReport = async (req,res) =>{
     try {
         const { status } = req.body;
