@@ -270,11 +270,14 @@ exports.deleteFriendRequest = async (req, res) => {
       if (_status) {
         if (_senderID == _friendRequest.senderID) {
           await FriendRequest.findByIdAndRemove(_friendRequestID);
-          const _data = await FriendRequest.find({ senderID: _senderID });
-          return res.status(200).json({
-            message: "Delete friend request",
-            data: _data,
-          });
+          let _data = {
+            idFriendRequest:_friendRequest.id,
+            content : _friendRequest.content,
+            receiverID : _friendRequest.receiverID,
+            senderID:_friendRequest.senderID,
+            status:_friendRequest.status
+          }
+          return res.status(200).json(_data);
         } else {
           return res.status(200).json({
             message: "You don't",
