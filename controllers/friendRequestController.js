@@ -276,8 +276,8 @@ exports.deleteFriendRequest = async (req, res) => {
             let _data = {
               idFriendRequest:i.id,
               content : i.content,
-              receiverID : i.receiverID,
-              senderID:i.senderID,
+              receiverId : i.receiverID,
+              senderId:i.senderID,
               status:i.status
             }
             _datas.push(_data)
