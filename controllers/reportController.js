@@ -108,7 +108,7 @@ exports.deleteReport = async (req,res) =>{
             let _listReport = await Report.find();
             for(let i of _listReport){
                 let _messageItem = await Message.findById(i.messageID);
-                if(_messageItem.content == _message.content && _messageItem.fileImage == _message.fileImage){
+                if(_messageItem.content == _message.content && _messageItem.fileImage == _message.fileImage && _messageItem.senderID == _message.senderID){
                     await Report.findByIdAndDelete(i.id);
                 }
             }
@@ -140,7 +140,7 @@ exports.acceptReport = async (req,res) =>{
             let _listReport = await Report.find();
             for(let i of _listReport){
                 let _messageItem = await Message.findById(i.messageID);
-                if(_messageItem.content == _message.content && _messageItem.fileImage == _message.fileImage){
+                if(_messageItem.content == _message.content && _messageItem.fileImage == _message.fileImage &&  _messageItem.senderID == _message.senderID){
                     await Report.findByIdAndDelete(i.id);
                 }
             }
