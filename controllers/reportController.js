@@ -103,8 +103,17 @@ exports.deleteReport = async (req,res) =>{
     try {
         const { status } = req.body;
         if(status){
-            const _report = await Report.findByIdAndDelete(req.params.reportId);
-            res.status(200).json(_report);
+            const _rep = await Report.findById(req.params.reportId);
+            const _message = await Message.findById(_rep.messageID);
+            let _listReport = await Report.find();
+            for(let i of _listReport){
+                let _messageItem = await Message.findById(i.messageID);
+                if(_messageItem.content == _message.content || _messageItem.fileImage == _message.fileImage){
+                    await Report.findByIdAndDelete(i.id);
+                }
+            }
+            let _listReportAfterUpdate = await Report.find();
+            res.status(200).json(_listReportAfterUpdate);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
@@ -128,8 +137,15 @@ exports.acceptReport = async (req,res) =>{
                 warning:_warning,
                 status:_status
             })
-            const _report = await Report.findByIdAndDelete(req.params.reportId);
-            res.status(200).json(_report);
+            let _listReport = await Report.find();
+            for(let i of _listReport){
+                let _messageItem = await Message.findById(i.messageID);
+                if(_messageItem.content == _message.content || _messageItem.fileImage == _message.fileImage){
+                    await Report.findByIdAndDelete(i.id);
+                }
+            }
+            let _listReportAfterUpdate = await Report.find();
+            res.status(200).json(_listReportAfterUpdate);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
