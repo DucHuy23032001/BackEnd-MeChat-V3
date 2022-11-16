@@ -74,6 +74,7 @@ exports.signup = async (req, res, next) => {
   try {
     const { phoneNumber, passWord, fullName, gender } =
       req.body;
+    let _pathAvatar ;
     const _accountFind = await Account.findOne({
       phoneNumber: phoneNumber,
     });
@@ -95,6 +96,12 @@ exports.signup = async (req, res, next) => {
         next
       );
     }
+    if(gender == 0){
+      _pathAvatar = "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg"
+    }
+    else if(gender == 1){
+      _pathAvatar = "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nu.png"
+    }
     const _account = await Account.create({
       phoneNumber: phoneNumber.trim(),
       passWord: await bcrypt.hash(passWord, 10),
@@ -102,7 +109,7 @@ exports.signup = async (req, res, next) => {
     const _user = await User.create({
       fullName: fullName,
       gender: gender,
-      avatarLink: "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
+      avatarLink: _pathAvatar,
       backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
       birthday: Date.now(),
       accountID: _account.id,

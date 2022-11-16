@@ -1023,23 +1023,28 @@
             "senderID":"6347f10993dccf4ddec4f60c"
         }
     - Dữ liệu trả về 
-        [
-            {
-                "idFriendRequest": "6373a7e2ccead70c5b2bf881",
-                "content": "Hello! I'm Nguyen Duc Huy! Nice to meet you!",
-                "receiverId": "6371c8e34a860a6021339d2d",
-                "senderId": "6371c8e34a860a6021339d29",
-                "status": false
+        {
+            "deleted": {
+                "id": "6374897c765469fe2c43f6c6",
+                "deleted": "6371c8e34a860a6021339d39"
             },
-            {
-                "idFriendRequest": "6373a81a8c48cf6503315776",
-                "content": "Hello! I'm Nguyen Duc Huy! Nice to meet you!",
-                "receiverId": "6371c8e34a860a6021339d39",
-                "senderId": "6371c8e34a860a6021339d29",
-                "status": false
-            }
-        ]
-        
+            "data": [
+                {
+                    "idFriendRequest": "63748981765469fe2c43f6cb",
+                    "content": "Hello! I'm Nguyen Duc Huy! Nice to meet you!",
+                    "receiverId": "6371e01858573d3df5101bec",
+                    "senderId": "6371c8e34a860a6021339d29",
+                    "status": false
+                },
+                {
+                    "idFriendRequest": "63748986765469fe2c43f6d0",
+                    "content": "Hello! I'm Nguyen Duc Huy! Nice to meet you!",
+                    "receiverId": "63745aab2d56c49268051a22",
+                    "senderId": "6371c8e34a860a6021339d29",
+                    "status": false
+                }
+            ]
+        }
 ```
 # PATH:  http://localhost:3000/api/v3/accounts
 ### Quên mật khẩu

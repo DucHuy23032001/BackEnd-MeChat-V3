@@ -269,7 +269,11 @@ exports.deleteFriendRequest = async (req, res) => {
     try {
       if (_status) {
         if (_senderID == _friendRequest.senderID) {
-          let _datas = [];
+          let data = [];
+          let deleted = {
+            id:_friendRequestID,
+            deleted:_friendRequest.receiverID
+          }
           await FriendRequest.findByIdAndRemove(_friendRequestID);
           const _fr = await FriendRequest.find({ senderID: _senderID });
           for(let i of _fr){
@@ -280,9 +284,12 @@ exports.deleteFriendRequest = async (req, res) => {
               senderId:i.senderID,
               status:i.status
             }
-            _datas.push(_data)
+            data.push(_data)
           }
-          return res.status(200).json(_datas);
+          return res.status(200).json({
+            deleted,
+            data
+        });
         } else {
           return res.status(200).json({
             message: "You don't",

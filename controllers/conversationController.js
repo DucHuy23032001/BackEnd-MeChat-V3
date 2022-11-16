@@ -151,21 +151,6 @@ exports.createConversation = async (req, res, next) => {
     res.status(500).json({ msg: error });
   }
 };
-//Chua 
-// exports.getConversationWithFriend = async (req, res) => {
-//   try {
-//     const _conversation = await Conversation.find({
-//       $and: [
-//         { members: { $size: 2 } },
-//         { members: { $all: [req.params.friendId, req.body.userId] } },
-//       ],
-//     });
-//     res.status(200).json(_conversation[0]);
-//   } catch (error) {
-//     res.status(500).json({ msg: error });
-//   }
-// };
-
 //OKe
 exports.addMemberConversation = async (req, res) => {
   const { conversationId } = req.params;
@@ -176,6 +161,7 @@ exports.addMemberConversation = async (req, res) => {
     const _conversationNow = await Conversation.findById(conversationId);
     let _members = _conversationNow.members;
     let _confirm = true;
+    let _dem = "";
     for (let i of _conversationNow.members) {
       for (let j of _newMember) {
         if (i == j) {
@@ -187,12 +173,11 @@ exports.addMemberConversation = async (req, res) => {
     for (let i = 0; i < _newMember.length; i++) {
       _members.push(_newMember[i]);
     }
-    let _dem = "";
     if (_newMember.length == 1) {
       let _demUser = await User.findById(_newMember[0]);
       _dem = _demUser.fullName + " vào nhóm!";
     }
-    if (_newMember.length > 1) {
+    else if (_newMember.length > 1) {
       _dem = _newMember.length + " thành viên vào nhóm!";
     }
     if (_confirm) {
