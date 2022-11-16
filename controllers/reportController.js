@@ -119,7 +119,7 @@ exports.acceptReport = async (req,res) =>{
             const _message = await Message.findById(_rep.messageID);
             const _user =  await User.findById(_message.senderID);
             let _warning = _user.warning;
-            let _status = _user.status;
+            let _status ;
             _warning ++;
             if(_warning > 3){
                 _status = false
@@ -130,6 +130,23 @@ exports.acceptReport = async (req,res) =>{
             })
             const _report = await Report.findByIdAndDelete(req.params.reportId);
             res.status(200).json(_report);
+        }
+    } catch (error) {
+        return res.status(500).json({ msg: error });
+    }
+}
+
+/// chua test
+exports.removeBlock = async (req,res) =>{
+    try {
+        const { status } = req.body;
+        if(status){
+            await User.findByIdAndUpdate(req.params.userId,{
+                warning:0,
+                status:true
+            })
+            let _user = await User.findById(req.params.userId)
+            res.status(200).json(_user);
         }
     } catch (error) {
         return res.status(500).json({ msg: error });
