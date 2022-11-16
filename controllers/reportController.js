@@ -119,9 +119,14 @@ exports.acceptReport = async (req,res) =>{
             const _message = await Message.findById(_rep.messageID);
             const _user =  await User.findById(_message.senderID);
             let _warning = _user.warning;
+            let _status = _user.status;
             _warning ++;
+            if(_warning > 3){
+                _status = false
+            }
             await User.findByIdAndUpdate(_user.id,{
-                warning:_warning
+                warning:_warning,
+                status:_status
             })
             const _report = await Report.findByIdAndDelete(req.params.reportId);
             res.status(200).json(_report);

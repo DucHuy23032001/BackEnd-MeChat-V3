@@ -1185,7 +1185,7 @@
 ```
 ### Accept Report
 ```json
-    - DELETE : /:reportId
+    - POST : /:reportId
     - Dữ liệu gửi đi 
         http://localhost:3000/api/v3/reports/6372132ef017982316f7858b
         {
