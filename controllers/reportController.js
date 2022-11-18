@@ -46,7 +46,7 @@ exports.getAllReports = async (req, res) => {
 //Oke
 exports.addReport = async (req, res) => {
     try {
-        const { messageId , content } = req.body;
+        const { messageId , content, senderID } = req.body;
         const _fileClient = req.files.fileImage;
         const _fileContent = Buffer.from(_fileClient.data, "binary");
         const _param = {
@@ -64,6 +64,7 @@ exports.addReport = async (req, res) => {
         const _newReport = await Report.create({
             messageID:messageId,
             content:content,
+            senderID:senderID,
             image:_paramFileLocation.Location
         })
         const _messageReport = await Message.findById(messageId);
@@ -71,6 +72,7 @@ exports.addReport = async (req, res) => {
             id:_newReport.id,
             messageID:_newReport.messageID,
             content:_messageReport.content,
+            senderID:senderID,
             imageLink:_messageReport.imageLink,
             image:_newReport.image,
             createdAt:_newReport.createdAt
