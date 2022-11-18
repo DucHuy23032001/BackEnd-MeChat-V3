@@ -50,7 +50,7 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     },
-    rule:{
+    role:{
         type:Boolean,
         default:false
     }

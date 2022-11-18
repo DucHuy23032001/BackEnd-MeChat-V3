@@ -72,15 +72,15 @@ exports.login = async (req, res, next) => {
 //Oke
 exports.signup = async (req, res, next) => {
   try {
-    const { phoneNumber, passWord, fullName, gender , rule } =
+    const { phoneNumber, passWord, fullName, gender , role } =
       req.body;
     let _pathAvatar ;
     const _accountFind = await Account.findOne({
       phoneNumber: phoneNumber,
     });
-    let _rule = false;
-    if(rule == true){
-      _rule = true
+    let _role = false;
+    if(role == true){
+      _role = true
     }
     if (_accountFind) {
       return next(
@@ -116,7 +116,7 @@ exports.signup = async (req, res, next) => {
       backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
       birthday: Date.now(),
       accountID: _account.id,
-      rule:_rule
+      role:_role
     });
 
     const _token = createToken(_user.id);
@@ -134,7 +134,7 @@ exports.signup = async (req, res, next) => {
       backgroundLink: _user.backgroundLink,
       friends: _user.friends,
       phoneNumber: _account.phoneNumber,
-      rule:_user.rule
+      role:_user.role
     };
     res.status(201).json({
       status: "success",
