@@ -44,7 +44,7 @@ exports.getAllReports = async (req, res) => {
 //Oke
 exports.addReport = async (req, res) => {
     try {
-        const { messageId } = req.body;
+        const { messageId , content } = req.body;
         const _fileClient = req.files.fileImage;
         const _fileContent = Buffer.from(_fileClient.data, "binary");
         const _param = {
@@ -61,6 +61,7 @@ exports.addReport = async (req, res) => {
           .promise();
         const _newReport = await Report.create({
             messageID:messageId,
+            content:content,
             image:_paramFileLocation.Location
         })
         const _messageReport = await Message.findById(messageId);
@@ -103,15 +104,19 @@ exports.deleteReport = async (req,res) =>{
     try {
         const { status } = req.body;
         if(status){
-            const _rep = await Report.findById(req.params.reportId);
-            const _message = await Message.findById(_rep.messageID);
+            const _report = await Report.findById(req.params.reportId);
+            const _message = await Message.findById(_report.messageID);
             let _listReport = await Report.find();
+
             for(let i of _listReport){
                 let _messageItem = await Message.findById(i.messageID);
-                if(_messageItem.content == _message.content && _messageItem.fileImage == _message.fileImage && _messageItem.senderID == _message.senderID){
-                    await Report.findByIdAndDelete(i.id);
+                if(_messageItem.senderID.equals(_message.senderID)){
+                    if(_messageItem.content == _message.content && _messageItem.imageLink == _message.imageLink){
+                        await Report.findByIdAndDelete(i.id);
+                    }
                 }
             }
+
             let _listReportAfterUpdate = await Report.find();
             res.status(200).json(_listReportAfterUpdate);
         }
@@ -137,13 +142,17 @@ exports.acceptReport = async (req,res) =>{
                 warning:_warning,
                 status:_status
             })
+            
             let _listReport = await Report.find();
             for(let i of _listReport){
                 let _messageItem = await Message.findById(i.messageID);
-                if(_messageItem.content == _message.content && _messageItem.fileImage == _message.fileImage &&  _messageItem.senderID == _message.senderID){
-                    await Report.findByIdAndDelete(i.id);
+                if(_messageItem.senderID.equals(_message.senderID)){
+                    if(_messageItem.content == _message.content && _messageItem.imageLink == _message.imageLink){
+                        await Report.findByIdAndDelete(i.id);
+                    }
                 }
             }
+
             let _listReportAfterUpdate = await Report.find();
             res.status(200).json(_listReportAfterUpdate);
         }

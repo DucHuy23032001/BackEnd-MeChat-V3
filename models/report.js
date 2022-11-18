@@ -11,6 +11,10 @@ const reportSchema = new Schema(
         image:{
             type: String,
             default: null
+        },
+        content:{
+            type:String,
+            default:null
         }
     },
     {

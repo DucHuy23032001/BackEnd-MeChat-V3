@@ -1137,7 +1137,8 @@
     - Dữ liệu gửi đi (form-data)
         {
             "messageId":"6371f6a687ea3c9f3286962c",
-            "fileImage": file
+            "fileImage": file,
+            "content": "abc"
         }
     - Dữ liệu trả về
         {
