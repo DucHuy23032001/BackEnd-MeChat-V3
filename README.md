@@ -730,6 +730,37 @@
             "id": "635fe79743ebe4d945d4b1e2"
         }
 ```
+### remove deleteBy
+```json
+    - Method : DELETE : /remove-deleteby/:conversationId
+    - Dữ liệu gửi đi
+ http://localhost:3000/api/v3/conversations/remove-deleteby/63776f611cf730bdb3080f92
+        {
+            "userId":"63776e1f16297a68e6dfa4c4"
+        }
+    - Dữ liệu nhận về
+        {
+            "id": "63776f611cf730bdb3080f92",
+            "name": "Test remove conversations",
+            "members": [
+                "63776e1f16297a68e6dfa4d0",
+                "63776e1f16297a68e6dfa4c8",
+                "63776e1f16297a68e6dfa4c4"
+            ],
+            "imageLinkOfConver": [
+                "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
+            ],
+            "content": null,
+            "lastMessage": "Võ Minh Phương đã tạo nhóm",
+            "time": "2022-11-18T11:41:22.048Z",
+            "isGroup": true,
+            "createdBy": "63776e1f16297a68e6dfa4c4",
+            "isCalling": false,
+            "deleteBy": [],
+            "blockBy": [],
+            "userID": "63776e1f16297a68e6dfa4c4"
+        }
+```
 ### Out conversation 
 ```json
     - Method: POST : /out-conversation/:conversationId

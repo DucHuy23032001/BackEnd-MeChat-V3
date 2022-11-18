@@ -459,6 +459,38 @@ exports.deleteConversation = async (req, res) => {
     res.status(500).json({ errorMessage: error });
   }
 };
+// dang test
+exports.removeDeleteBy = async (req, res, next) => {
+  try {
+    const _conversationId = req.params.conversationId;
+    const _userId = req.body.userId;
+    const _conversation = await Conversation.findById(_conversationId);
+    let _deleteBy = _conversation.deleteBy;
+    _deleteBy.pull(_userId);
+    await Conversation.findByIdAndUpdate(_conversationId, {
+      deleteBy: _deleteBy,
+    });
+    const _lastMessage = await Message.findById(_conversation.lastMessage)
+    let _data = { 
+      id: _conversationId,
+      name: _conversation.name[0],
+      members: _conversation.members,
+      imageLinkOfConver: _conversation.imageLink,
+      content: _lastMessage.content,
+      lastMessage: _lastMessage.action,
+      time: _lastMessage.createdAt,
+      isGroup: _conversation.isGroup,
+      createdBy: _conversation.createdBy,
+      isCalling: _conversation.isCalling,
+      deleteBy: _conversation.deleteBy,
+      blockBy: _conversation.blockBy,
+      userID:_userId 
+    };
+    res.status(200).json(_data);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
 //Oke
 exports.deleteConversationForYou = async (req, res, next) => {
   try {

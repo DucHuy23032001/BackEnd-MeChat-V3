@@ -16,5 +16,6 @@ Router.post("/remove-block-conversation/:conversationId", ConversationsControlle
 Router.delete("/delete-conversation/:conversationId", ConversationsController.deleteConversation);
 Router.delete("/delete-for-you/:conversationId",ConversationsController.deleteConversationForYou);
 Router.delete("/delete-member/:conversationId", ConversationsController.deleteMemberConversation);
+Router.delete("/remove-deleteby/:conversationId", ConversationsController.removeDeleteBy);
 
 module.exports = Router;
