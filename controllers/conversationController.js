@@ -75,6 +75,9 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       if (!i.isGroup) {
         i.createdBy = null;
       }
+      if(i.deleteBy == null){
+        i.deleteBy = []
+      }
       _data = {
         id: i.id,
         name: _name,
@@ -134,6 +137,7 @@ exports.createConversation = async (req, res, next) => {
       },
       { new: true }
     );
+  
     let _data = {
       id: _updateConversation.id,
       name: _updateConversation.name[0],
