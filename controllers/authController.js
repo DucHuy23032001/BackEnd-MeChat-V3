@@ -72,13 +72,16 @@ exports.login = async (req, res, next) => {
 //Oke
 exports.signup = async (req, res, next) => {
   try {
-    const { phoneNumber, passWord, fullName, gender } =
+    const { phoneNumber, passWord, fullName, gender , rule } =
       req.body;
     let _pathAvatar ;
     const _accountFind = await Account.findOne({
       phoneNumber: phoneNumber,
     });
-
+    let _rule = false;
+    if(rule == true){
+      _rule = true
+    }
     if (_accountFind) {
       return next(
         new AppError(403, "fail", "PhoneNumber already exists "),
@@ -113,6 +116,7 @@ exports.signup = async (req, res, next) => {
       backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
       birthday: Date.now(),
       accountID: _account.id,
+      rule:_rule
     });
 
     const _token = createToken(_user.id);
@@ -130,6 +134,7 @@ exports.signup = async (req, res, next) => {
       backgroundLink: _user.backgroundLink,
       friends: _user.friends,
       phoneNumber: _account.phoneNumber,
+      rule:_user.rule
     };
     res.status(201).json({
       status: "success",
