@@ -21,6 +21,7 @@ exports.getAllReports = async (req, res) => {
             const _user = await User.findById(_message.senderID);
             const _data = {
                 id: i.id,
+                senderID:i.senderID,
                 messageID: i.messageID,
                 imageLink:_message.imageLink,
                 content:_message.content,
@@ -89,9 +90,10 @@ exports.getReportById = async (req,res) =>{
         let _data = {
             id:_report.id,
             image : _report.image,
+            contentReport: _report.content,
             content : _message.content,
             imageLink : _message.imageLink,
-            createdAt : _message.createdAt,
+            createdAt : _report.createdAt,
             idUser:_user.id,
             fullName:_user.fullName,
         }

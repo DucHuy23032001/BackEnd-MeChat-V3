@@ -15,6 +15,11 @@ const reportSchema = new Schema(
         content:{
             type:String,
             default:null
+        },
+        senderID:{
+            type: Schema.Types.ObjectId, 
+            required:[true,"Please fill senderID"],
+            ref: 'User' 
         }
     },
     {
