@@ -161,7 +161,6 @@ exports.friendRequest = async (req, res) => {
           imageLink: [_senderUser.avatarLink, _receiverUser.avatarLink],
           members: [_senderUser, _receiverUser],
           createdBy: _receiverUser,
-          deleteBy: null,
         });
         // _conversationData = _conversation;
         const _message = await Message.create({
