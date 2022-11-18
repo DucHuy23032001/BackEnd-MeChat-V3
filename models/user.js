@@ -49,6 +49,10 @@ const userSchema = new Schema({
     warning: {
         type: Number,
         default: 0
+    },
+    rule:{
+        type:Boolean,
+        default:false
     }
 })
 
