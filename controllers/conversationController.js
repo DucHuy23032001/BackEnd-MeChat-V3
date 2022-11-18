@@ -145,6 +145,7 @@ exports.createConversation = async (req, res, next) => {
       deleteBy: _updateConversation.deleteBy,
       isGroup: _updateConversation.isGroup,
       isCalling: _updateConversation.isCalling,
+      blockBy:_updateConversation.blockBy
     }
     res.status(200).json(_data);
   } catch (error) {

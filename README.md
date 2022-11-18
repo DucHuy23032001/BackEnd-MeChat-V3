@@ -636,7 +636,8 @@
             "createdBy": "636b163e80f85770969964e7",
             "deleteBy": [],
             "isGroup": true,
-            "isCalling": false
+            "isCalling": false,
+            "blockBy":[]
         }
 ``` 
 ### Add member to conversation
