@@ -24,6 +24,7 @@ exports.getAllReports = async (req, res) => {
                 messageID: i.messageID,
                 imageLink:_message.imageLink,
                 content:_message.content,
+                contentReport : i.content,
                 image: i.image,
                 idUser:_user.id,
                 fullName:_user.fullName,
@@ -142,7 +143,7 @@ exports.acceptReport = async (req,res) =>{
                 warning:_warning,
                 status:_status
             })
-            
+
             let _listReport = await Report.find();
             for(let i of _listReport){
                 let _messageItem = await Message.findById(i.messageID);
