@@ -354,7 +354,8 @@ exports.getAllUsers = async (req, res, next) => {
         backgroundLink: i.backgroundLink,
         friends: i.friends,
         phoneNumber: _account.phoneNumber,
-        warning:i.warning
+        warning:i.warning,
+        role:i.role
       };
       _datas.push(_data);
     }
