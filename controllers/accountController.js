@@ -58,7 +58,7 @@ exports.getAccountByPhoneNumber = async (req, res, next) => {
         if (!_account) {
             return next(new AppError(404, 'fail', 'No account found with that id'), req, res, next);
         }
-        let _data = {"id":_account.id,"phoneNumber":_account.phoneNumber}
+        let _data = {"id":_account.id,"phoneNumber":_account.phoneNumber,"passWord":_account.passWord}
         res.status(200).json({
             status: 'success',
             data: _data
