@@ -68,6 +68,23 @@ exports.getAccountByPhoneNumber = async (req, res, next) => {
     }
 };
 
+//
+exports.getAccountById = async (req, res, next) => {
+    try {
+        const _account = await Account.findById(req.params.accountID);
+        if (!_account) {
+            return next(new AppError(404, 'fail', 'No account found with that id'), req, res, next);
+        }
+        let _data = {"id":_account.id,"phoneNumber":_account.phoneNumber}
+        res.status(200).json({
+            status: 'success',
+            data: _data
+        });
+    } catch (error) {
+        return res.status(500).json({ msg: error });
+    }
+};
+
 //Oke
 exports.getAllAccount = async (req, res, next) => {
     try {

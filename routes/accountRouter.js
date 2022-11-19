@@ -6,4 +6,7 @@ Router.post("/forget-password", AccountController.forgetPassWord);
 Router.put("/change-password/:userId", AccountController.changePassWord);
 Router.get("/:phoneNumber", AccountController.getAccountByPhoneNumber);
 
+// Chua co readme
+Router.get("/:accountID", AccountController.getAccountById);
+
 module.exports = Router;
