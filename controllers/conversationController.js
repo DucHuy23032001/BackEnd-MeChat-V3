@@ -475,7 +475,7 @@ exports.removeDeleteBy = async (req, res, next) => {
       id: _conversationId,
       name: _conversation.name[0],
       members: _conversation.members,
-      imageLinkOfConver: _conversation.imageLink,
+      imageLinkOfConver: _conversation.imageLink[0],
       content: _lastMessage.content,
       lastMessage: _lastMessage.action,
       time: _lastMessage.createdAt,
