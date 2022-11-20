@@ -201,7 +201,7 @@ exports.friendRequest = async (req, res) => {
         );
 
         _updateConversation.lastMessage = "Hai bạn đã là bạn bè";
-        console.log(_updateConversation);
+        // console.log(_updateConversation);
         await FriendRequest.findByIdAndRemove(_friendRequestID);
         return res.status(200).json({
           message: "Accept friend request",
@@ -226,6 +226,7 @@ exports.friendRequest = async (req, res) => {
             isGroup: _updateConversation.isGroup,
             isCalling: _updateConversation.isCalling,
             createBy: _updateConversation.createdBy,
+            deleteBy:[],
             lastMessage:"Hai bạn đã là bạn bè",
             time:_message.createdAt,
           }
