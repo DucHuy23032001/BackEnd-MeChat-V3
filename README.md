@@ -270,45 +270,23 @@
 ```json  
     - Method: post:    delete_friend/:userId
     - Dữ liệu gửi đi
-        http://localhost:3000/api/v3/users/delete-friend/6367985d8b88a0af2450825c
+        http://localhost:3000/api/v3/users/delete-friend/6379837d461339d862d84595
         {
             "status":true,
-            "userDeleteId":"6367a4198cbf4f0780e0671f"
+            "userDeleteId":"6379837d461339d862d84599"
         }
     - Dữ liệu trả về
         {
             "message": "Done!",
+            "idSender": "6379837d461339d862d84595",
+            "idReceive": "6379837d461339d862d84599",
             "listFriendsUserDelete": [
-                "6367985e8b88a0af2450826c"
+                "6379837d461339d862d8459d",
+                "6379837e461339d862d845a1"
             ],
-            "listFriendsUser": [
-                "6367985e8b88a0af24508264",
-                "6367985d8b88a0af24508260",
-                "6367985e8b88a0af2450826c",
-                "6367985e8b88a0af24508264"
-            ],
-            "conversationDeleted": {
-                "_id": "6368b5a084d861237670e5a2",
-                "name": [
-                    "Sơn",
-                    "Nguyen Duc Huy"
-                ],
-                "imageLink": [
-                    "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg",
-                    "https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg"
-                ],
-                "lastMessage": "6368b5a084d861237670e5a4",
-                "members": [
-                    "6367a4198cbf4f0780e0671f",
-                    "6367985d8b88a0af2450825c"
-                ],
-                "createdBy": "6367985d8b88a0af2450825c",
-                "deleteBy": null,
-                "isGroup": false,
-                "isCalling": false,
-                "__v": 0
-            }
-        } 
+            "listFriendsUser": [],
+            "conversationDeleted": "6379f5a4a1db316d251da460"
+        }
 ```
 # Path: http://localhost:3000/api/v3/messages
 ### get 10 lastMessageInConversation

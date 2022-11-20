@@ -419,9 +419,11 @@ exports.deleteFriend = async (req, res, next) => {
 
       return res.status(200).json({
         message: "Done!",
+        idSender:_userId,
+        idReceive:_userDeleteId,
         listFriendsUserDelete: _friendsReciverUpdate.friends,
         listFriendsUser: _friendsSenDerUpdate.friends,
-        conversationDeleted: _conversationDeleted
+        conversationDeleted: _conversationDeleted.id
       });
     } else {
       await FriendRequest.findByIdAndRemove(_friendRequestID);
