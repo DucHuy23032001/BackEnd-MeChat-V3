@@ -53,7 +53,6 @@ exports.getAllMessageInConversationID = async (req, res, next) => {
   }
 };
 
-
 // Gửi nhiều file
 exports.createMessageManyFile = async (req, res, next) => {
   try {
@@ -263,7 +262,7 @@ exports.updateSeen = async (req, res, next) => {
   try {
     const _messageId = req.params.messageId;
     const _userId = req.body.userId;
-    const _user = await User.findById(_userId);
+    // const _user = await User.findById(_userId);
     const _message = await Message.findById(_messageId);
     let _seen = _message.seen;
     _seen.push(_userId)
@@ -286,6 +285,7 @@ exports.moveMessage = async (req, res, next) => {
     const _userId = req.body.userId;
     let _seen = [];
     _seen.push(_userId);
+    let _newMessages = [];
     const _message = await Message.findById(_messageId);
     for(let i of _conversationId){
       console.log(i);
@@ -298,11 +298,12 @@ exports.moveMessage = async (req, res, next) => {
         fileLink: _message.fileLink,
         action: null,
       });
+      _newMessages.push(_newMessage.id);
       await Conversation.findByIdAndUpdate(i,{
         lastMessage:_newMessage
       })
     }
-    let _data = { id: _messageId , conversationID:_conversationId, userId:_userId };
+    let _data = { id: _messageId , conversationID:_conversationId, userId:_userId , newMessage:_newMessages };
     res.status(200).json(_data);
   } catch (err) {
     res.status(500).json({ msg: err.message });
