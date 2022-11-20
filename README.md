@@ -279,7 +279,7 @@
         {
             "message": "Done!",
             "idSender": "6379837d461339d862d84595",
-            "idReceive": "6379837d461339d862d84599",
+            "idReceiver": "6379837d461339d862d84599",
             "listFriendsUserDelete": [
                 "6379837d461339d862d8459d",
                 "6379837e461339d862d845a1"
