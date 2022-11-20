@@ -565,22 +565,48 @@
 ```json
     - Method: POST: /move-message/:messageId
     - Dữ liệu gửi đi
-         http://localhost:3000/api/v3/messages/move-message/6379cc26fb6f6f58ba86ca80      
+         http://localhost:3000/api/v3/messages/move-message/6379d4268521b1d2ba63a3d6      
         {
-            "conversationId":["63798e900e67ecd2a42487c1","63799085aedf72db7b7f4f62"],
-            "userId":"6379837d461339d862d8459d"
+            "conversationId":["63799085aedf72db7b7f4f62","6379908baedf72db7b7f4f68"],
+            "userId":"6379837d461339d862d84595"
         }         
     - Dữ liệu trả về
         {
-            "id": "6379cc26fb6f6f58ba86ca80",
+            "id": "6379d4268521b1d2ba63a3d6",
             "conversationID": [
-                "63798e900e67ecd2a42487c1",
-                "63799085aedf72db7b7f4f62"
+                "63799085aedf72db7b7f4f62",
+                "6379908baedf72db7b7f4f68"
             ],
-            "userId": "6379837d461339d862d8459d",
+            "userId": "6379837d461339d862d84595",
             "newMessage": [
-                "6379d4268521b1d2ba63a3d6",
-                "6379d4268521b1d2ba63a3d9"
+                {
+                    "content": "K",
+                    "imageLink": null,
+                    "fileLink": null,
+                    "conversationID": "63799085aedf72db7b7f4f62",
+                    "senderID": "6379837d461339d862d84595",
+                    "action": null,
+                    "deleteBy": [],
+                    "seen": [],
+                    "_id": "6379d840694c445bbc391d7c",
+                    "createdAt": "2022-11-20T07:33:20.179Z",
+                    "updatedAt": "2022-11-20T07:33:20.179Z",
+                    "__v": 0
+                },
+                {
+                    "content": "K",
+                    "imageLink": null,
+                    "fileLink": null,
+                    "conversationID": "6379908baedf72db7b7f4f68",
+                    "senderID": "6379837d461339d862d84595",
+                    "action": null,
+                    "deleteBy": [],
+                    "seen": [],
+                    "_id": "6379d840694c445bbc391d7f",
+                    "createdAt": "2022-11-20T07:33:20.288Z",
+                    "updatedAt": "2022-11-20T07:33:20.288Z",
+                    "__v": 0
+                }
             ]
         }
 ```

@@ -283,22 +283,33 @@ exports.moveMessage = async (req, res, next) => {
     const _messageId = req.params.messageId;
     const _conversationId = req.body.conversationId;
     const _userId = req.body.userId;
-    let _seen = [];
-    _seen.push(_userId);
+    // let _seen = [];
+    // _seen.push(_userId);
     let _newMessages = [];
     const _message = await Message.findById(_messageId);
     for(let i of _conversationId){
-      console.log(i);
+      // console.log(i);
       const _newMessage = await Message.create({
         content: _message.content,
         conversationID: i,
-        senderID: _message.senderID,
-        seen:_seen,
+        senderID: _userId,
         imageLink: _message.imageLink,
         fileLink: _message.fileLink,
         action: null,
       });
-      _newMessages.push(_newMessage.id);
+      // let _data = {
+      //   id:_newMessage.id,
+      //   content:_newMessage.content,
+      //   conversationID:_newMessage.conversationID,
+      //   senderID:_newMessage.senderID,
+      //   imageLink: _newMessage.imageLink,
+      //   fileLink:_newMessage.fileLink,
+      //   action: _newMessage.action,
+      //   createdAt:_newMessage.createdAt,
+      //   seen:_newMessage.seen,
+      //   deleteBy:_newMessage.deleteBy
+      // }
+      _newMessages.push(_newMessage);
       await Conversation.findByIdAndUpdate(i,{
         lastMessage:_newMessage
       })
