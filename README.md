@@ -580,32 +580,36 @@
             "userId": "6379837d461339d862d84595",
             "newMessage": [
                 {
+                    "_id": "6379df5c9b68280972579d0b",
                     "content": "K",
-                    "imageLink": null,
-                    "fileLink": null,
                     "conversationID": "63799085aedf72db7b7f4f62",
                     "senderID": "6379837d461339d862d84595",
-                    "action": null,
-                    "deleteBy": [],
-                    "seen": [],
-                    "_id": "6379d840694c445bbc391d7c",
-                    "createdAt": "2022-11-20T07:33:20.179Z",
-                    "updatedAt": "2022-11-20T07:33:20.179Z",
-                    "__v": 0
-                },
-                {
-                    "content": "K",
                     "imageLink": null,
                     "fileLink": null,
+                    "action": null,
+                    "createdAt": "2022-11-20T08:03:40.910Z",
+                    "seen": [],
+                    "deleteBy": [],
+                    "members": [
+                        "6379837d461339d862d84599",
+                        "6379837d461339d862d8459d"
+                    ]
+                },
+                {
+                    "_id": "6379df5d9b68280972579d0f",
+                    "content": "K",
                     "conversationID": "6379908baedf72db7b7f4f68",
                     "senderID": "6379837d461339d862d84595",
+                    "imageLink": null,
+                    "fileLink": null,
                     "action": null,
-                    "deleteBy": [],
+                    "createdAt": "2022-11-20T08:03:41.077Z",
                     "seen": [],
-                    "_id": "6379d840694c445bbc391d7f",
-                    "createdAt": "2022-11-20T07:33:20.288Z",
-                    "updatedAt": "2022-11-20T07:33:20.288Z",
-                    "__v": 0
+                    "deleteBy": [],
+                    "members": [
+                        "6379837d461339d862d84599",
+                        "6379837d461339d862d8459d"
+                    ]
                 }
             ]
         }

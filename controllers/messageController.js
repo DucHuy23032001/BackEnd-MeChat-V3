@@ -289,6 +289,9 @@ exports.moveMessage = async (req, res, next) => {
     const _message = await Message.findById(_messageId);
     for(let i of _conversationId){
       // console.log(i);
+      let _conversation = await Conversation.findById(i);
+      let _member = _conversation.members;
+      _member.pull(_userId)
       const _newMessage = await Message.create({
         content: _message.content,
         conversationID: i,
@@ -297,19 +300,20 @@ exports.moveMessage = async (req, res, next) => {
         fileLink: _message.fileLink,
         action: null,
       });
-      // let _data = {
-      //   id:_newMessage.id,
-      //   content:_newMessage.content,
-      //   conversationID:_newMessage.conversationID,
-      //   senderID:_newMessage.senderID,
-      //   imageLink: _newMessage.imageLink,
-      //   fileLink:_newMessage.fileLink,
-      //   action: _newMessage.action,
-      //   createdAt:_newMessage.createdAt,
-      //   seen:_newMessage.seen,
-      //   deleteBy:_newMessage.deleteBy
-      // }
-      _newMessages.push(_newMessage);
+      let _data = {
+        _id:_newMessage.id,
+        content:_newMessage.content,
+        conversationID:_newMessage.conversationID,
+        senderID:_newMessage.senderID,
+        imageLink: _newMessage.imageLink,
+        fileLink:_newMessage.fileLink,
+        action: _newMessage.action,
+        createdAt:_newMessage.createdAt,
+        seen:_newMessage.seen,
+        deleteBy:_newMessage.deleteBy,
+        members:_member
+      }
+      _newMessages.push(_data);
       await Conversation.findByIdAndUpdate(i,{
         lastMessage:_newMessage
       })
