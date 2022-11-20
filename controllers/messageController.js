@@ -286,9 +286,9 @@ exports.moveMessage = async (req, res, next) => {
     // let _seen = [];
     // _seen.push(_userId);
     let _newMessages = [];
+    let _content = "";
     const _message = await Message.findById(_messageId);
     for(let i of _conversationId){
-      // console.log(i);
       let _conversation = await Conversation.findById(i);
       let _member = _conversation.members;
       _member.pull(_userId)
@@ -300,9 +300,38 @@ exports.moveMessage = async (req, res, next) => {
         fileLink: _message.fileLink,
         action: null,
       });
+      let _imageLinks = _newMessage.imageLink;
+      let _fileLink = _newMessage.fileLink;
+      if(_imageLinks){
+        if (_imageLinks[_imageLinks.length - 1] != null) {
+          var _confirmEnd = _imageLinks[_imageLinks.length - 1].split(".");
+          if (
+            _confirmEnd[_confirmEnd.length - 1] == "jpg" ||
+            _confirmEnd[_confirmEnd.length - 1] == "jpeg" ||
+            _confirmEnd[_confirmEnd.length - 1] == "png" ||
+            _confirmEnd[_confirmEnd.length - 1] == "gif" ||
+            _confirmEnd[_confirmEnd.length - 1] == "pdf"
+          ) {
+            _content = "[Hình ảnh]";
+          } else if (
+            _confirmEnd[_confirmEnd.length - 1] == "mp4" ||
+            _confirmEnd[_confirmEnd.length - 1] == "mp3" ||
+            _confirmEnd[_confirmEnd.length - 1] == "vma" ||
+            _confirmEnd[_confirmEnd.length - 1] == "avi" ||
+            _confirmEnd[_confirmEnd.length - 1] == "mkv" ||
+            _confirmEnd[_confirmEnd.length - 1] == "wmv"
+            ) {
+            _content = "[Video]";
+          }
+        }
+       }
+       if(_fileLink){
+          _content = "[File]";
+       }
       let _data = {
         _id:_newMessage.id,
         content:_newMessage.content,
+        contentMessage:_content,
         conversationID:_newMessage.conversationID,
         senderID:_newMessage.senderID,
         imageLink: _newMessage.imageLink,

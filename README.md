@@ -565,14 +565,14 @@
 ```json
     - Method: POST: /move-message/:messageId
     - Dữ liệu gửi đi
-         http://localhost:3000/api/v3/messages/move-message/6379d4268521b1d2ba63a3d6      
+         http://localhost:3000/api/v3/messages/move-message/6379e637626cffb9e78d72a3      
         {
             "conversationId":["63799085aedf72db7b7f4f62","6379908baedf72db7b7f4f68"],
             "userId":"6379837d461339d862d84595"
         }         
     - Dữ liệu trả về
         {
-            "id": "6379d4268521b1d2ba63a3d6",
+            "id": "6379e637626cffb9e78d72a3",
             "conversationID": [
                 "63799085aedf72db7b7f4f62",
                 "6379908baedf72db7b7f4f68"
@@ -580,14 +580,15 @@
             "userId": "6379837d461339d862d84595",
             "newMessage": [
                 {
-                    "_id": "6379df5c9b68280972579d0b",
-                    "content": "K",
+                    "_id": "6379e649626cffb9e78d72a9",
+                    "content": null,
+                    "contentMessage": "[File]",
                     "conversationID": "63799085aedf72db7b7f4f62",
                     "senderID": "6379837d461339d862d84595",
-                    "imageLink": null,
-                    "fileLink": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Nhom10_LTPT05_DHKTPM15A_Tuan_Huy_Tran_V3_TuanChange.docx",
                     "action": null,
-                    "createdAt": "2022-11-20T08:03:40.910Z",
+                    "createdAt": "2022-11-20T08:33:13.708Z",
                     "seen": [],
                     "deleteBy": [],
                     "members": [
@@ -596,14 +597,15 @@
                     ]
                 },
                 {
-                    "_id": "6379df5d9b68280972579d0f",
-                    "content": "K",
+                    "_id": "6379e649626cffb9e78d72ad",
+                    "content": null,
+                    "contentMessage": "[File]",
                     "conversationID": "6379908baedf72db7b7f4f68",
                     "senderID": "6379837d461339d862d84595",
-                    "imageLink": null,
-                    "fileLink": null,
+                    "imageLink": [],
+                    "fileLink": "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/Nhom10_LTPT05_DHKTPM15A_Tuan_Huy_Tran_V3_TuanChange.docx",
                     "action": null,
-                    "createdAt": "2022-11-20T08:03:41.077Z",
+                    "createdAt": "2022-11-20T08:33:13.880Z",
                     "seen": [],
                     "deleteBy": [],
                     "members": [
