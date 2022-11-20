@@ -34,6 +34,13 @@ const messageSchema = new Schema(
                 type:Schema.Types.ObjectId,
                 default:null
             }
+        ],
+        seen: [
+            {
+                type:Schema.Types.ObjectId,
+                ref: 'User' ,
+                default:null
+            }
         ]
     },
     {

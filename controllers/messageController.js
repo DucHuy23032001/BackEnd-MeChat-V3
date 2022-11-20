@@ -128,11 +128,13 @@ exports.createMessageManyFile = async (req, res, next) => {
       }
     }
     const { content, conversationID, senderID } = req.body;
-
+    let _seen = [];
+    _seen.push(senderID);
     const _newMessage = await Message.create({
       content: content,
       conversationID: conversationID,
       senderID: senderID,
+      seen:_seen,
       imageLink: _imageLinks,
       fileLink: _fileLink,
       action: null,
@@ -165,11 +167,14 @@ exports.createMessageManyFile = async (req, res, next) => {
      if(_fileLink){
         _content = "[File]";
      }
-
+     const _con = await Conversation.findById(conversationID)
+     let _deleteBy = _con.deleteBy;
+     _deleteBy.pull(senderID);
     const _conversation = await Conversation.findByIdAndUpdate(
       { _id: conversationID },
       {
         lastMessage: _newMessage,
+        deleteBy:_deleteBy
       },
       { new: true }
     );
@@ -247,6 +252,57 @@ exports.deleteMessageForYou = async (req, res, next) => {
     });
     const _message = await Message.findById(_messageId);
     let _data = { id: _messageId };
+    res.status(200).json(_data);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
+//Oke
+exports.updateSeen = async (req, res, next) => {
+  try {
+    const _messageId = req.params.messageId;
+    const _userId = req.body.userId;
+    const _user = await User.findById(_userId);
+    const _message = await Message.findById(_messageId);
+    let _seen = _message.seen;
+    _seen.push(_userId)
+    await Message.findByIdAndUpdate(_messageId, {
+      seen:_seen
+    });
+    // const _message = await Message.findById(_messageId);
+    let _data = { id: _messageId , userId : _userId , seen : _seen };
+    res.status(200).json(_data);
+  } catch (err) {
+    res.status(500).json({ msg: err.message });
+  }
+};
+
+//Oke
+exports.moveMessage = async (req, res, next) => {
+  try {
+    const _messageId = req.params.messageId;
+    const _conversationId = req.body.conversationId;
+    const _userId = req.body.userId;
+    let _seen = [];
+    _seen.push(_userId);
+    const _message = await Message.findById(_messageId);
+    for(let i of _conversationId){
+      console.log(i);
+      const _newMessage = await Message.create({
+        content: _message.content,
+        conversationID: i,
+        senderID: _message.senderID,
+        seen:_seen,
+        imageLink: _message.imageLink,
+        fileLink: _message.fileLink,
+        action: null,
+      });
+      await Conversation.findByIdAndUpdate(i,{
+        lastMessage:_newMessage
+      })
+    }
+    let _data = { id: _messageId , conversationID:_conversationId, userId:_userId };
     res.status(200).json(_data);
   } catch (err) {
     res.status(500).json({ msg: err.message });

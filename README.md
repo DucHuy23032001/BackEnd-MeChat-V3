@@ -561,6 +561,43 @@
             "__v": 0
         }
 ```
+### Chuyển tiếp tin nhắn
+```json
+    - Method: POST: /move-message/:messageId
+    - Dữ liệu gửi đi
+         http://localhost:3000/api/v3/messages/move-message/63798ebf0e67ecd2a42487c6      
+        {
+            "conversationId":["63799085aedf72db7b7f4f62","6379908baedf72db7b7f4f68"],
+            "userId":"6379837d461339d862d84599"
+        }             
+    - Dữ liệu trả về
+        {
+            "id": "63798ebf0e67ecd2a42487c6",
+            "conversationID": [
+                "63799085aedf72db7b7f4f62",
+                "6379908baedf72db7b7f4f68"
+            ],
+            "userId": "6379837d461339d862d84599"
+        }
+```
+### Chỉnh sửa người xem tin nhắn
+```json
+    - Method: POST: /update-seen/:messageId
+    - Dữ liệu gửi đi
+     http://localhost:3000/api/v3/messages/update-seen/63798ebf0e67ecd2a42487c6       
+        {
+            "userId":"6379837d461339d862d84599"
+        }           
+    - Dữ liệu trả về
+        {
+            "id": "63798ebf0e67ecd2a42487c6",
+            "userId": "6379837d461339d862d84599",
+            "seen": [
+                "6379837d461339d862d84595",
+                "6379837d461339d862d84599"
+            ]
+        }
+```
 # Path: http://localhost:3000/api/v3/conversations
 ### Lấy tất cả nhóm chát theo idUser
 ```json
@@ -747,9 +784,7 @@
                 "63776e1f16297a68e6dfa4c8",
                 "63776e1f16297a68e6dfa4c4"
             ],
-            "imageLinkOfConver": [
-                "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png"
-            ],
+            "imageLinkOfConver":"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-group.png",
             "content": null,
             "lastMessage": "Võ Minh Phương đã tạo nhóm",
             "time": "2022-11-18T11:41:22.048Z",
