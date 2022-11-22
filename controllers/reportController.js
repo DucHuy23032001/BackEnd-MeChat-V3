@@ -153,10 +153,8 @@ exports.acceptReport = async (req,res) =>{
             let _listReport = await Report.find();
             for(let i of _listReport){
                 let _messageItem = await Message.findById(i.messageID);
-                if(_messageItem.senderID.equals(_message.senderID)){
-                    if(_messageItem.content == _message.content && _messageItem.imageLink == _message.imageLink){
+                if(_messageItem.id == _message.id){
                         await Report.findByIdAndDelete(i.id);
-                    }
                 }
             }
 
