@@ -49,8 +49,8 @@ process.on("unhandledRejection", (err) => {
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_HuyAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/huyAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/huyBack.jpg",     
+//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/huy.jpg",
+//     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",     
 //   });
 
 //   //User 2
@@ -65,8 +65,8 @@ process.on("unhandledRejection", (err) => {
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_PhuongAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/phuongAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/phuongBack.jpg",
+//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/phuong.jpg",
+//     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
 //   });
 
 //   //User 3
@@ -80,8 +80,8 @@ process.on("unhandledRejection", (err) => {
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_TuanAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tuanAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tuanBack.jpg",
+//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/tuan.jpg",
+//     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
 //   });
 
 //   //User 4
@@ -95,8 +95,8 @@ process.on("unhandledRejection", (err) => {
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_NhoAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/nhoAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/nhoBack.jpg",
+//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/nho.jpg",
+//     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
 //   });
 
 //   //User 5
@@ -110,8 +110,23 @@ process.on("unhandledRejection", (err) => {
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_TranAccount,
-//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tranAvar.jpg",
-//     backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/tranBack.jpg",
+//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/tran.jpg",
+//     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
+//   });
+
+//   //User 6
+//   const _admin = await Account.create({
+//     phoneNumber:"0878787878",
+//     passWord:await bcrypt.hash("123456", 10),
+//   });
+
+//   const _AdminUser = await User.create({
+//     fullName:"Admin",
+//     bio:"Admin",
+//     birthday:Date.now(),
+//     accountID:_admin,
+//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/admin.png",
+//     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
 //   });
 
 //   await _HuyAccount.save();
