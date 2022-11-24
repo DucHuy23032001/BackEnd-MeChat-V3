@@ -278,7 +278,6 @@ exports.getAllUsers = async (req, res, next) => {
     const _users = await User.find();
 
     for (let i of _users) {
-      if(!i.role){
         const _account = await Account.findById(i.accountID);
         const _data = {
           _id: i.id,
@@ -295,7 +294,6 @@ exports.getAllUsers = async (req, res, next) => {
           role:i.role
         };
         _datas.push(_data);
-      }
     }
 
     res.status(200).json({
