@@ -148,7 +148,6 @@ exports.signup = async (req, res, next) => {
 //Oke
 exports.protect = async (req, res, next) => {
   try {
-    // 1) check if the token is there
     let _token;
     if (
       req.headers.authorization &&

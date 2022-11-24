@@ -3,7 +3,9 @@ const Router = express.Router();
 const ReportController = require('../controllers/reportController');
 
 Router.get('/',ReportController.getAllReports);
+
 Router.post('/',ReportController.addReport);
+
 Router.put('/:userId',ReportController.removeBlock);
 
 Router

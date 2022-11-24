@@ -165,7 +165,6 @@ exports.acceptReport = async (req,res) =>{
         return res.status(500).json({ msg: error });
     }
 }
-
 /// chua test
 exports.removeBlock = async (req,res) =>{
     try {

@@ -4,17 +4,12 @@ const bcrypt = require("bcrypt");
 
 //models
 const Account = require("./models/account");
-const Conversation = require("./models/conversation");
-const FriendRequest = require("./models/friendRequest");
-const Message = require("./models/message");
 const User = require("./models/user");
 
 dotenv.config({
   path: "./config.env",
 });
 process.on("uncaughtException", (err) => {
-  // console.log("UNCAUGHT EXCEPTION!!! shutting down...");
-  // console.log(err.name, err.message);
   process.exit(1);
 });
 
@@ -32,17 +27,15 @@ mongoose.connect(
 // Start the server
 const _port = process.env.PORT;
 app.listen(_port, () => {
-  // console.log(`Application is running on port ${_port}`);
+  console.log(`Application is running on port ${_port}`);
 });
 
 process.on("unhandledRejection", (err) => {
-  // console.log("UNHANDLED REJECTION!!!  shutting down ...");
-  // console.log(err.name, err.message);
   server.close(() => {
     process.exit(1);
   });
 });
-// 0566613411
+
 // run();
 // async function run() {
 //   ///User 1

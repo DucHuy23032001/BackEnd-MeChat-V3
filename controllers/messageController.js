@@ -4,7 +4,12 @@ const AppError = require("../utils/appError");
 const AWS = require("aws-sdk");
 const User = require("../models/user");
 const { v4: uuidv4 } = require('uuid');
-
+AWS.config.update({
+  accessKeyId: process.env.ID,
+  secretAccessKey: process.env.SECRET,
+  region: process.env.region,
+});
+const s3 = new AWS.S3();
 //Oke
 exports.getTenLastMessageInConversationID = async (req, res, next) => {
   try {
@@ -58,12 +63,6 @@ exports.createMessageManyFile = async (req, res, next) => {
   try {
     let _imageLinks = [];
     let _fileLink = "";
-    AWS.config.update({
-      accessKeyId: process.env.ID,
-      secretAccessKey: process.env.SECRET,
-      region: process.env.region,
-    });
-    const s3 = new AWS.S3();
     if (!req.files) {
       _imageLinks = null;
       _fileLink = null;
@@ -262,14 +261,12 @@ exports.updateSeen = async (req, res, next) => {
   try {
     const _messageId = req.params.messageId;
     const _userId = req.body.userId;
-    // const _user = await User.findById(_userId);
     const _message = await Message.findById(_messageId);
     let _seen = _message.seen;
     _seen.push(_userId)
     await Message.findByIdAndUpdate(_messageId, {
       seen:_seen
     });
-    // const _message = await Message.findById(_messageId);
     let _data = { id: _messageId , userId : _userId , seen : _seen };
     res.status(200).json(_data);
   } catch (err) {
@@ -283,10 +280,9 @@ exports.moveMessage = async (req, res, next) => {
     const _messageId = req.params.messageId;
     const _conversationId = req.body.conversationId;
     const _userId = req.body.userId;
-    // let _seen = [];
-    // _seen.push(_userId);
     let _newMessages = [];
     let _content = "";
+    
     const _message = await Message.findById(_messageId);
     for(let i of _conversationId){
       let _conversation = await Conversation.findById(i);

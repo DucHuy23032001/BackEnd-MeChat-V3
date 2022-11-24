@@ -12,11 +12,7 @@ const accountSchema = new Schema({
         required: [true, "Please fill your password"],
         minLength: 6,
         select: true,
-    },
-    status:{
-        type:Boolean,
-        default:true
-    },
+    }
 })
 accountSchema.methods.correctPassword = async function(
     typedPassword,

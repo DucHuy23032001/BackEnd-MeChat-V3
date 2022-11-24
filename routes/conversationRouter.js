@@ -3,8 +3,6 @@ const ConversationsController = require("../controllers/conversationController")
 
 Router.get("/:userId", ConversationsController.getAllConversationByUserID);
 
-Router.put("/change-createBy/:conversationId", ConversationsController.changeCreateByConversation);
-
 Router.post("/create-conversation", ConversationsController.createConversation);
 Router.post("/change-name/:conversationId", ConversationsController.changeName);
 Router.post("/change-avatar/:conversationId",ConversationsController.changeAvatar)
@@ -17,5 +15,7 @@ Router.delete("/delete-conversation/:conversationId", ConversationsController.de
 Router.delete("/delete-for-you/:conversationId",ConversationsController.deleteConversationForYou);
 Router.delete("/delete-member/:conversationId", ConversationsController.deleteMemberConversation);
 Router.delete("/remove-deleteby/:conversationId", ConversationsController.removeDeleteBy);
+
+Router.put("/change-createBy/:conversationId", ConversationsController.changeCreateByConversation);
 
 module.exports = Router;

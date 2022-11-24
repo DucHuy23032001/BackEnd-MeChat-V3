@@ -4,72 +4,15 @@ const Account = require("../models/account");
 const AWS = require("aws-sdk");
 const Conversation = require("../models/conversation");
 
-//Oke
-exports.deleteUserPhuong = async (req, res, next) => {
-  try {
-    const _user1 = await User.findById(req.params.userId);
-    const _user = await User.findByIdAndDelete(req.params.userId);
-
-    const _account = await Account.findByIdAndDelete(_user1.accountID);
-
-    if (!_user || !_account) {
-      return next(
-        new AppError(404, "fail", "No document found with that id"),
-        req,
-        res,
-        next
-      );
-    }
-
-    res.status(204).json({
-      status: "success",
-      data: {
-        _user,
-      },
-    });
-  } catch (error) {
-    return res.status(500).json({ msg: error });
-  }
-};
-//OKe
-exports.deleteUser = async (req, res, next) => {
-  try {
-    const _user = await User.findByIdAndUpdate(req.params.userID, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    const _acount = await Account.findByIdAndUpdate(_user.accountID, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    if (!_user || !_acount) {
-      return next(
-        new AppError(404, "fail", "No document found with that id"),
-        req,
-        res,
-        next
-      );
-    }
-
-    res.status(204).json({
-      status: "success",
-      data: {
-        _user,
-      },
-    });
-  } catch (error) {
-    return res.status(500).json({ msg: error });
-  }
-};
+AWS.config.update({
+  accessKeyId: process.env.ID,
+  secretAccessKey: process.env.SECRET,
+  region: process.env.region,
+});
+const s3 = new AWS.S3();
 
 exports.updateBack = async (req, res, next) => {
   try {
-    AWS.config.update({
-      accessKeyId: process.env.ID,
-      secretAccessKey: process.env.SECRET,
-      region: process.env.region,
-    });
-    const s3 = new AWS.S3();
     if (req.files != null) {
       const _fileContentBack = Buffer.from(req.files.backLink.data, "binary");
       const _paramBack = {
@@ -123,13 +66,6 @@ exports.updateBack = async (req, res, next) => {
 //OKe
 exports.updateAvar = async (req, res, next) => {
   try {
-    let _avarLink;
-    AWS.config.update({
-      accessKeyId: process.env.ID,
-      secretAccessKey: process.env.SECRET,
-      region: process.env.region,
-    });
-    const s3 = new AWS.S3();
     if (req.files != null) {
       const _fileContentAvar = Buffer.from(req.files.avatarLink.data, "binary");
       const _paramAvar = {

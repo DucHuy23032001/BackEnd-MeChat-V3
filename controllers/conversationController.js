@@ -78,6 +78,7 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       if(i.deleteBy == null){
         i.deleteBy = []
       }
+      console.log(i);
       _data = {
         id: i.id,
         name: _name,
