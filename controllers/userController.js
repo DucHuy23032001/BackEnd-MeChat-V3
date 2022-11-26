@@ -305,7 +305,42 @@ exports.getAllUsers = async (req, res, next) => {
     return res.status(500).json({ msg: error });
   }
 };
+//OKe
+exports.getAllUserForAdmin = async (req, res, next) => {
+  try {
+    let _datas = [];
+    const _users = await User.find();
 
+    for (let i of _users) {
+      if (!i.role) {
+        const _account = await Account.findById(i.accountID);
+        const _data = {
+          _id: i.id,
+          fullName: i.fullName,
+          bio: i.bio,
+          gender: i.gender,
+          birthday: i.birthday,
+          status: i.status,
+          avatarLink: i.avatarLink,
+          backgroundLink: i.backgroundLink,
+          friends: i.friends,
+          phoneNumber: _account.phoneNumber,
+          warning: i.warning,
+          role: i.role
+        }
+        _datas.push(_data);
+      };
+    }
+
+    res.status(200).json({
+      status: "success",
+      results: _users.length,
+      data: _datas,
+    });
+  } catch (error) {
+    return res.status(500).json({ msg: error });
+  }
+};
 //OKe
 exports.deleteFriend = async (req, res, next) => {
   try {
