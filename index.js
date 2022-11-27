@@ -49,7 +49,7 @@ process.on("unhandledRejection", (err) => {
 //     bio:"Sông Lam",
 //     birthday:Date.now(),
 //     accountID:_HuyAccount,
-//     avatarLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/huy.jpg",
+//     avatarLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/huy.jpg",
 //     backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",     
 //   });
 

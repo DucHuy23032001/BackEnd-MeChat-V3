@@ -16,7 +16,7 @@ exports.updateBack = async (req, res, next) => {
     if (req.files != null) {
       const _fileContentBack = Buffer.from(req.files.backLink.data, "binary");
       const _paramBack = {
-        Bucket: "mechat",
+        Bucket: "mechat-v2",
         Key: req.files.backLink.name,
         Body: _fileContentBack,
       };
@@ -69,7 +69,7 @@ exports.updateAvar = async (req, res, next) => {
     if (req.files != null) {
       const _fileContentAvar = Buffer.from(req.files.avatarLink.data, "binary");
       const _paramAvar = {
-        Bucket: "mechat",
+        Bucket: "mechat-v2",
         Key: req.files.avatarLink.name,
         Body: _fileContentAvar,
       };
