@@ -287,7 +287,7 @@ exports.moveMessage = async (req, res, next) => {
     for(let i of _conversationId){
       let _conversation = await Conversation.findById(i);
       let _member = _conversation.members;
-      _member.pull(_userId)
+      // _member.pull(_userId)
       const _newMessage = await Message.create({
         content: _message.content,
         conversationID: i,
