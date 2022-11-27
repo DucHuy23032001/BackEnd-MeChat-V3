@@ -100,10 +100,10 @@ exports.signup = async (req, res, next) => {
       );
     }
     if(gender == 0){
-      _pathAvatar = "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nam.jpg"
+      _pathAvatar = "https://mechat.s3.ap-southeast-1.amazonaws.com/avatar-nam.png"
     }
     else if(gender == 1){
-      _pathAvatar = "https://mechat-v2.s3.ap-southeast-1.amazonaws.com/avatar-nu.png"
+      _pathAvatar = "https://mechat.s3.ap-southeast-1.amazonaws.com/avatar-nu.png"
     }
     const _account = await Account.create({
       phoneNumber: phoneNumber.trim(),
@@ -113,7 +113,7 @@ exports.signup = async (req, res, next) => {
       fullName: fullName,
       gender: gender,
       avatarLink: _pathAvatar,
-      backgroundLink:"https://mechat-v2.s3.ap-southeast-1.amazonaws.com/background.jpg",
+      backgroundLink:"https://mechat.s3.ap-southeast-1.amazonaws.com/background.png",
       birthday: Date.now(),
       accountID: _account.id,
       role:_role
