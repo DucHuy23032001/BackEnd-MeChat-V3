@@ -89,12 +89,19 @@ exports.getAccountById = async (req, res, next) => {
 exports.getAllAccount = async (req, res, next) => {
     try {
         const _account = await Account.find();
+        let _accounts = [];
+        for(let i of _account){
+            let _user = await User.findOne({accountID:i.id});
+            if(!_user.role){
+                _accounts.push(i);
+            }
+        }
         if (!_account) {
             return next(new AppError(404, 'fail', 'No account found with that id'), req, res, next);
         }
         res.status(200).json({
             status: 'success',
-            data: _account
+            data: _accounts
         });
     } catch (error) {
         return res.status(500).json({ msg: error });
