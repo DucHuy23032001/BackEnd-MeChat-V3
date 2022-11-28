@@ -26,24 +26,6 @@ app.use(helmet());
 app.use(express.json({ limit: 52428800}));
 app.use(express.urlencoded({ limit: 52428800, extended:true}));
 
-// app.use(bodyParser.json({
-    // limit: 52428800
-// }));
-
-// app.use(bodyParser.urlencoded({
-    // limit: 52428800,
-    // extended:true
-// }));
-
-
-// const limiter = rateLimit({
-//     max: 150,
-//     windowMs: 60 * 60 * 1000,
-//     message: 'Too Many Request from this IP, please try again in an hour'
-// });
-// app.use('/api', limiter);
-
-
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
@@ -56,8 +38,6 @@ app.use('/api/v3/accounts', accountRouter);
 app.use('/api/v3/friendRequests', friendRequestRouter);
 app.use('/api/v3/auths', authRouter);
 app.use('/api/v3/reports',reportRouter);
-
-
 
 // handle undefined Routes
 app.use('*', (req, res, next) => {

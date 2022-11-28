@@ -51,7 +51,7 @@ exports.changePassWord = async (req, res, next) => {
         return res.status(500).json({ msg: error });
     }
 };
-//
+//Oke
 exports.getAccountByPhoneNumber = async (req, res, next) => {
     try {
         const _account = await Account.findOne({phoneNumber:req.params.phoneNumber});
@@ -68,7 +68,7 @@ exports.getAccountByPhoneNumber = async (req, res, next) => {
     }
 };
 
-//
+//Oke
 exports.getAccountById = async (req, res, next) => {
     try {
         const _account = await Account.findById(req.params.accountID);

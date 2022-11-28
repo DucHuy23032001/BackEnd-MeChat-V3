@@ -12,6 +12,4 @@ Router.post("/update-seen/:messageId", MessagesController.updateSeen);
 Router.delete("/delete-for-you/:messageId",MessagesController.deleteMessageForYou);
 Router.delete("/:messageId", MessagesController.deleteMessage);
 
-
-//moveMessage
 module.exports = Router;

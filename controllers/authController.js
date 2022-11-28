@@ -169,7 +169,7 @@ exports.protect = async (req, res, next) => {
       );
     }
     const _decode = await jwt.verify(_token, process.env.JWT_SECRET);
-    // 3) check if the user is exist (not deleted)
+
     const _account = await Account.findById(_decode.id);
     if (!_account) {
       return next(

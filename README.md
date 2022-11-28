@@ -1,5 +1,15 @@
 # BackEnd-MeChat-Final-v3
+## config.env
+    development 
+    3000
+    mongodb+srv://MeChat:MeChat@mechat.53ruplw.mongodb.net/MeChat
 
+    secretMeChat                  
+    600s
+
+    'AKIAZTNA5NPYIUF3TODZ'
+    'By4Lxi9dNO1qDNdyNMqnMSNrAuxr6a7at7fKsPo8'
+    'ap-southeast-1'
 # Path: http://localhost:3000/api/v3/authRouters
 ### Đăng nhập
 ```json

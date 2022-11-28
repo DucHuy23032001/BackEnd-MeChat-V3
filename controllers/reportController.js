@@ -163,7 +163,7 @@ exports.acceptReport = async (req,res) =>{
         return res.status(500).json({ msg: error });
     }
 }
-/// chua test
+//Oke
 exports.removeBlock = async (req,res) =>{
     try {
         const { status } = req.body;
