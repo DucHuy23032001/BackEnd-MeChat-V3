@@ -78,7 +78,6 @@ exports.getAllConversationByUserID = async (req, res, next) => {
       if(i.deleteBy == null){
         i.deleteBy = []
       }
-      console.log(i);
       _data = {
         id: i.id,
         name: _name,
@@ -389,7 +388,7 @@ exports.changeAvatar = async (req, res) => {
       ContentType: 'image/png',
       Body: _fileContentImage,
     };
-    // console.log(_paramAvatar);
+  
     let _paramLocation = await s3
       .upload(_paramAvatar, (err, data) => {
         if (err) {
